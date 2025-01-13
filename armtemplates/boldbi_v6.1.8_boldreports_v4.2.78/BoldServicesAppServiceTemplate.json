@@ -153,7 +153,7 @@
 					],
 					"properties": {
 						"RepoUrl": "https://github.com/boldbi/bi_and_reports_azure-arm-template.git",
-						"branch": "boldbi_v4.1.36_boldreports_v4.2.78",
+						"branch": "boldbi_v6.1.8_boldreports_v4.2.78",
 						"IsManualIntegration": true
 					}
 				},

@@ -119,8 +119,6 @@ CREATE TABLE {database_name}.BOLDBI_Item(
 	IsDraft tinyint NULL DEFAULT 0,
 	IsLocked tinyint NULL DEFAULT 0,
 	IsActive tinyint NULL,
-	IsUnlisted tinyint(1) NOT NULL DEFAULT 0,
-	IsUploadDraft tinyint(1) NOT NULL DEFAULT 0,
 	PRIMARY KEY (Id))
 ;
 
@@ -183,7 +181,6 @@ CREATE TABLE {database_name}.BOLDBI_ItemLog(
 	ItemId Char(38) NOT NULL,
 	ItemVersionId int NOT NULL,
 	SourceTypeId int NOT NULL,
-	EventTypeId int NULL,
 	ParentId Char(38) NULL,
 	FromCategoryId Char(38) NULL,
 	ToCategoryId Char(38) NULL,
@@ -208,9 +205,6 @@ CREATE TABLE {database_name}.BOLDBI_UserPermission(
 	PermissionEntityId int NOT NULL,
 	ItemId Char(38) NULL,
 	UserId int NOT NULL,
-	SettingsTypeId int NULl,
-	ScopeGroupId int NULl,
-	ItemTypeId int NULl,
 	IsActive tinyint NOT NULL,
 	PRIMARY KEY (Id))
 ;
@@ -221,9 +215,6 @@ CREATE TABLE {database_name}.BOLDBI_GroupPermission(
 	PermissionEntityId int NOT NULL,
 	ItemId Char(38) NULL,
 	GroupId int NOT NULL,
-	SettingsTypeId int NULl,
-	ScopeGroupId int NULl,
-	ItemTypeId int NULl,
 	IsActive tinyint NOT NULL,
 	PRIMARY KEY (Id))
 ;
@@ -249,7 +240,6 @@ CREATE TABLE {database_name}.BOLDBI_ScheduleDetail(
 	Name varchar(150) NOT NULL,
 	RecurrenceTypeId int NULL,
 	RecurrenceInfo varchar(4000) NULL,
-	Subject varchar(4000) NULL,
 	EmailContent varchar(4000) NULL,
 	IsDataChanges tinyint NOT NULL DEFAULT 0,
 	IsTimeInterval tinyint NOT NULL DEFAULT 0,
@@ -263,7 +253,6 @@ CREATE TABLE {database_name}.BOLDBI_ScheduleDetail(
 	ModifiedById int NOT NULL,
 	CreatedDate datetime NOT NULL,
 	ModifiedDate datetime NOT NULL,
-	ScheduleExportInfo text NULL,
 	IsActive tinyint NOT NULL,
 	PRIMARY KEY (Id))
 ;
@@ -376,7 +365,6 @@ CREATE TABLE {database_name}.BOLDBI_Comment(
     ItemId Char(38) NOT NULL,
     UserId int NOT NULL,
     ParentId int NULL,
-    ParentItemId Char(38) NULL,
     CreatedDate datetime NOT NULL,
     ModifiedDate datetime NOT NULL,
     ModifiedById int NOT NULL,
@@ -387,7 +375,6 @@ CREATE TABLE {database_name}.BOLDBI_Comment(
 CREATE TABLE {database_name}.BOLDBI_ItemWatch(
 	Id int NOT NULL AUTO_INCREMENT,
 	ItemId Char(38) NOT NULL,
-	ParentItemId Char(38) NULL,
 	UserId int NOT NULL,
 	ModifiedDate datetime NOT NULL,
 	IsWatched tinyint NOT NULL,
@@ -565,7 +552,6 @@ CREATE TABLE {database_name}.BOLDBI_MultiTabDashboard(
 	OrderNumber int NULL,
 	ModifiedDate datetime NOT NULL,
 	IsActive tinyint NOT NULL,
-	TabName varchar(255) NULL,
 	PRIMARY KEY (Id))
 ;
 
@@ -786,7 +772,6 @@ CREATE TABLE {database_name}.BOLDBI_DeploymentDashboards(
     Description varchar(1026) NULL,
 	IsDashboardLocked tinyint NOT NULL,
     IsDatasourceLocked tinyint NOT NULL,
-    ItemInfo text NOT NULL,
     CreatedById int NOT NULL,
     CreatedDate datetime NOT NULL,
     ModifiedDate datetime NOT NULL,
@@ -854,144 +839,11 @@ CREATE TABLE {database_name}.BOLDBI_ExternalSites(
 	ClientSecret varchar(255) NOT NULL,
 	SiteURL varchar(255) NOT NULL,
 	CreatedById int NOT NULL,
-	CreatedDate datetime NOT NULL,
-	ModifiedById int NULL,
-	ModifiedDate datetime NULL,
-	SiteType int NOT NULL DEFAULT 0,
-	IsActive tinyint NOT NULL,
-	PRIMARY KEY (Id))
-;
-
-CREATE TABLE {database_name}.BOLDBI_SettingsType(
-	Id int NOT NULL AUTO_INCREMENT,
-	Name varchar(100) NOT NULL UNIQUE,
-	IsActive tinyint NULL,
-	PRIMARY KEY (Id))
-;
-
-CREATE TABLE {database_name}.BOLDBI_EmailActivityLog(
-	Id int NOT NULL AUTO_INCREMENT,
-	Event varchar(255) NOT NULL,
-	RecipientEmail varchar(255) NOT NULL,
-	SenderEmail varchar(255) NOT NULL,
-	MailSubject varchar(255) NOT NULL,
-	MailBody text NULL,
-	CreatedDate datetime NOT NULL,
-	ModifiedDate datetime  NULL,
-	InitiatedBy int NOT NULL,
-	UserId int NULL,
-	GroupId int NULL,
-	ItemId Char(38) NULL,
-	CommentId int NULL,
-	PermissionId int NULL,
-	Status int NOT NULL,
-	StatusMessage text NULL,
-	IsActive tinyint NOT NULL,
-	PRIMARY KEY (Id))
-;
-
-CREATE TABLE {database_name}.BOLDBI_Webhook(
-	Id int NOT NULL AUTO_INCREMENT,
-	Name varchar(512) NOT NULL,
-	Description varchar(4000) NULL,
-	Url varchar(512) NOT NULL,
-	UserId int NOT NULL,
-	Security varchar(512) NULL,
-	Headers text NULL,
-	ContentType int NOT NULL,
-	SubscribedEvent varchar(512) NOT NULL,
-	Payload text NULL,
-	Failures int NOT NULL,
-	CreatedById int NOT NULL,
-	ModifiedById int NOT NULL,
-	CreatedDate datetime NOT NULL,
-	ModifiedDate datetime NOT NULL,
-	IsEnable tinyint NOT NULL,
-	IsActive tinyint NOT NULL,
-	PRIMARY KEY (Id))
-;
-
-CREATE TABLE {database_name}.BOLDBI_NotificationTrigger(
-	Id SERIAL PRIMARY KEY NOT NULL,
-	WebhookId int NULL,
-	RecurrenceInfo varchar(4000) NOT NULL,
-	RetryCount int NOT NULL,
-	RequestData longtext NULL,
-	WebhookTargetData longtext NULL,
-	AdditionalInfo text NULL,
-	NextScheduleDate timestamp NULL,
-	CreatedDate timestamp NOT NULL,
-	ModifiedDate timestamp NULL,
-	ReferenceId varchar(255) NULL,
-	IsActive smallint NOT NULL)
-;
-
-CREATE TABLE {database_name}.BOLDBI_WebhookLog(
-	Id int NOT NULL AUTO_INCREMENT,
-	WebhookId int NULL,
-	Event varchar(512) NOT NULL,
-	RequestUrl varchar(512) NULL,
-	FailureType varchar(512) NOT NULL,
-	ReferenceId varchar(255) NULL,
-	ResponseMessage text NULL,
-	ResponseStatusCode varchar(512) NOT NULL,
-	CreatedDate datetime NOT NULL,
-	IsActive tinyint NOT NULL,
-	PRIMARY KEY (Id))
-;
-
-CREATE TABLE {database_name}.BOLDBI_NotificationEvents(
-	Id int NOT NULL AUTO_INCREMENT,
-	Name varchar(100) UNIQUE NOT NULL,
-	IsActive tinyint NOT NULL,
-	PRIMARY KEY (Id))
-;
-
-CREATE TABLE {database_name}.BOLDBI_EventPayloads(
-	Id int NOT NULL AUTO_INCREMENT,
-	Name varchar(100) UNIQUE NOT NULL,
-	IsActive tinyint NOT NULL,
-	PRIMARY KEY (Id))
-;
-
-CREATE TABLE {database_name}.BOLDBI_EventPayloadsMapping(
-	Id int NOT NULL AUTO_INCREMENT,
-	EventType int NOT NULL,
-	PayloadType int NOT NULL,
-	IsActive tinyint NOT NULL,
-	PRIMARY KEY (Id))
-;
-
-CREATE TABLE {database_name}.BOLDBI_UserSession(
-	Id Char(38) NOT NULL,
-	IdpReferenceId Char(38) NOT NULL,
-	SessionId Char(38) NOT NULL,
-	DirectoryTypeId int NOT NULL DEFAULT 0,
-	IpAddress varchar(255) NOT NULL,
-	Browser varchar(255) NULL,
-	LoggedInTime datetime NOT NULL,
-	LastActive datetime NULL,
-	IsActive tinyint NOT NULL,
-	PRIMARY KEY (Id))
-;
-
-
-CREATE TABLE {database_name}.BOLDBI_BackgroundJobs(
-    Id int NOT NULL AUTO_INCREMENT,
-    JobType varchar(100) NOT NULL,
-    ItemId Char(38) NULL,
-    UserId int NULL,
-    JobDetails text NOT NULL,
     CreatedDate datetime NOT NULL,
-    CompletedDate datetime NOT NULL,
-    Status varchar(255) NOT NULL,
-	StatusMessage varchar(255) NULL,
-	ResourceInfo text NULL,
-	CanIncludeSensitiveInfo tinyint NULL,
-	IsSampleData tinyint NULL,
-    IsActive tinyint NOT NULL,
-    PRIMARY KEY (Id))
+	IsActive tinyint NOT NULL,
+	PRIMARY KEY (Id))
 ;
+
 -- -- PASTE INSERT Queries below this section --------
 
 
@@ -1014,51 +866,6 @@ INSERT into {database_name}.BOLDBI_ItemType (Name,IsActive) values ('Widget',1)
 INSERT into {database_name}.BOLDBI_ItemType (Name,IsActive) values ('ItemView',1)
 ;
 INSERT into {database_name}.BOLDBI_ItemType (Name, IsActive) Values ('Slideshow',1)
-;
-INSERT into {database_name}.BOLDBI_ItemType (Name, IsActive) Values ('Settings',1)
-;
-INSERT into {database_name}.BOLDBI_ItemType (Name, IsActive) Values ('User Management',1)
-;
-INSERT into {database_name}.BOLDBI_ItemType (Name, IsActive) Values ('Permissions',1)
-;
-
-INSERT into {database_name}.BOLDBI_SettingsType (Name,IsActive) VALUES ('Site Settings',1)
-;
-INSERT into {database_name}.BOLDBI_SettingsType (Name,IsActive) VALUES ('Dashboard Settings',1)
-;
-INSERT into {database_name}.BOLDBI_SettingsType (Name,IsActive) VALUES ('Embed Settings',1)
-;
-INSERT into {database_name}.BOLDBI_SettingsType (Name,IsActive) VALUES ('Data Process',1)
-;
-INSERT into {database_name}.BOLDBI_SettingsType (Name,IsActive) VALUES ('Connectors',1)
-;
-INSERT into {database_name}.BOLDBI_SettingsType (Name,IsActive) VALUES ('Email Settings',1)
-;
-INSERT into {database_name}.BOLDBI_SettingsType (Name,IsActive) VALUES ('Accounts Settings',1)
-;
-INSERT into {database_name}.BOLDBI_SettingsType (Name,IsActive) values ('User Directory Settings',1)
-;
-INSERT into {database_name}.BOLDBI_SettingsType (Name,IsActive) values ('Authentication Settings',1)
-;
-INSERT into {database_name}.BOLDBI_SettingsType (Name, IsActive) Values ('Notification Settings',1)
-;
-INSERT into {database_name}.BOLDBI_SettingsType (Name, IsActive) Values ('Manage License',1)
-;
-INSERT into {database_name}.BOLDBI_SettingsType (Name,IsActive) VALUES ( 'Support Settings',1)
-;
-INSERT into {database_name}.BOLDBI_SettingsType (Name,IsActive) VALUES ( 'Subscription',1)
-;
-INSERT into {database_name}.BOLDBI_SettingsType (Name,IsActive) VALUES ( 'Payments',1)
-;
-INSERT into {database_name}.BOLDBI_SettingsType (Name,IsActive) VALUES ( 'Widgets',1)
-;
-INSERT into {database_name}.BOLDBI_SettingsType (Name,IsActive) VALUES ( 'Security',1)
-;
-INSERT into {database_name}.BOLDBI_SettingsType (Name,IsActive) Values ( 'Integrations',1)
-;
-INSERT into {database_name}.BOLDBI_SettingsType (Name,IsActive) VALUES ( 'CORS Settings',1)
-;
-INSERT into {database_name}.BOLDBI_SettingsType (Name,IsActive) VALUES ( 'Look and Feel',1)
 ;
 
 INSERT into {database_name}.BOLDBI_ItemLogType (Name,IsActive) VALUES ( 'Added',1)
@@ -1116,7 +923,7 @@ INSERT into {database_name}.BOLDBI_ScheduleStatus (Name,IsActive) VALUES ('Succe
 ;
 INSERT into {database_name}.BOLDBI_ScheduleStatus (Name,IsActive) VALUES ('Failure', 1)
 ;
-INSERT into {database_name}.BOLDBI_ScheduleStatus (Name,IsActive) VALUES ('Run', 1)
+INSERT into {database_name}.BOLDBI_ScheduleStatus (Name,IsActive) VALUES ('Ru', 1)
 ;
 
 INSERT into {database_name}.BOLDBI_PermissionEntity (Name,EntityType,ItemTypeId, IsActive) VALUES ('All Reports',1,3,1)
@@ -1163,20 +970,6 @@ INSERT into {database_name}.BOLDBI_PermissionEntity (Name,EntityType,ItemTypeId,
 ;
 INSERT into {database_name}.BOLDBI_PermissionEntity (Name,EntityType,ItemTypeId, IsActive) VALUES ('All Slideshow',1,10,1)
 ;
-INSERT into {database_name}.BOLDBI_PermissionEntity (Name,EntityType,ItemTypeId, IsActive) VALUES ('Specific Settings',0,11,1)
-;
-INSERT into {database_name}.BOLDBI_PermissionEntity (Name,EntityType,ItemTypeId, IsActive) VALUES ('All Settings',1,11,1)
-;
-INSERT into {database_name}.BOLDBI_PermissionEntity (Name,EntityType,ItemTypeId, IsActive) VALUES ('Specific Group',0,12,1)
-;
-INSERT into {database_name}.BOLDBI_PermissionEntity (Name,EntityType,ItemTypeId, IsActive) VALUES ('Users and Groups',1,12,1)
-;
-INSERT into {database_name}.BOLDBI_PermissionEntity (Name,EntityType,ItemTypeId, IsActive) VALUES ('Specific Permissions',0,13,1)
-;
-INSERT into {database_name}.BOLDBI_PermissionEntity (Name,EntityType,ItemTypeId, IsActive) VALUES ('All Permissions',1,13,1)
-;
-INSERT into {database_name}.BOLDBI_PermissionEntity (Name,EntityType,ItemTypeId, IsActive) VALUES ('All Groups',1,12,1)
-;
 
 INSERT into {database_name}.BOLDBI_Group (Name,Description,Color,IsolationCode,ModifiedDate,DirectoryTypeId,IsActive) VALUES ('System Administrator','Has administrative rights for the dashboards','#ff0000',null,NOW(), 1, 1)
 ;
@@ -1193,7 +986,7 @@ INSERT into {database_name}.BOLDBI_ItemCommentLogType (Name,IsActive) VALUES ( '
 ;
 INSERT into {database_name}.BOLDBI_ItemCommentLogType (Name,IsActive) VALUES ( 'Replied',1)
 ;
-INSERT into {database_name}.BOLDBI_ItemCommentLogType (Name,IsActive) VALUES ( 'UserMention',1)
+INSERT into {database_name}.BOLDBI_ItemCommentLogType (Name,IsActive) VALUES ( 'UserMentio',1)
 ;
 INSERT into {database_name}.BOLDBI_UserType(Type) values('Server User')
 ;
@@ -1252,8 +1045,6 @@ INSERT into {database_name}.BOLDBI_PermissionAccEntity (PermissionEntityId, Perm
 INSERT into {database_name}.BOLDBI_PermissionAccEntity (PermissionEntityId, PermissionAccessId, IsActive) VALUES (15,1,1)
 ;
 INSERT into {database_name}.BOLDBI_PermissionAccEntity (PermissionEntityId, PermissionAccessId, IsActive) VALUES (22,1,1)
-;
-INSERT into {database_name}.BOLDBI_PermissionAccEntity (PermissionEntityId, PermissionAccessId, IsActive) VALUES (29,1,1)
 ;
 INSERT into {database_name}.BOLDBI_PermissionAccEntity (PermissionEntityId, PermissionAccessId, IsActive) VALUES (4,2,1)
 ;																									  
@@ -1314,18 +1105,6 @@ INSERT into {database_name}.BOLDBI_PermissionAccEntity (PermissionEntityId, Perm
 INSERT into {database_name}.BOLDBI_PermissionAccEntity (PermissionEntityId, PermissionAccessId, IsActive) VALUES (21,3,1)
 ;
 INSERT into {database_name}.BOLDBI_PermissionAccEntity (PermissionEntityId, PermissionAccessId, IsActive) VALUES (22,3,1)
-;
-INSERT into {database_name}.BOLDBI_PermissionAccEntity (PermissionEntityId, PermissionAccessId, IsActive) VALUES (23,3,1)
-;
-INSERT into {database_name}.BOLDBI_PermissionAccEntity (PermissionEntityId, PermissionAccessId, IsActive) VALUES (24,3,1)
-;
-INSERT into {database_name}.BOLDBI_PermissionAccEntity (PermissionEntityId, PermissionAccessId, IsActive) VALUES (25,3,1)
-;
-INSERT into {database_name}.BOLDBI_PermissionAccEntity (PermissionEntityId, PermissionAccessId, IsActive) VALUES (26,3,1)
-;
-INSERT into {database_name}.BOLDBI_PermissionAccEntity (PermissionEntityId, PermissionAccessId, IsActive) VALUES (27,3,1)
-;
-INSERT into {database_name}.BOLDBI_PermissionAccEntity (PermissionEntityId, PermissionAccessId, IsActive) VALUES (28,3,1)
 ;
 INSERT into {database_name}.BOLDBI_PermissionAccEntity (PermissionEntityId, PermissionAccessId, IsActive) VALUES (4,4,1)
 ;																									  
@@ -1400,7 +1179,7 @@ INSERT into {database_name}.BOLDBI_UserLogType (Name,IsActive) VALUES ( 'Update'
 ;
 INSERT into {database_name}.BOLDBI_UserLogType (Name,IsActive) VALUES ( 'Delete',1)
 ;
-INSERT into {database_name}.BOLDBI_UserLogType (Name,IsActive) VALUES ( 'Synchronization',1)
+INSERT into {database_name}.BOLDBI_UserLogType (Name,IsActive) VALUES ( 'Synchronizatio',1)
 ;
 INSERT into {database_name}.BOLDBI_UserLogType (Name,IsActive) VALUES ( 'Import',1)
 ;
@@ -1413,7 +1192,7 @@ INSERT into {database_name}.BOLDBI_GroupLogType (Name,IsActive) VALUES ( 'Update
 ;
 INSERT into {database_name}.BOLDBI_GroupLogType (Name,IsActive) VALUES ( 'Delete',1)
 ;
-INSERT into {database_name}.BOLDBI_GroupLogType (Name,IsActive) VALUES ( 'Synchronization',1)
+INSERT into {database_name}.BOLDBI_GroupLogType (Name,IsActive) VALUES ( 'Synchronizatio',1)
 ;
 INSERT into {database_name}.BOLDBI_GroupLogType (Name,IsActive) VALUES ( 'Import',1)
 ;
@@ -1428,11 +1207,11 @@ INSERT into {database_name}.BOLDBI_LogModule (Name,ModifiedDate,IsActive) VALUES
 ;
 INSERT into {database_name}.BOLDBI_LogModule (Name,ModifiedDate,IsActive) VALUES ('NotificationSettings',NOW(),1)
 ;
-INSERT into {database_name}.BOLDBI_LogModule (Name,ModifiedDate,IsActive) VALUES ('NotificationAdministration',NOW(),1)
+INSERT into {database_name}.BOLDBI_LogModule (Name,ModifiedDate,IsActive) VALUES ('NotificationAdministratio',NOW(),1)
 ;
 INSERT into {database_name}.BOLDBI_LogModule (Name,ModifiedDate,IsActive) VALUES ('AzureADDetail',NOW(),1)
 ;
-INSERT into {database_name}.BOLDBI_LogModule (Name,ModifiedDate,IsActive) VALUES ('DatabaseConfiguration',NOW(),1)
+INSERT into {database_name}.BOLDBI_LogModule (Name,ModifiedDate,IsActive) VALUES ('DatabaseConfiguratio',NOW(),1)
 ;
 INSERT into {database_name}.BOLDBI_LogModule (Name,ModifiedDate,IsActive) VALUES ('TenantBillingSubscriptionInfo',NOW(),1)
 ;
@@ -1450,7 +1229,7 @@ INSERT into {database_name}.BOLDBI_LogModule (Name,ModifiedDate,IsActive) VALUES
 ;
 INSERT into {database_name}.BOLDBI_LogModule (Name,ModifiedDate,IsActive) VALUES ('UserManagement',NOW(),1)
 ;
-INSERT into {database_name}.BOLDBI_LogModule (Name,ModifiedDate,IsActive) VALUES ('UserPreferenceNotification',NOW(),1)
+INSERT into {database_name}.BOLDBI_LogModule (Name,ModifiedDate,IsActive) VALUES ('UserPreferenceNotificatio',NOW(),1)
 ;
 INSERT into {database_name}.BOLDBI_LogModule (Name,ModifiedDate,IsActive) VALUES ('Group',NOW(),1)
 ;
@@ -1475,65 +1254,28 @@ INSERT into {database_name}.BOLDBI_LogField (ModuleId,Field,Description,Modified
 ;
 INSERT into {database_name}.BOLDBI_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (1,'MainScreenLogo','SiteSettings.HeaderLogo',NOW(),1)
 ;
-INSERT into {database_name}.BOLDBI_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (1,'FavIcon','SiteSettings.Favicon',NOW(),1)
+INSERT into {database_name}.BOLDBI_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (1,'FavIco','SiteSettings.Favico',NOW(),1)
 ;
-INSERT into {database_name}.BOLDBI_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (1,'FooterLogo','SiteSettings.FooterLogo',NOW(),1)
+INSERT into {database_name}.BOLDBI_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (1,'IsEnableCopyrightInfo','SiteSettings.ShowCopyrightInformatio',NOW(),1)
 ;
-INSERT into {database_name}.BOLDBI_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (1,'IsEnableCopyrightInfo','SiteSettings.ShowCopyrightInformation',NOW(),1)
-;
-INSERT into {database_name}.BOLDBI_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (1,'IsEnablePoweredBySyncfusion','SiteSettings.ShowPoweredBySyncfusion',NOW(),1)
-;
-INSERT into {database_name}.BOLDBI_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (1,'CopyrightInformation','SiteSettings.CopyrightInformation',NOW(),1)
+INSERT into {database_name}.BOLDBI_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (1,'IsEnablePoweredBySyncfusio','SiteSettings.ShowPoweredBySyncfusio',NOW(),1)
 ;
 
-INSERT into {database_name}.BOLDBI_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (2,'EnableNotificationForDashboardOwner','UserNotificationSettings.UserSystemNotificationSettings.EnableNotificationForDashboardOwner',NOW(),1)
+INSERT into {database_name}.BOLDBI_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (2,'EnableSystemNotificatio','NotificationSettings.SystemNotifications.DefaultSettings',NOW(),1)
 ;
-INSERT into {database_name}.BOLDBI_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (2,'EnableNotificationForAccessibleUser','UserNotificationSettings.UserSystemNotificationSettings.EnableNotificationForAccessibleUser',NOW(),1)
+INSERT into {database_name}.BOLDBI_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (2,'EnableMailNotificatio','NotificationSettings.MailNotifications.DefaultSettings',NOW(),1)
 ;
-INSERT into {database_name}.BOLDBI_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (2,'EnableNotificationOnUserMention','UserNotificationSettings.UserSystemNotificationSettings.EnableNotificationOnUserMention',NOW(),1)
+INSERT into {database_name}.BOLDBI_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (2,'EnableAutoWatchOfCommentsOfCreatedItems','NotificationSettings.AutowatchCommentsOfCreatedItems.DefaultSettings',NOW(),1)
 ;
-INSERT into {database_name}.BOLDBI_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (2,'EnableNotificationWhenWatchEnabled','UserNotificationSettings.UserSystemNotificationSettings.EnableNotificationWhenWatchEnabled',NOW(),1)
+INSERT into {database_name}.BOLDBI_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (2,'EnableAutoWatchOfCommentsOfAccessibleItems','NotificationSettings.AutowatchCommentsOfAccessibleItems.DefaultSettings',NOW(),1)
 ;
-INSERT into {database_name}.BOLDBI_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (2,'EnableNotificationForDashboardOwner','UserNotificationSettings.UserMailNotificationSettings.EnableNotificationForDashboardOwner',NOW(),1)
+INSERT into {database_name}.BOLDBI_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (3,'EnableSystemNotificatio','NotificationSettings.SystemNotifications.Allow',NOW(),1)
 ;
-INSERT into {database_name}.BOLDBI_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (2,'EnableNotificationForAccessibleUser','UserNotificationSettings.UserMailNotificationSettings.EnableNotificationForAccessibleUser',NOW(),1)
+INSERT into {database_name}.BOLDBI_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (3,'EnableMailNotificatio','NotificationSettings.MailNotifications.Allow',NOW(),1)
 ;
-INSERT into {database_name}.BOLDBI_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (2,'EnableNotificationOnUserMention','UserNotificationSettings.UserMailNotificationSettings.EnableNotificationOnUserMention',NOW(),1)
+INSERT into {database_name}.BOLDBI_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (3,'EnableAutoWatchOfCommentsOfCreatedItems','NotificationSettings.AutowatchCommentsOfCreatedItems.Allow',NOW(),1)
 ;
-INSERT into {database_name}.BOLDBI_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (2,'EnableNotificationWhenWatchEnabled','UserNotificationSettings.UserMailNotificationSettings.EnableNotificationWhenWatchEnabled',NOW(),1)
-;
-INSERT into {database_name}.BOLDBI_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (2,'EnableUserScheduleNotification','UserNotificationSettings.UserMailNotificationSettings.EnableUserScheduleNotification',NOW(),1)
-;
-INSERT into {database_name}.BOLDBI_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (2,'EnableUserProfileNotification','UserNotificationSettings.UserMailNotificationSettings.EnableUserProfileNotification',NOW(),1)
-;
-INSERT into {database_name}.BOLDBI_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (2,'EnableResourceShareNotification','UserNotificationSettings.UserMailNotificationSettings.EnableResourceShareNotification',NOW(),1)
-;
-INSERT into {database_name}.BOLDBI_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (2,'EnableUserSynchronizationNotification','UserNotificationSettings.UserMailNotificationSettings.EnableUserSynchronizationNotification',NOW(),1)
-;
-
-INSERT into {database_name}.BOLDBI_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (3,'EnableNotificationForDashboardOwner','NotificationSettings.SystemNotificationSettings.EnableNotificationForDashboardOwner',NOW(),1)
-;
-INSERT into {database_name}.BOLDBI_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (3,'EnableNotificationForAccessibleUser','NotificationSettings.SystemNotificationSettings.EnableNotificationForAccessibleUser',NOW(),1)
-;
-INSERT into {database_name}.BOLDBI_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (3,'EnableNotificationOnUserMention','NotificationSettings.SystemNotificationSettings.EnableNotificationOnUserMention',NOW(),1)
-;
-INSERT into {database_name}.BOLDBI_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (3,'EnableNotificationWhenWatchEnabled','NotificationSettings.SystemNotificationSettings.EnableNotificationWhenWatchEnabled',NOW(),1)
-;
-INSERT into {database_name}.BOLDBI_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (3,'EnableNotificationForDashboardOwner','NotificationSettings.MailNotificationSettings.EnableNotificationForDashboardOwner',NOW(),1)
-;
-INSERT into {database_name}.BOLDBI_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (3,'EnableNotificationForAccessibleUser','NotificationSettings.MailNotificationSettings.EnableNotificationForAccessibleUser',NOW(),1)
-;
-INSERT into {database_name}.BOLDBI_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (3,'EnableNotificationOnUserMention','NotificationSettings.MailNotificationSettings.EnableNotificationOnUserMention',NOW(),1)
-;
-INSERT into {database_name}.BOLDBI_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (3,'EnableNotificationWhenWatchEnabled','NotificationSettings.MailNotificationSettings.EnableNotificationWhenWatchEnabled',NOW(),1)
-;
-INSERT into {database_name}.BOLDBI_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (3,'EnableUserScheduleNotification','NotificationSettings.MailNotificationSettings.EnableUserScheduleNotification',NOW(),1)
-;
-INSERT into {database_name}.BOLDBI_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (3,'EnableUserProfileNotification','NotificationSettings.MailNotificationSettings.EnableUserProfileNotification',NOW(),1)
-;
-INSERT into {database_name}.BOLDBI_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (3,'EnableResourceShareNotification','NotificationSettings.MailNotificationSettings.EnableResourceShareNotification',NOW(),1)
-;
-INSERT into {database_name}.BOLDBI_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (3,'EnableUserSynchronizationNotification','NotificationSettings.MailNotificationSettings.EnableUserSynchronizationNotification',NOW(),1)
+INSERT into {database_name}.BOLDBI_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (3,'EnableAutoWatchOfCommentsOfAccessibleItems','NotificationSettings.AutowatchCommentsOfAccessibleItems.Allow',NOW(),1)
 ;
 
 INSERT into {database_name}.BOLDBI_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (4,'TenantName','UserDirectory.Azure.TenantName',NOW(),1)
@@ -1553,9 +1295,9 @@ INSERT into {database_name}.BOLDBI_LogField (ModuleId,Field,Description,Modified
 ;
 INSERT into {database_name}.BOLDBI_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (5,'DatabaseName','UserDirectory.Database.DatabaseName',NOW(),1)
 ;
-INSERT into {database_name}.BOLDBI_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (5,'AuthenticationType','UserDirectory.Database.Authentication',NOW(),1)
+INSERT into {database_name}.BOLDBI_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (5,'AuthenticationType','UserDirectory.Database.Authenticatio',NOW(),1)
 ;
-INSERT into {database_name}.BOLDBI_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (5,'DSN','UserDirectory.Database.DSN',NOW(),1)
+INSERT into {database_name}.BOLDBI_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (5,'DS','UserDirectory.Database.DS',NOW(),1)
 ;
 INSERT into {database_name}.BOLDBI_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (5,'Port','UserDirectory.Database.Port',NOW(),1)
 ;
@@ -1612,7 +1354,7 @@ INSERT into {database_name}.BOLDBI_LogField (ModuleId,Field,Description,Modified
 INSERT into {database_name}.BOLDBI_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (9,'StartDateString','UserDirectory.Database.Schedule.Time',NOW(),1)
 ;
 
-INSERT into {database_name}.BOLDBI_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (10,'Subscription','Subscription',NOW(),1)
+INSERT into {database_name}.BOLDBI_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (10,'Subscriptio','Subscriptio',NOW(),1)
 ;
 INSERT into {database_name}.BOLDBI_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (10,'NotificationSettings','NotificationSettings',NOW(),1)
 ;
@@ -1640,9 +1382,9 @@ INSERT into {database_name}.BOLDBI_LogField (ModuleId,Field,Description,Modified
 ;
 INSERT into {database_name}.BOLDBI_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (10,'Payments.BillingAddress','Payments.BillingAddress',NOW(),1)
 ;
-INSERT into {database_name}.BOLDBI_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (10,'Subscription','Subscription',NOW(),1)
+INSERT into {database_name}.BOLDBI_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (10,'Subscriptio','Subscriptio',NOW(),1)
 ;
-INSERT into {database_name}.BOLDBI_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (10,'Subscription.Plan','Subscription.Plan',NOW(),1)
+INSERT into {database_name}.BOLDBI_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (10,'Subscription.Pla','Subscription.Pla',NOW(),1)
 ;
 INSERT into {database_name}.BOLDBI_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (10,'SiteSettings','SiteSettings',NOW(),1)
 ;
@@ -1651,8 +1393,6 @@ INSERT into {database_name}.BOLDBI_LogField (ModuleId,Field,Description,Modified
 INSERT into {database_name}.BOLDBI_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (10,'UserDirectory.OpenIDConnect','UserDirectory.OpenIDConnect',NOW(),1)
 ;
 INSERT into {database_name}.BOLDBI_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (10,'UserDirectory.AuthControl','UserDirectory.AuthControl',NOW(),1)
-;
-INSERT into {database_name}.BOLDBI_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (10,'DashboardSettings.UsageAnalytics','DashboardSettings.UsageAnalytics',NOW(),1)
 ;
 
 INSERT into {database_name}.BOLDBI_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (11,'Contact','Contact',NOW(),1)
@@ -1673,7 +1413,7 @@ INSERT into {database_name}.BOLDBI_LogField (ModuleId,Field,Description,Modified
 ;
 INSERT into {database_name}.BOLDBI_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (11,'IsDeleted','IsDeleted',NOW(),1)
 ;
-INSERT into {database_name}.BOLDBI_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (11,'LastLogin','LastLogin',NOW(),1)
+INSERT into {database_name}.BOLDBI_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (11,'LastLogi','LastLogi',NOW(),1)
 ;
 INSERT into {database_name}.BOLDBI_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (11,'LastName','LastName',NOW(),1)
 ;
@@ -1706,7 +1446,7 @@ INSERT into {database_name}.BOLDBI_LogField (ModuleId,Field,Description,Modified
 ;
 INSERT into {database_name}.BOLDBI_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (12,'UserProfile','User Profile',NOW(),1)
 ;
-INSERT into {database_name}.BOLDBI_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (12,'UserPermission','User Permission',NOW(),1)
+INSERT into {database_name}.BOLDBI_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (12,'UserPermissio','User Permissio',NOW(),1)
 ;
 INSERT into {database_name}.BOLDBI_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (12,'AzureUserImport','Azure AD User Import',NOW(),1)
 ;
@@ -1714,9 +1454,9 @@ INSERT into {database_name}.BOLDBI_LogField (ModuleId,Field,Description,Modified
 ;
 INSERT into {database_name}.BOLDBI_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (12,'UserManagementIndex','User Management',NOW(),1)
 ;
-INSERT into {database_name}.BOLDBI_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (12,'DatabaseUsersSynchronization','Database users Synchronization',NOW(),1)
+INSERT into {database_name}.BOLDBI_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (12,'DatabaseUsersSynchronizatio','Database users Synchronizatio',NOW(),1)
 ;
-INSERT into {database_name}.BOLDBI_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (12,'AzureUsersSynchronization','Azure AD users Synchronization',NOW(),1)
+INSERT into {database_name}.BOLDBI_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (12,'AzureUsersSynchronizatio','Azure AD users Synchronizatio',NOW(),1)
 ;
 INSERT into {database_name}.BOLDBI_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (12,'CsvUserImport','CSV User Import',NOW(),1)
 ;
@@ -1752,16 +1492,16 @@ INSERT into {database_name}.BOLDBI_LogField (ModuleId,Field,Description,Modified
 ;
 INSERT into {database_name}.BOLDBI_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (14,'EnableAutoWatchOfCommentsOfCreatedItems','Auto Watch Of Comments Of Created Items',NOW(),1)
 ;
-INSERT into {database_name}.BOLDBI_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (14,'EnableMailNotification','Mail Notification',NOW(),1)
+INSERT into {database_name}.BOLDBI_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (14,'EnableMailNotificatio','Mail Notificatio',NOW(),1)
 ;
-INSERT into {database_name}.BOLDBI_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (14,'EnableSystemNotification','System Notification',NOW(),1)
+INSERT into {database_name}.BOLDBI_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (14,'EnableSystemNotificatio','System Notificatio',NOW(),1)
 ;
 
 INSERT into {database_name}.BOLDBI_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (15,'Group','Group',NOW(),1)
 ;
 INSERT into {database_name}.BOLDBI_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (15,'Color','Color',NOW(),1)
 ;
-INSERT into {database_name}.BOLDBI_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (15,'Description','Description',NOW(),1)
+INSERT into {database_name}.BOLDBI_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (15,'Descriptio','Descriptio',NOW(),1)
 ;
 INSERT into {database_name}.BOLDBI_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (15,'IsActive','IsActive',NOW(),1)
 ;
@@ -1782,7 +1522,7 @@ INSERT into {database_name}.BOLDBI_LogField (ModuleId,Field,Description,Modified
 INSERT into {database_name}.BOLDBI_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (15,'OpenIDGroups','OpenID Group Import',NOW(),1)
 ;
 
-INSERT into {database_name}.BOLDBI_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (16,'AzureADGroup','Azure AD groups Synchronization',NOW(),1)
+INSERT into {database_name}.BOLDBI_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (16,'AzureADGroup','Azure AD groups Synchronizatio',NOW(),1)
 ;
 INSERT into {database_name}.BOLDBI_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (16,'AzureADGroupImport','Azure AD Group Import',NOW(),1)
 ;
@@ -1792,7 +1532,7 @@ INSERT into {database_name}.BOLDBI_LogField (ModuleId,Field,Description,Modified
 ;
 INSERT into {database_name}.BOLDBI_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (16,'EditGroup','Edit Group',NOW(),1)
 ;
-INSERT into {database_name}.BOLDBI_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (16,'GroupPermission','Group Permission',NOW(),1)
+INSERT into {database_name}.BOLDBI_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (16,'GroupPermissio','Group Permissio',NOW(),1)
 ;
 
 INSERT into {database_name}.BOLDBI_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (17,'Username','UserDirectory.Windows.Username',NOW(),1)
@@ -1823,13 +1563,13 @@ INSERT into {database_name}.BOLDBI_LogField (ModuleId,Field,Description,Modified
 ;
 INSERT into {database_name}.BOLDBI_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (12,'WindowsUserImport','Windows AD User Import',NOW(),1)
 ;
-INSERT into {database_name}.BOLDBI_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (12,'WindowsUsersSynchronization','Windows AD users Synchronization',NOW(),1)
+INSERT into {database_name}.BOLDBI_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (12,'WindowsUsersSynchronizatio','Windows AD users Synchronizatio',NOW(),1)
 ;
 INSERT into {database_name}.BOLDBI_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (13,'WindowsUsers','Windows Users',NOW(),1)
 ;
 INSERT into {database_name}.BOLDBI_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (15,'WindowsGroups','Windows Groups',NOW(),1)
 ;
-INSERT into {database_name}.BOLDBI_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (16,'WindowsADGroup','Windows AD groups Synchronization',NOW(),1)
+INSERT into {database_name}.BOLDBI_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (16,'WindowsADGroup','Windows AD groups Synchronizatio',NOW(),1)
 ;
 INSERT into {database_name}.BOLDBI_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (16,'WindowsADGroupImport','Windows AD Group Import',NOW(),1)
 ;
@@ -1842,66 +1582,6 @@ INSERT into {database_name}.BOLDBI_LogField (ModuleId,Field,Description,Modified
 INSERT into {database_name}.BOLDBI_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (10,'DashboardSettings.IsolationCode','DashboardSettings.IsolationCode',NOW(),1)
 ;
 INSERT into {database_name}.BOLDBI_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (1,'EmbedSettings','EmbedSettings',NOW(),1)
-;
-
-INSERT INTO {database_name}.BOLDBI_NotificationEvents (Name, IsActive) VALUES (N'Time Drive Dashboard Export',1)
-;
-INSERT INTO {database_name}.BOLDBI_NotificationEvents (Name, IsActive) VALUES (N'Alert Drive Dashboard Export',1)
-;
-
-INSERT INTO {database_name}.BOLDBI_EventPayloads (Name, IsActive) VALUES (N'Schedule Name',1)
-;
-INSERT INTO {database_name}.BOLDBI_EventPayloads (Name, IsActive) VALUES (N'Schedule Id',1)
-;
-INSERT INTO {database_name}.BOLDBI_EventPayloads (Name, IsActive) VALUES (N'Dashboard Id',1)
-;
-INSERT INTO {database_name}.BOLDBI_EventPayloads (Name, IsActive) VALUES (N'Dashboard Name',1)
-;
-INSERT INTO {database_name}.BOLDBI_EventPayloads (Name, IsActive) VALUES (N'Message',1)
-;
-INSERT INTO {database_name}.BOLDBI_EventPayloads (Name, IsActive) VALUES (N'File Content',1)
-;
-INSERT INTO {database_name}.BOLDBI_EventPayloads (Name, IsActive) VALUES (N'File Extension',1)
-;
-INSERT INTO {database_name}.BOLDBI_EventPayloads (Name, IsActive) VALUES (N'Export Format',1)
-;
-INSERT INTO {database_name}.BOLDBI_EventPayloads (Name, IsActive) VALUES (N'Alert Info',1)
-;
-
-INSERT INTO {database_name}.BOLDBI_EventPayloadsMapping (EventType, PayloadType, IsActive) VALUES (1,1,1)
-;
-INSERT INTO {database_name}.BOLDBI_EventPayloadsMapping (EventType, PayloadType, IsActive) VALUES (1,2,1)
-;
-INSERT INTO {database_name}.BOLDBI_EventPayloadsMapping (EventType, PayloadType, IsActive) VALUES (1,3,1)
-;
-INSERT INTO {database_name}.BOLDBI_EventPayloadsMapping (EventType, PayloadType, IsActive) VALUES (1,4,1)
-;
-INSERT INTO {database_name}.BOLDBI_EventPayloadsMapping (EventType, PayloadType, IsActive) VALUES (1,5,1)
-;
-INSERT INTO {database_name}.BOLDBI_EventPayloadsMapping (EventType, PayloadType, IsActive) VALUES (1,6,1)
-;
-INSERT INTO {database_name}.BOLDBI_EventPayloadsMapping (EventType, PayloadType, IsActive) VALUES (1,7,1)
-;
-INSERT INTO {database_name}.BOLDBI_EventPayloadsMapping (EventType, PayloadType, IsActive) VALUES (1,8,1)
-;
-
-INSERT INTO {database_name}.BOLDBI_EventPayloadsMapping (EventType, PayloadType, IsActive) VALUES (2,1,1)
-;
-INSERT INTO {database_name}.BOLDBI_EventPayloadsMapping (EventType, PayloadType, IsActive) VALUES (2,2,1)
-;
-INSERT INTO {database_name}.BOLDBI_EventPayloadsMapping (EventType, PayloadType, IsActive) VALUES (2,3,1)
-;
-INSERT INTO {database_name}.BOLDBI_EventPayloadsMapping (EventType, PayloadType, IsActive) VALUES (2,4,1)
-;
-INSERT INTO {database_name}.BOLDBI_EventPayloadsMapping (EventType, PayloadType, IsActive) VALUES (2,5,1)
-;
-INSERT INTO {database_name}.BOLDBI_EventPayloadsMapping (EventType, PayloadType, IsActive) VALUES (2,6,1)
-;
-INSERT INTO {database_name}.BOLDBI_EventPayloadsMapping (EventType, PayloadType, IsActive) VALUES (2,7,1)
-;
-INSERT INTO {database_name}.BOLDBI_EventPayloadsMapping (EventType, PayloadType, IsActive) VALUES (2,8,1)
-;
-INSERT INTO {database_name}.BOLDBI_EventPayloadsMapping (EventType, PayloadType, IsActive) VALUES (2,9,1)
 ;
 
 -- -- PASTE ALTER Queries below this section --------
@@ -1978,24 +1658,12 @@ ALTER TABLE  {database_name}.BOLDBI_UserPermission  ADD  FOREIGN KEY(ItemId) REF
 ;
 ALTER TABLE  {database_name}.BOLDBI_UserPermission  ADD  FOREIGN KEY(UserId) REFERENCES {database_name}.BOLDBI_User (Id)
 ;
-ALTER TABLE  {database_name}.BOLDBI_UserPermission ADD FOREIGN KEY(SettingsTypeId) REFERENCES {database_name}.BOLDBI_SettingsType (Id) 
-;
-ALTER TABLE  {database_name}.BOLDBI_UserPermission  ADD  FOREIGN KEY(ScopeGroupId) REFERENCES {database_name}.BOLDBI_Group (Id)
-;
-ALTER TABLE  {database_name}.BOLDBI_UserPermission  ADD  FOREIGN KEY(ItemTypeId) REFERENCES {database_name}.BOLDBI_ItemType (Id)
-;
 
 ALTER TABLE  {database_name}.BOLDBI_GroupPermission  ADD  FOREIGN KEY(PermissionEntityId) REFERENCES {database_name}.BOLDBI_PermissionEntity (Id)
 ;
 ALTER TABLE  {database_name}.BOLDBI_GroupPermission  ADD  FOREIGN KEY(ItemId) REFERENCES {database_name}.BOLDBI_Item (Id)
 ;
 ALTER TABLE  {database_name}.BOLDBI_GroupPermission  ADD  FOREIGN KEY(GroupId) REFERENCES {database_name}.BOLDBI_Group (Id)
-;
-ALTER TABLE  {database_name}.BOLDBI_GroupPermission ADD FOREIGN KEY(SettingsTypeId) REFERENCES {database_name}.BOLDBI_SettingsType (Id)
-;
-ALTER TABLE  {database_name}.BOLDBI_GroupPermission ADD  FOREIGN KEY(ScopeGroupId) REFERENCES {database_name}.BOLDBI_Group (Id)
-;
-ALTER TABLE  {database_name}.BOLDBI_GroupPermission  ADD  FOREIGN KEY(ItemTypeId) REFERENCES {database_name}.BOLDBI_ItemType (Id)
 ;
 
 ALTER TABLE  {database_name}.BOLDBI_ScheduleDetail  ADD FOREIGN KEY(ScheduleId) REFERENCES {database_name}.BOLDBI_Item (Id)
@@ -2061,15 +1729,11 @@ ALTER TABLE  {database_name}.BOLDBI_Comment ADD FOREIGN KEY(ItemId) REFERENCES {
 ALTER TABLE  {database_name}.BOLDBI_Comment ADD FOREIGN KEY(UserId) REFERENCES {database_name}.BOLDBI_User (Id)
 ;
 ALTER TABLE  {database_name}.BOLDBI_Comment ADD FOREIGN KEY(ModifiedById) REFERENCES {database_name}.BOLDBI_User (Id)
-;
-ALTER TABLE  {database_name}.BOLDBI_Comment ADD FOREIGN KEY(ParentItemId) REFERENCES {database_name}.BOLDBI_Item (Id) 
-;
+; 
  
 ALTER TABLE  {database_name}.BOLDBI_ItemWatch ADD FOREIGN KEY(ItemId) REFERENCES {database_name}.BOLDBI_Item (Id)
 ;
 ALTER TABLE  {database_name}.BOLDBI_ItemWatch ADD FOREIGN KEY(UserId) REFERENCES {database_name}.BOLDBI_User (Id)
-;
-ALTER TABLE  {database_name}.BOLDBI_ItemWatch ADD FOREIGN KEY(ParentItemId) REFERENCES {database_name}.BOLDBI_Item (Id)
 ;
 
 ALTER TABLE  {database_name}.BOLDBI_Homepage  ADD FOREIGN KEY(UserId) REFERENCES {database_name}.BOLDBI_User (Id)
@@ -2099,6 +1763,8 @@ ALTER TABLE  {database_name}.BOLDBI_DashboardWidget  ADD FOREIGN KEY(WidgetItemI
 ALTER TABLE  {database_name}.BOLDBI_DashboardDataSource  ADD FOREIGN KEY(DashboardItemId) REFERENCES {database_name}.BOLDBI_Item (Id)
 ;
 ALTER TABLE  {database_name}.BOLDBI_DashboardDataSource  ADD FOREIGN KEY(DataSourceItemId) REFERENCES {database_name}.BOLDBI_Item (Id)
+;
+ALTER TABLE  {database_name}.BOLDBI_DashboardDataSource  ADD FOREIGN KEY(VersionNumber) REFERENCES {database_name}.BOLDBI_ItemVersion (Id)
 ;
 
 ALTER TABLE  {database_name}.BOLDBI_HomepageItemFilter  ADD FOREIGN KEY(HomepageId) REFERENCES {database_name}.BOLDBI_Homepage (Id)
@@ -2215,26 +1881,6 @@ ALTER TABLE  {database_name}.BOLDBI_DataNotification  ADD FOREIGN KEY(ScheduleId
 ALTER TABLE  {database_name}.BOLDBI_DataNotification  ADD FOREIGN KEY(DataSourceId) REFERENCES {database_name}.BOLDBI_Item (Id)
 ;
 ALTER TABLE  {database_name}.BOLDBI_UserDataNotification  ADD FOREIGN KEY(ScheduleId) REFERENCES {database_name}.BOLDBI_Item (Id)
-;
-
-ALTER TABLE {database_name}.BOLDBI_EmailActivityLog  ADD  FOREIGN KEY(UserId) REFERENCES {database_name}.BOLDBI_User (Id)
-;
-ALTER TABLE {database_name}.BOLDBI_EmailActivityLog  ADD  FOREIGN KEY(GroupId) REFERENCES {database_name}.BOLDBI_Group (Id)
-;
-ALTER TABLE {database_name}.BOLDBI_EmailActivityLog  ADD  FOREIGN KEY(ItemId) REFERENCES {database_name}.BOLDBI_Item (Id)
-;
-ALTER TABLE {database_name}.BOLDBI_EmailActivityLog  ADD FOREIGN KEY(CommentId) REFERENCES {database_name}.BOLDBI_Comment (Id)
-;
-
-ALTER TABLE {database_name}.BOLDBI_WebhookLog  ADD FOREIGN KEY(WebhookId) REFERENCES {database_name}.BOLDBI_Webhook (Id)
-;
-ALTER TABLE {database_name}.BOLDBI_NotificationTrigger  ADD FOREIGN KEY(WebhookId) REFERENCES {database_name}.BOLDBI_Webhook (Id)
-;
-
-ALTER TABLE {database_name}.BOLDBI_EventPayloadsMapping ADD FOREIGN KEY(EventType) REFERENCES {database_name}.BOLDBI_NotificationEvents (Id)
-;
-
-ALTER TABLE {database_name}.BOLDBI_EventPayloadsMapping ADD FOREIGN KEY(PayloadType) REFERENCES {database_name}.BOLDBI_EventPayloads (Id)
 ;
 
 CREATE INDEX IX_BOLDBI_ScheduleDetail_ScheduleId ON {database_name}.BOLDBI_ScheduleDetail (ScheduleId);

@@ -181,21 +181,6 @@
         "background": "#EEEEEE"
       }
     },
-    "tabWidget": {
-      "tabHeader": {
-        "color": "#000000",
-        "selection": {
-          "color": "#0565ff"
-        },
-        "fontSettings": {
-          "autoFontSettings": true,
-          "fontSize": "",
-          "fontWeight": "",
-          "fontFamily": "",
-          "fontSrc": ""
-        }
-      }
-    },
     "map": {
       "widgetHeader": {
         "title": {
@@ -459,116 +444,6 @@
       }
     },
     "combobox": {
-      "widgetHeader": {
-        "title": {
-          "fontSettings": {
-            "autoFontSettings": true,
-            "fontSize": "",
-            "fontWeight": "",
-            "fontFamily": "",
-            "fontSrc": ""
-          }
-        },
-        "subTitle": {
-          "fontSettings": {
-            "autoFontSettings": true,
-            "fontSize": "",
-            "fontWeight": "",
-            "fontFamily": "",
-            "fontSrc": ""
-          }
-        }
-      },
-      "placeHolderTextColor": "#333333",
-      "borderColor": "#c8c8c8",
-      "boxShadow": "#d3d3d3",
-      "dropDownList": {
-        "borderColor": "#d3d3d3",
-        "background": "#ffffff",
-        "font": {
-          "color": "#333333",
-          "fontSettings": {
-            "autoFontSettings": true,
-            "fontSize": "",
-            "fontWeight": "",
-            "fontFamily": "",
-            "fontSrc": ""
-          }
-        },
-        "hover": {
-          "background": "#f1f1f1",
-          "font": {
-            "color": "#333333",
-            "fontSettings": {
-              "autoFontSettings": true,
-              "fontSize": "",
-              "fontWeight": "",
-              "fontFamily": "",
-              "fontSrc": ""
-            }
-          }
-        },
-        "selection": {
-          "background": "#cde0ff",
-          "font": {
-            "color": "#333333",
-            "fontSettings": {
-              "autoFontSettings": true,
-              "fontSize": "",
-              "fontWeight": "",
-              "fontFamily": "",
-              "fontSrc": ""
-            }
-          }
-        },
-        "downArrowColor": "#686969"
-      },
-      "checkbox": {
-        "tickColor": "#0565ff",
-        "uncheckedBackground": "#ffffff",
-        "uncheckedBorder": "#c8c8c8",
-        "checkedBackground": "#ffffff",
-        "checkedBorder": "#c8c8c8"
-      }
-    },
-    "textfilter": {
-      "widgetHeader": {
-        "title": {
-          "fontSettings": {
-            "autoFontSettings": true,
-            "fontSize": "",
-            "fontWeight": "",
-            "fontFamily": "",
-            "fontSrc": ""
-          }
-        },
-        "subTitle": {
-          "fontSettings": {
-            "autoFontSettings": true,
-            "fontSize": "",
-            "fontWeight": "",
-            "fontFamily": "",
-            "fontSrc": ""
-          }
-        }
-      },
-      "placeHolderTextColor": "#333333",
-      "borderColor": "#c8c8c8",
-      "boxShadow": "#d3d3d3",
-      "background": "#ffffff",
-      "font": {
-        "color": "#333333",
-        "fontSettings": {
-          "autoFontSettings": true,
-          "fontSize": "",
-          "fontWeight": "",
-          "fontFamily": "",
-          "fontSrc": ""
-        }
-      }
-    },
-
-    "dategroup": {
       "widgetHeader": {
         "title": {
           "fontSettings": {
@@ -1468,13 +1343,6 @@
       },
       "markerColor": "#ffffff"
     },
-    "stackedChart": {
-      "dataLabel": {
-        "font": {
-          "color": "#ffffff"
-        }
-      }
-    },
     "comboChart": {
       "widgetHeader": {
         "title": {
@@ -1621,16 +1489,6 @@
           "fontFamily": "",
           "fontSrc": ""
         }
-      },
-      "differenceValue": {
-        "color": "",
-        "fontSettings": {
-          "autoFontSettings": true,
-          "fontSize": "",
-          "fontWeight": "",
-          "fontFamily": "",
-          "fontSrc": ""
-        }
       }
     },
     "radarPolar": {
@@ -1671,93 +1529,6 @@
           "color": "#DFDFDF"
         },
         "tickLines": {
-          "color": "#DFDFDF"
-        }
-      },
-      "dataLabel": {
-        "font": {
-          "color": "#000000",
-          "fontSettings": {
-            "autoFontSettings": true,
-            "fontSize": "",
-            "fontWeight": "",
-            "fontFamily": "",
-            "fontSrc": ""
-          }
-        }
-      },
-      "legend": {
-        "font": {
-          "color": "#000000",
-          "fontSettings": {
-            "autoFontSettings": true,
-            "fontSize": "",
-            "fontWeight": "",
-            "fontFamily": "",
-            "fontSrc": ""
-          }
-        }
-      },
-      "markerColor": "#ffffff"
-    },
-    "rte": {
-      "content": {
-        "color": "#000000",
-        "fontSettings": {
-          "autoFontSettings": true,
-          "fontWeight": "",
-          "fontFamily": "",
-          "fontSrc": ""
-        }
-      }
-    },
-    "scatter": {
-      "widgetHeader": {
-        "title": {
-          "fontSettings": {
-            "autoFontSettings": true,
-            "fontSize": "",
-            "fontWeight": "",
-            "fontFamily": "",
-            "fontSrc": ""
-          }
-        },
-        "subTitle": {
-          "fontSettings": {
-            "autoFontSettings": true,
-            "fontSize": "",
-            "fontWeight": "",
-            "fontFamily": "",
-            "fontSrc": ""
-          }
-        }
-      },
-      "axis": {
-        "title": {
-          "font": {
-            "color": "#000000",
-            "fontSettings": {
-              "autoFontSettings": true,
-              "fontSize": "",
-              "fontWeight": "",
-              "fontFamily": "",
-              "fontSrc": ""
-            }
-          }
-        },
-        "label": {
-          "font": {
-            "color": "#000000",
-            "fontSettings": {
-              "autoFontSettings": true,
-              "fontSize": "",
-              "fontWeight": "",
-              "fontFamily": "",
-              "fontSrc": ""
-            }
-          }
-        },
-        "gridLines": {
           "color": "#DFDFDF"
         }
       },

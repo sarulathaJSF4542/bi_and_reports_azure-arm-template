@@ -89,16 +89,16 @@
      <Category>
       <Name>Real Estate</Name>
       <Description>Check our Sample dashboards.</Description>
-         <Dashboards>
-             <Dashboard>
-                 <Name>Real Estate Management Dashboard</Name>
-                 <ImageName>real-estate.svg</ImageName>
-                 <Description>The Real Estate Management Dashboard helps real estate companies monitor their sales on a monthly basis with important metrics such as properties for sale, properties for rent, revenue trends, sales versus target, avg. visits per sale, avg. days on market, sales by region, property inquiry referrals,  year-over-year variance of average sold price, actual calls and meetings made and recent Inquiry details.</Description>
-                 <FileName>real-estate-management-dashboard.sydj</FileName>
-                 <Tags>Combine Widget, Number Card, Full Circle Gauge, Grid, Line Chart, Column Chart, Bar Chart, Choropleth Map, Spline Area Chart, Area Chart, Stacked Area Chart</Tags>
-                 <Features> Conditional_Formatting-Grid, Marker-Map</Features>
-             </Dashboard>
-         </Dashboards>
+      <Dashboards>
+        <Dashboard>
+          <Name>Real Estate Management Dashboard</Name>
+		  <ImageName>real-estate.svg</ImageName>
+          <Description>This Real Estate Management Dashboard helps the Real Estate Company Admins or Head to monitor their Sales Summary(Sale, Rent) on monthly basis with the important metrics such as Properties For Sale, Properties For Rent, Avg. Visits Per Sale, Avg. Days On Market, Avg. Meetings Made and Avg. calls made For Properties Sale, Properties Sold and Rented Properties By Real Estate Agent, Sales by Region-wise and Advertisement and Promotion Cost. Also, it shows the property enquiry details, Property Enquiry Referrals, and Real Estate Agent Sales Summary.</Description>
+          <FileName>real-estate-management-dashboard.sydj</FileName>
+          <Tags>Combo Box, Number Card, KPI Card, Grid, Line Chart, Stacked Area Chart, Bar Chart, Pie Chart, Map</Tags>
+          <Features>Master Filter, Conditional_Formatting-Grid, Marker-Map</Features>
+        </Dashboard>
+      </Dashboards>
     </Category>
     <!-- <Category> -->
       <!-- <Name>Sales</Name> -->
@@ -204,12 +204,12 @@
       <Description>Check our Sample dashboards.</Description>
       <Dashboards>
         <Dashboard>
-          <Name>Production Monitoring Dashboard</Name>
+          <Name>Production Analysis</Name>
 		  <ImageName>production-analysis.svg</ImageName>
           <Description>This dashboard shows the key metrics of a manufacturing company for improving the effectiveness of their processes: production quantity vs. target quantity, rework quantity, manufacturing cost, labor cost, runtime vs. downtime.</Description>
-          <FileName>production-monitoring-dashboard.sydj</FileName>
-          <Tags>Combo Box, KPI Card, Spline Chart, Bar Chart, Radial Gauge</Tags>
-         <Features>Master Filter, Forecasting-Spline_Chart, Releative_Date_Filter-Spline_Chart</Features>
+          <FileName>production analysis.sydj</FileName>
+          <Tags>Combo Box, Card, Spline Chart, Column Chart, Gauge</Tags>
+         <Features>Master Filter, Forecasting-Spline_Chart</Features>
        </Dashboard>
       </Dashboards>
     </Category>
@@ -456,10 +456,10 @@
 	  <Description>Check our Sample dashboards.</Description>
 	  <Dashboards>
 		<Dashboard>
-		  <Name>School Improvement Grants Dashboard</Name>
+		  <Name>School Improvement Grant 2010</Name>
 		  <ImageName>school-improvement-grant-2010.svg</ImageName>
 		  <Description>In the year 2010, Congress appropriated more than $4 billion to help turn around the nation's lowest-performing schools. This dashboard provides insights into how the improvements were planned in the various models selected.</Description>
-		  <FileName>school-improvement-grants-dashboard.sydj</FileName>
+		  <FileName>school improvement grants - 2010.sydj</FileName>
 		  <Tags>Card, Heat Map, Pie Chart, Grid</Tags>
 		  <Features>Master Filter</Features>
 		</Dashboard>
@@ -470,12 +470,12 @@
 	  <Description>Check our Sample dashboards.</Description>
 	  <Dashboards>
 		<Dashboard>
-		  <Name>Motor Vehicle Accident Analysis Dashboard</Name>
+		  <Name>Motor Vehicle Crashes Analysis</Name>
 		  <ImageName>motor-vehicle-crashes-analysis.svg</ImageName>
-		  <Description>This shows accidents based on contributing factors, such as human error, environment, and vehicle.</Description>
-		  <FileName>motor-vehicle-accident-analysis-dashboard.sydj</FileName>
-		  <Tags>Choropleth Map, Line Chart, Column Chart, Spline Area Chart, Pie Chart</Tags>
-		  <Features>Master Filter,Conditional_Formatting-Choropleth_Map, Conditional_Formatting-Pie_Chart, Conditional_Formatting-Column_Chart</Features>
+		  <Description>This sample dashboard provides detailed insights into motor vehicle crashes that happened in multiple states of the U.S., along with their primary and secondary contribution factors.</Description>
+		  <FileName>motor vehicle crashes analysis dashboard.sydj</FileName>
+		  <Tags>Card, Heat Map, Column Chart, Spline Chart, Line Chart, Pie Chart</Tags>
+		  <Features>Master Filter</Features>
 		</Dashboard>
 	  </Dashboards>
 	</Category>
@@ -529,9 +529,9 @@
 		  <Name>Insurance Analysis Dashboard</Name>
 		  <ImageName>insurance.svg</ImageName>
 		  <Description>This dashboard provides an overview of the insurance company’s performance through visualization of key metrics such as APE, Profit w.r.t time, and region.</Description>
-		  <FileName>insurance-analysis-dashboard.sydj</FileName>
-		  <Tags>Combo Box, Number Card, Column Chart, Bar Chart, Doughnut Chart, Bubble Map, Heat Map,</Tags>
-		  <Features>Master Filter, Drill_Down-Column_Chart, Conditional-formatting-Doughnut_Chart</Features>
+		  <FileName>insurance analysis dashboard.sydj</FileName>
+		  <Tags>Combo Box, Card, Bubble Map, Heat Map, Column Chart, Bar Chart, Doughnut Chart</Tags>
+		  <Features>Master Filter, Drill_Down-Column_Chart</Features>
 		</Dashboard>
 	  </Dashboards>
 	</Category>
@@ -540,42 +540,42 @@
 	  <Description>Check our Sample dashboards.</Description>
 	  <Dashboards>
 		<Dashboard>
-		  <Name>Project Management Dashboard</Name>
+		  <Name>Project Overview Dashboard</Name>
 		  <ImageName>project-overview-dashboard.svg</ImageName>
 		  <Description>This dashboard provides an overview of the projects undertaken by an IT company. The dashboard displays all essential key metrics such as customer satisfaction, deadline, investment and profit details.</Description>
-		  <FileName>project-management-dashboard.sydj</FileName>
+		  <FileName>project overview dashboard.sydj</FileName>
 		  <Tags>Card, Radial Gauge, Radar Polar, Stacked Column Chart, Pie Chart</Tags>
 		  <Features></Features>
 		</Dashboard>
 	  </Dashboards>
-	</Category> 
-	<Category>
-	  <Name>Energy</Name>
-	  <Description>Check our Sample dashboards.</Description>
-        <Dashboards>
-            <Dashboard>
-                <Name>Energy Production and Consumption Dashboard</Name>
-                <ImageName>evaluation-of-energy-consumption.svg</ImageName>
-                <Description>This dashboard analyzes energy production and consumption levels in each state in the USA. The metrics covered are energy efficiency, energy consumption by state, top 10 states in energy production and consumption, energy production by source, total production, total consumption, production cost, and energy consumption by sector.</Description>
-                <FileName>energy_production_and_consumption_dashboard.sydj</FileName>
-                <Tags>Map Chart,Card, Radial Gauge, Pie Cahrt, Column Chart, Bar Chart</Tags>
-                <Features>Master Filter</Features>
-            </Dashboard>
-        </Dashboards>
 	</Category>
 	<Category>
 	  <Name>Energy</Name>
 	  <Description>Check our Sample dashboards.</Description>
-        <Dashboards>
-            <Dashboard>
-                <Name>Power Plant Monitoring Dashboard</Name>
-                <ImageName>power-plant-monitoring.svg</ImageName>
-                <Description>This monitoring dashboard shows the production metrics of a power plant including total capacity, and various other parameters such as ambient temperature, relative humidity, system frequency, return on investment, turbine efficiency, turbine status and also power plant details.</Description>
-                <FileName>power-plant-monitoring-dashboard.sydj</FileName>
-                <Tags>Card, Radial Gauge,Bar Chart, Column Chart, Pie Chart, Grid</Tags>
-                <Features>Conditional_Formatting-Grid</Features>
-            </Dashboard>
-        </Dashboards>
+	  <Dashboards>
+		<Dashboard>
+		  <Name>Evaluation of Energy Consumption</Name>
+		  <ImageName>evaluation-of-energy-consumption.svg</ImageName>
+		  <Description>This dashboard visualizes the energy consumption across various sectors for a given time period. It also shows the total power generation in various categories and the production costs for the same.</Description>
+		  <FileName>evaluation of energy consumption (2018).sydj</FileName>
+		  <Tags>DatePicker, Column Chart, Doughnut Chart, card</Tags>
+		  <Features>Master Filter</Features>
+		</Dashboard>
+	  </Dashboards>
+	</Category>
+	<Category>
+	  <Name>Energy</Name>
+	  <Description>Check our Sample dashboards.</Description>
+	  <Dashboards>
+		<Dashboard>
+		  <Name>Power Plant Monitoring</Name>
+		  <ImageName>power-plant-monitoring.svg</ImageName>
+		  <Description>This live monitoring dashboard shows the live production data of a power plant including total capacity, running capacity, and details of various other parameters such as ambient temperature, humidity, and frequency.</Description>
+		  <FileName>power plant monitoring.sydj</FileName>
+		  <Tags>Card, Radial Gauge, Line Chart, Spline Chart, Grid</Tags>
+		  <Features>Master Filter, Conditional_Formatting-Grid</Features>
+		</Dashboard>
+	  </Dashboards>
 	</Category>
 	<Category>
 	  <Name>Education</Name>
@@ -605,7 +605,7 @@
         </Dashboard>
       </Dashboards>
     </Category>
-     <Category>
+    <!-- <Category>
       <Name>Education</Name>
       <Description>Check our Sample dashboards.</Description>
       <Dashboards>
@@ -618,7 +618,7 @@
           <Features>Master Filter</Features>
         </Dashboard>
       </Dashboards>
-    </Category> 
+    </Category> -->
 	<Category>
 	  <Name>Hospitality</Name>
 	  <Description>Check our Sample dashboards.</Description>
@@ -627,8 +627,8 @@
 		  <Name>Hotel Revenue Dashboard</Name>
 		  <ImageName>hotel-revenue-dashboard.svg</ImageName>
 		  <Description>This dashboard shows various key metrics of a hotel, including occupancy rate, marketing costs, RevPAR index, and booking sources for effective hotel management.</Description>
-		  <FileName>hotel-revenue-dashboard.sydj</FileName>
-		  <Tags>KPI Card, Number Card, Doughnut Chart, Grid, Stacked Column Chart, Stacked Area Chart, Bubble Map</Tags>
+		  <FileName>hotel revenue dashboard.sydj</FileName>
+		  <Tags>Card, Doughnut Chart, Stacked Area Chart, Spline Chart, Bubble Map</Tags>
 		  <Features>Master Filter</Features>
 		</Dashboard>
 	  </Dashboards>
@@ -773,7 +773,7 @@
         </Dashboard>
       </Dashboards>
     </Category>
-	<Category>
+	<!--<Category>
       <Name>Agile</Name>
       <Description>Check our Sample dashboards.</Description>
       <Dashboards>
@@ -786,7 +786,7 @@
           <Features>Master Filter, Trendline-Spline_Chart</Features>
         </Dashboard>
       </Dashboards>
-    </Category>
+    </Category>-->
     <Category>
       <Name>Agile</Name>
       <Description>Check our Sample dashboards.</Description>
@@ -801,7 +801,7 @@
         </Dashboard>
       </Dashboards>
     </Category>
-  <Category>
+  <!--<Category>
       <Name>Agile</Name>
       <Description>Check our Sample dashboards.</Description>
       <Dashboards>
@@ -828,7 +828,7 @@
           <Features>Master Filter,Drill_Down-Column_Chart</Features>
         </Dashboard>
       </Dashboards>
-    </Category>
+    </Category> -->
 	<Category>
       <Name>Agile</Name>
       <Description>Check our Sample dashboards.</Description>
@@ -843,7 +843,7 @@
         </Dashboard>
       </Dashboards>
     </Category>
-	  <!--<Category>
+	<Category>
 	  <Name>Marketing</Name>
 	  <Description>Check our Sample dashboards.</Description>
 	  <Dashboards>
@@ -856,7 +856,7 @@
 		  <Features>Conditional_Formatting-Grid</Features>
 		</Dashboard>
 	  </Dashboards>
-	</Category> -->
+	</Category>
   <Category>
 	  <Name>Construction</Name>
 	  <Description>Check our Sample dashboards.</Description>
@@ -866,7 +866,7 @@
 		  <ImageName>construction.svg</ImageName>
 		  <Description>This construction quality management dashboard helps construction companies manage and monitor the quality of their projects including rework cost, safety meetings conducted, site inspections, types of defects, average time to fix the defects, NCR reports, net promoter score, customer satisfaction ratio (CSR), and more quality metrics.</Description>
 		  <FileName>construction-quality-management-dashboard.sydj</FileName>
-            <Tags>Combo Box, Text, Number Card, Combined Widget, Pie Chart, KPI Card, Stacked Bar Chart, Gauge, Column Chart</Tags>
+		  <Tags>Combo Box, Number Card, KPI Card, Stacked Bar Chart, Pie Chart, Gauge, Column Chart</Tags>
 		  <Features>Master Filter, Card_with_Image</Features>
 		</Dashboard>
 	  </Dashboards>
@@ -878,10 +878,10 @@
         <Dashboard>
           <Name>Construction Project Monitoring Dashboard</Name>
           <ImageName>construction.svg</ImageName>
-            <Description>This Construction Project Monitoring dashboard helps construction supervisors monitor their project statuses for various locations with important metrics: cost breakdown, schedule performance, cost performance, total budget, amount of budget spent, budget variance, project work status, project stages, estimation at completion, project duration, project details, completion percentage, actual and planned resources on each projects.</Description>
-            <FileName>construction-project-monitoring-dashboard.sydj</FileName>
-            <Tags>Combo Box, Label, KPI Card, Doughnut Chart, Grid, Pie Chart, Gauge, Number Card, Column Chart, Stacked Bar Chart</Tags>
-            <Features>Master Filter, Conditional_Formatting-Gauge, Conditional-formatting_Grid</Features>
+          <Description>This Construction Project Monitoring dashboard helps construction managers monitor their project statuses for various locations with important metrics: total budget, amount of budget spent, budget variance, project work status, project stages, project duration, project details, completion percentage, actual and planned resources on each projects.</Description>
+          <FileName>construction-project-monitoring-dashboard.sydj</FileName>
+          <Tags>Combo Box, Label, KPI Card, Doughnut Chart, Pie Chart, Gauge, Column Chart, Stacked Bar Chart, Combo Chart</Tags>
+          <Features>Master Filter, Conditional_Formatting-Gauge</Features>
         </Dashboard>
       </Dashboards>
     </Category>
@@ -913,7 +913,7 @@
         </Dashboard>
       </Dashboards>
     </Category>
-	  <!--<Category>
+	<Category>
       <Name>Sales</Name>
       <Description>Check our Sample dashboards.</Description>
       <Dashboards>
@@ -927,7 +927,7 @@
         </Dashboard>
       </Dashboards>
     </Category>
-	   <Category>
+	 <Category>
       <Name>Marketing</Name>
       <Description>Check our Sample dashboards.</Description>
       <Dashboards>
@@ -941,7 +941,7 @@
         </Dashboard>
       </Dashboards>
     </Category>
-	<Category>
+	<!--<Category>
       <Name>Support</Name>
       <Description>Check our Sample dashboards.</Description>
       <Dashboards>
@@ -968,7 +968,7 @@
           <Features>Conditional_Formatting-Grid</Features>
         </Dashboard>
       </Dashboards>
-    </Category> 
+    </Category> -->
     <Category>
       <Name>Finance</Name>
       <Description>Check our Sample dashboards.</Description>
@@ -982,25 +982,8 @@
           <Features>Relative_Date_Filter-Line_Chart, Relative_Date_Filter-Stacked_Area_Chart, Top-N-Rank-Filter-Bar_Chart, Top-N-Rank-Filter-Choropleth_Map</Features>
         </Dashboard>
       </Dashboards>
-    </Category>-->
-    
-       <Category>
-      <Name>Finance</Name>
-      <Description>Check our Sample dashboards.</Description>
-      <Dashboards>
-        <Dashboard>
-          <Name>Budget vs Actual Dashboard</Name>
-          <ImageName>finance.svg</ImageName>
-          <Description>Overview of actual and budget income and expanses for a particular period of time</Description>
-          <FileName>budget-vs-actual-dashboard.sydj</FileName>
-          <Tags> Combine Widget, KPI card, Radial Gauge, Combo Chart, Grid</Tags>
-        <Features>Conditional_Formatting-Grid</Features>
-        </Dashboard>
-      </Dashboards>
     </Category>
-
-
-	  <!--<Category>
+	<Category>
       <Name>Marketing</Name>
       <Description>Check our Sample dashboards.</Description>
       <Dashboards>
@@ -1010,598 +993,10 @@
           <Description>This custom google analytics dashboard lets you monitor the performance of website pages based on the traffic data and identify the outliers for improvements.</Description>
           <FileName>page-performance-dashboard.sydj</FileName>
           <Tags>Image, KPI card,Spline Chart, Grid,Stacked Area Chart</Tags>
-          <Features>Conditional_Formatting-Grid, Forecasting-Spline_Chart</Features>
-        </Dashboard>
-      </Dashboards>
-    </Category>
-	  <Category>
-      <Name>Marketing</Name>
-      <Description>Check our Sample dashboards.</Description>
-      <Dashboards>
-        <Dashboard>
-          <Name>Google Analytics Website Traffic Dashboard</Name>
-		  <ImageName>marketing.svg</ImageName>
-          <Description>Analyze the website traffic using your google analytics data. Gain insights over the user visits, country-wise sessions and the traffic in the last 7 days.</Description>
-          <FileName>website-traffic-analysis-dashboard.sydj</FileName>
-          <Tags>Image, Number card, Spline Chart, Line Chart, Choropleth Map, Stacked Column Chart, Radial Gauge</Tags>
-          <Features>Forecasting-Spline_Chart</Features>
-        </Dashboard>
-      </Dashboards>
-    </Category>
-	<Category>
-	  <Name>Information Technology</Name>
-	  <Description>Check our Sample dashboards.</Description>
-	  <Dashboards>
-		<Dashboard>
-		  <Name>Project Performance Dashboard</Name>
-		  <ImageName>project-performance-dashboard.svg</ImageName>
-		  <Description>This dashboard tracks sprint progress of project over time and monitor the performance metrics such as, sprint velocity, work items by priority, etc.</Description>
-		  <FileName>project-performance-dashboard.sydj</FileName>
-		  <Tags>Image, DatePicker, Card, Column Chart, Area chart, Pie Chart, Doughnut Chart, Grid</Tags>
-		  <Features>Master Filter, Relative_Date_Filter-Area_Chart, Top-N-Rank-Filter-Pie_Chart, Top-N-Rank-Filter-Doughnut_Chart, Conditional_Formatting-Grid</Features>
-		</Dashboard>
-	  </Dashboards>
-	</Category> 
-	<Category>
-      <Name>Sales</Name>
-      <Description>Check our Sample dashboards.</Description>
-      <Dashboards>
-        <Dashboard>
-          <Name>Sales KPI Dashboard</Name>
-		  <ImageName>sales.svg</ImageName>
-          <Description>This custom sales dashboard helps you monitor how the deals are making through the sales pipeline, assess team effort in making more deals and forecast revenue.</Description>
-          <FileName>sales-kpi-dashboard.sydj</FileName>
-          <Tags>Image, DatePicker, KPI card,Line Chart, Doughnut Chart, Spline Chart, Grid</Tags>
-          <Features>Relative_Date_Filter-DatePicker, Top-N-Rank-Filter-Doughnut_Chart, Forecasting-Line_Chart, Conditional_Formatting-Grid</Features>
-        </Dashboard>
-      </Dashboards>
-    </Category>
-	  <Category>
-      <Name>Marketing</Name>
-      <Description>Check our Sample dashboards.</Description>
-      <Dashboards>
-        <Dashboard>
-          <Name>Email Marketing Dashboard</Name>
-		  <ImageName>marketing.svg</ImageName>
-          <Description>This custom SendGrid email marketing dashboard provides an overview of your transactional or marketing email performance and user engagement.</Description>
-          <FileName>email-marketing-dashboard.sydj</FileName>
-          <Tags>Image, Number card, DatePicker, Doughnut Chart, Column Chart, Choropleth Map, Spline Chart</Tags>
-          <Features>Relative_Date_Filter-DatePicker, Top-N-Rank-Filter-Doughnut_Chart</Features>
-        </Dashboard>
-      </Dashboards>
-    </Category>
-	<Category>
-	  <Name>Information Technology</Name>
-	  <Description>Check our Sample dashboards.</Description>
-	  <Dashboards>
-		<Dashboard>
-		  <Name>Project Overview Dashboard</Name>
-		  <ImageName>project-overview-dashboard.svg</ImageName>
-		  <Description>This Project Tracking Dashboard helps project leads and managers track the work status of each project with metrics such as total resources, overall task completion percentage, completed, incomplete and overdue tasks by project, estimated and actual hours by project, and task summary.</Description>
-		  <FileName>project-overview-dashboard.sydj</FileName>
-		  <Tags>DatePicker,Combo Box,Number Card, KPI Card, Doughnut Chart, Pie Chart, Column Chart, Bar Chart, Spline Chart, Grid</Tags>
-		  <Features>Master Filter, Relative_Date_Filter-Date_Picker, Conditional_Formatting-Grid</Features>
-		</Dashboard>
-	  </Dashboards>
-	</Category>
-     <Category>
-      <Name>Marketing</Name>
-      <Description>Check our Sample dashboards.</Description>
-      <Dashboards>
-        <Dashboard>
-          <Name>Email Campaign Performance Dashboard</Name>
-		  <ImageName>marketing.svg</ImageName>
-          <Description>Gain Insights of all your mail data using the MailChimp dashboard. Quickly identify trends within your campaigns and explore how the trends have changed over time.</Description>
-          <FileName>email-campaign-performance-dashboard.sydj</FileName>
-          <Tags>Image, Number card, Column Chart, Bar Chart, Spline Chart</Tags>
-          <Features>Relative_Date_Filter-DatePicker-Spline_Chart,</Features>
-        </Dashboard>
-      </Dashboards>
-    </Category> 
-   <Category>
-      <Name>Support</Name>
-      <Description>Check our Sample dashboards.</Description>
-      <Dashboards>
-        <Dashboard>
-          <Name>Voice Calls and SMS Tracking Dashboard</Name>
-		  <ImageName>support.svg</ImageName>
-          <Description>Gain Insights from your Twilio data such as your calls and messages over time, amount of messages and calls sent and received and much more.</Description>
-          <FileName>voice-calls-and-sms-tracking-dashboard.sydj</FileName>
-          <Tags>Image, Number card,Spline Chart, Doughnut Chart, Line Chart</Tags>
-          <Features>Label_Parameters</Features>
-        </Dashboard>
-      </Dashboards>
-    </Category>
-    <Category>
-      <Name>Marketing</Name>
-      <Description>Check our Sample dashboards.</Description>
-      <Dashboards>
-        <Dashboard>
-          <Name>Channel Performance Dashboard</Name>
-          <ImageName>marketing.svg</ImageName>
-          <Description>Track your YouTube viewer using value pre-build YouTube dashboard. Connect your data and visualize various details such as number of views, subscription, average view duration over time and much more.</Description>
-          <FileName>channel-performance-dashboard.sydj</FileName>
-          <Tags>Image, Number card, Spline Chart, Choropleth Map, Area Chart</Tags>
           <Features></Features>
         </Dashboard>
       </Dashboards>
-    </Category>-->
-	<Category>
-      <Name>Education</Name>
-      <Description>Check our Sample dashboards.</Description>
-      <Dashboards>
-        <Dashboard>
-          <Name>K-12 Enrollment Dashboard</Name>
-          <ImageName>education.svg</ImageName>
-          <Description>The K-12 Schools Enrollment Dashboard tracks enrollment trends, student-to-faculty ratios, the top 5 districts on enrollment, student acceleration, and the operating budget of each school. This gives a comprehensive view of the performance of each institution and student body. You can also forecast enrollment for the next three years.</Description>
-          <FileName>k-12-enrollment-dashboard.sydj</FileName>
-          <Tags>Combo Box, Card, Line Chart, Column Chart, Spline Chart</Tags>
-          <Features>Master Filter, Trendline-Spline_Chart, Top-N-Rank-Filter-Column_Chart</Features>
-        </Dashboard>
-      </Dashboards>
     </Category>
-	  <!--<Category>
-      <Name>Sales</Name>
-      <Description>Check our Sample dashboards.</Description>
-      <Dashboards>
-        <Dashboard>
-          <Name>Salesforce Opportunity Dashboard</Name>
-          <ImageName>sales.svg</ImageName>
-          <Description>Stay on top of every opportunity and close more business on time. Keep track of open opportunities and the monthly conversion rate using the pre-built Salesforce opportunities dashboard.</Description>
-          <FileName>salesforce-opportunity-dashboard.sydj</FileName>
-          <Tags>Image, Number card, Doughnut Chart, Column Chart, Grid</Tags>
-          <Features>Item-Based-Filtering</Features>
-        </Dashboard>
-      </Dashboards>
-    </Category> 
-   <Category>
-      <Name>Sales</Name>
-      <Description>Check our Sample dashboards.</Description>
-      <Dashboards>
-        <Dashboard>
-          <Name>Sales Activity Tracker Dashboard</Name>
-          <ImageName>sales.svg</ImageName>
-          <Description>This Sales Activity Tracker dashboard helps you track and follow all tickets sold over a specific period with metrics including available tickets, events, buyers, sales amount by category, and more.</Description>
-          <FileName>sales-activity-tracker-dashboard.sydj</FileName>
-          <Tags>Image, Number card, Doughnut Chart, Spline Chart, Grid, Area Chart, Heat Map, KPI Card</Tags>
-          <Features>Trendline-Spline_Chart, Top-N-Rank-Filter-Doughnut_Chart, Relative_Date_Filter-Area_Chart, Top-N-Rank-Filter-Heat_Map</Features>
-        </Dashboard>
-      </Dashboards>
-    </Category>-->
-    <Category>
-      <Name>Health Care</Name>
-      <Description>Check our Sample dashboards.</Description>
-      <Dashboards>
-        <Dashboard>
-          <Name>Clinical Trials Dashboard</Name>
-		  <ImageName>healthcare.svg</ImageName>
-          <Description>The dashboard provides a review of all trials, summarizing the clinical trial data by intervention type, clinical phase, clinical condition, trial status, location, and more.</Description>
-          <FileName>clinical-trials-dashboard.sydj</FileName>
-          <Tags>Combo Box, Number card, Column Chart, Map, Doughnut Chart, Pie Chart, Line Chart,Stacked Bar Chart, Grid</Tags>
-          <Features>Master Filter, Conditional_Formatting-Grid, Trendline-Column_Chart, Top-N-Rank-Filter-Doughnut_Chart, Top-N-Rank-Filter-Pie_Chart, Forecasting-Line_Chart</Features>
-        </Dashboard>
-      </Dashboards>
-    </Category>
-	<Category>
-      <Name>Finance</Name>
-      <Description>Check our Sample dashboards.</Description>
-      <Dashboards>
-        <Dashboard>
-          <Name>Balance Sheet Dashboard</Name>
-          <ImageName>finance.svg</ImageName>
-          <Description>This balance sheet dashboard shows the financial state of the company account through the financial metrics provided and can track the financial account performance for a particular period of the year.</Description>
-          <FileName>balance-sheet-dashboard.sydj</FileName>
-          <Tags> Combo Box, Number Card, Combined Widget, Column Chart, Radial Gauge, Pivot Grid</Tags>
-        <Features>Master Filter</Features>
-        </Dashboard>
-      </Dashboards>
-    </Category>
-    <Category>
-      <Name>Survey Analysis</Name>
-      <Description>Check our Sample dashboards.</Description>
-      <Dashboards>
-        <Dashboard>
-          <Name>Stack Overflow Developer Survey 2020 Dashboard</Name>
-          <ImageName>survey-analysis.svg</ImageName>
-          <Description>This Stack Overflow Developer Survey 2020 Dashboard describes the 2020 Stack Overflow Developer Survey details of the following sections such as Basic Information, Education, Work, Career, Technology and Tech Culture, and Demographic Information. Based on this survey results, you can decide the technical peoples interest on new learning skills, education, career importance and satisfaction level which helps to define strategy for the development teams for productive outcome.</Description>
-          <FileName>stack-overflow-developer-survey-2020-dashboard.sydj</FileName>
-          <Tags> Number Card, Pie Chart, Bar Chart, Column Chart, Choropleth Map, Doughnut Chart</Tags>
-          <Features>Top-N-Rank-Filter-Doughnut_Chart, Top-N-Rank-Filter-Pie_Chart</Features>
-        </Dashboard>
-      </Dashboards>
-    </Category>
-	<Category>
-      <Name>Survey Analysis</Name>
-      <Description>Check our Sample dashboards.</Description>
-      <Dashboards>
-        <Dashboard>
-         <Name>Business Survey Analysis Dashboard</Name>
-          <ImageName>survey-analysis.svg</ImageName>
-          <Description> This Business survey dashboard helps to understand the customer opinions about a product/service. Also, it showcases the feedback on the product, identifies gaps, and thus helps the company to make changes to processes or the product/service accordingly.</Description>
-          <FileName>business-survey-analysis-dashboard.sydj</FileName>
-          <Tags> Pie Chart,100% Stacked Bar Chart, Bar Chart, Heat Map, Doughnut Chart,Column Chart,100% Stacked Column Chart,Map Chart</Tags>
-        <Features>Conditional_Formatting-HeatMap</Features>
-        </Dashboard>
-      </Dashboards>
-    </Category>
-	<Category>
-	  <Name>Pharmaceutical</Name>
-	  <Description>Check our Sample dashboards.</Description>
-	  <Dashboards>
-		<Dashboard>
-		  <Name>Pharmaceutical Labor Dashboard</Name>
-		  <ImageName>pharmaceutical.svg</ImageName>
-		  <Description>This dashboard provides summarized details for a pharmacy's pharmaceutical labor management with metrics such as operation costs, labor costs, revenue and gross profit per prescription, work hours per job title, and prescription growth rate.</Description>
-		  <FileName>pharmaceutical-labor-dashboard.sydj</FileName>
-		  <Tags>Combo box, Number Card, KPI Card, Grid, Line Chart, Spline Chart</Tags>
-		  <Features>Master Filter, Forecasting-Spline_Chart</Features>
-		</Dashboard>
-	  </Dashboards>
-	</Category>
-	<Category>
-	  <Name>Information Technology</Name>
-	  <Description>Check our Sample dashboards.</Description>
-	  <Dashboards>
-		<Dashboard>
-		  <Name>Axosoft Release Management Dashboard</Name>
-		  <ImageName>project-overview-dashboard.svg</ImageName>
-		  <Description>This Release Management Dashboard helps product managers to track the status of different product releases via metrics: release date, user workload, cycle time, overall completion percentage. Also, track the release status and scope changes.</Description>
-		  <FileName>axosoft-release-management-dashboard.sydj</FileName>
-		  <Tags>Combo Box, KPI Card, Number Card, Stacked Bar Chart,Gauge, Stacked Area Chart, Stacked Column Chart, Doughnut Chart, Bar Chart, Column Chart </Tags>
-		  <Features>Master Filter</Features>
-		</Dashboard>
-	  </Dashboards>
-	</Category>
-    <Category>
-      <Name>Sales</Name>
-      <Description>Check our Sample dashboards.</Description>
-      <Dashboards>
-        <Dashboard>
-          <Name>Sales Manager Summary Dashboard</Name>
-          <ImageName>sales.svg</ImageName>
-          <Description>This sales manager summary dashboard helps sales leads and managers track the company's revenue, including revenue trends, opportunity details, sales opportunity pipeline, revenue by country, accounts by revenue, win count, lost revenue, revenue won, win count trends, sales leaders by revenue won, revenue by industry, new accounts, and opportunity status by owner.</Description>
-          <FileName>sales-manager-summary-dashboard.sydj</FileName>
-          <Tags>Date Picker, Number Card, Funnel Chart, Spline Chart, KPI Card, Bar Chart, Tree Map, Choropleth Map, Grid</Tags>
-          <Features>Master Filter, Relative_Date_Filter-Spline_Chart, Relative_Date_Filter-Date_Picker, Conditional_Formatting-Grid, Top-N-Rank-Filter-TreeMap, Conditional_Formatting-Choropleth_Map, Top-N-Rank-Filter-Bar_Chart</Features>
-        </Dashboard>
-      </Dashboards>
-    </Category>
-    <Category>
-      <Name>Sales</Name>
-      <Description>Check our Sample dashboards.</Description>
-      <Dashboards>
-        <Dashboard>
-          <Name>Sales Leads Tracking Dashboard</Name>
-          <ImageName>sales.svg</ImageName>
-          <Description>This sales leads tracking dashboard helps sales leads and managers track their top 10 accounts by revenue, accounts by country, total accounts, total leads, accounts by industry, leads by source and owner,  top 10 owners by accounts, leads by rating, leads by campaign, lead generation rate, and lead summary.</Description>
-          <FileName>sales-leads-tracking-dashboard.sydj</FileName>
-          <Tags>Date Picker, Number Card, Funnel Chart, Spline Chart, KPI Card, Bar Chart, Column Chart, Heat Map, Choropleth Map, Doughnut Chart, Tree Map, Grid</Tags>
-          <Features>Master Filter, Relative_Date_Filter-Date_Picker, Conditional_Formatting-Choropleth_Map, Top-N-Rank-Filter-Bar_Chart, Top-N-Rank-Filter-TreeMap, Top-N-Rank-Filter-Column_Chart, Conditional_Formatting-Grid</Features>
-        </Dashboard>
-      </Dashboards>
-    </Category>
-    <Category>
-      <Name>Sales</Name>
-      <Description>Check our Sample dashboards.</Description>
-      <Dashboards>
-        <Dashboard>
-          <Name>Sales Opportunities Dashboard</Name>
-          <ImageName>sales.svg</ImageName>
-          <Description>This sales opportunities dashboard helps sales leads and managers track sales opportunities, including sales progress by country, total opportunities, deals won vs. lost by revenue, deals won vs. lost by owner, opportunity by rating, top 5 won opportunities, top 5 accounts by opportunities, campaign type, top 5 campaigns by opportunities, sales revenue by campaign, opportunity summary, opportunity status by owner, estimated vs. actual revenue, and top 10 customers by estimated revenue.</Description>
-          <FileName>sales-opportunities-dashboard.sydj</FileName>
-          <Tags>Date Picker, Number Card, Combo Chart, KPI Card, Bar Chart, Column Chart, Pie Map, Area Chart, Choropleth Map, Doughnut Chart, Tree Map, Stacked Column Chart, Grid</Tags>
-          <Features>Master Filter, Relative_Date_Filter-Date_Picker, Conditional_Formatting-Choropleth_Map, Top-N-Rank-Filter-Bar_Chart, Top-N-Rank-Filter-TreeMap, Top-N-Rank-Filter-Column_Chart, Conditional_Formatting-Grid, Conditional_Formatting-Combo_Box, Relative_Date_Filter-Area_Chart</Features>
-        </Dashboard>
-      </Dashboards>
-    </Category>
-	<Category>
-	  <Name>Information Technology</Name>
-	  <Description>Check our Sample dashboards.</Description>
-	  <Dashboards>
-		<Dashboard>
-		  <Name>Forum Management Dashboard</Name>
-		  <ImageName>project-overview-dashboard.svg</ImageName>
-		  <Description>This forum management dashboard helps moderators effectively manage and maintain their forums by tracking key metrics and KPIs such as average posts per forum, average views per forum, overall questions and answers for posts, posts with the most votes, and more.</Description>
-		  <FileName>forum-management-dashboard.sydj</FileName>
-		  <Tags>Combo Box, KPI Card, Number Card,Pie Chart, Bar Chart, Column Chart, Spline Chart, Grid </Tags>
-		  <Features>Master Filter, Top-N-Rank-Filter-Pie_Chart, Forecasting-Spline_Chart, Conditional_Formatting-Grid</Features>
-		</Dashboard>
-	  </Dashboards>
-	</Category>
-	<Category>
-      <Name>Health Care</Name>
-      <Description>Check our Sample dashboards.</Description>
-      <Dashboards>
-        <Dashboard>
-          <Name>Orthopaedic Clinical Variation Dashboard</Name>
-		  <ImageName>healthcare.svg</ImageName>
-          <Description>Orthopaedic Clinical Variation Dashboard is an Operational analysis Tool for hospital executives to track patient management metrics Diagnostic Related Group(DRG) details, Treatment charges, Average length of stay (ALOS), up-to-date ward details, Admissions, and Re-admissions which helps in reducing readmissions and managing the length of stay.</Description>
-          <FileName>clinical-variation-dashboard.sydj</FileName>
-          <Tags>Combo Box, Number card, Column Chart, Bar Chart, Area Chart, Stacked Column Chart, Line Chart, Pie Chart</Tags>
-          <Features>Master Filter</Features>
-        </Dashboard>
-      </Dashboards>
-    </Category>
-	<Category>
-      <Name>Sales</Name>
-      <Description>Check our Sample dashboards.</Description>
-      <Dashboards>
-        <Dashboard>
-          <Name>Sales Activities Dashboard</Name>
-		  <ImageName>sales.svg</ImageName>
-          <Description>This Pipedrive sales activities dashboard tracks activities over a specific period of time. It helps monitor sales metrics: overall activities status, top deals won amount, products sold, completed activities by type, win rate, deals overview, and activities summary. You can also track the pipeline stages to be processed to win a deal.</Description>
-          <FileName>sales-activities-dashboard.sydj</FileName>
-          <Tags>Image, DatePicker, KPI card, Number card, Bar Chart, Combined Widget, Pie Chart, Funnel Chart, Grid</Tags>
-          <Features>Master Filter, Top-N-Rank-Filter-Pie_Chart, Top-N-Rank-Filter-Bar_Chart, Conditional_Formatting-Grid</Features>
-        </Dashboard>
-      </Dashboards>
-    </Category>
-	<Category>
-	  <Name>Information Technology</Name>
-	  <Description>Check our Sample dashboards.</Description>
-	  <Dashboards>
-		<Dashboard>
-		  <Name>Outlook Calendar Events Dashboard</Name>
-		  <ImageName>project-overview-dashboard.svg</ImageName>
-		  <Description>This dashboard gives you a quick view of your calendar so you can optimize your daily activities with a better understanding of your priorities through the calendar metrics.</Description>
-		  <FileName>outlook-calendar-events-dashboard.sydj</FileName>
-		  <Tags>Image, DatePicker, KPI card, Number card, Doughnut Chart, Stacked Bar Chart, Pie Chart, Column Chart, Heat Map, Grid, Spline Chart</Tags>
-		  <Features>Master Filter, Top-N-Rank-Filter-Pie_Chart, Relative_Date_Filter-Column_Chart, Relative_Date_Filter-Heat_Map, Relative_Date_Filter-Grid, Relative_Date_Filter-Spline_Chart</Features>
-		</Dashboard>
-	  </Dashboards>
-	</Category>
-	<Category>
-	  <Name>Information Technology</Name>
-	  <Description>Check our Sample dashboards.</Description>
-	  <Dashboards>
-		<Dashboard>
-		  <Name>Outlook Calendar Organizer Dashboard</Name>
-		  <ImageName>project-overview-dashboard.svg</ImageName>
-		  <Description>This dashboard gives you a quick view of your calendar's scheduled events by organizer and meeting room, responses through calendar metrics, and a complete overview of scheduled events.</Description>
-		  <FileName>outlook-calendar-organizer-dashboard.sydj</FileName>
-		  <Tags>Image, DatePicker, KPI card, Bar Chart, Grid</Tags>
-		  <Features>Master Filter, Conditional_Formatting-Grid</Features>
-		</Dashboard>
-	  </Dashboards>
-	</Category>
-  <Category>
-      <Name>Finance</Name>
-      <Description>Check our Sample dashboards.</Description>
-      <Dashboards>
-        <Dashboard>
-          <Name>Subscription Management Dashboard</Name>
-		  <ImageName>finance.svg</ImageName>
-          <Description>This subscription management dashboard helps showcase metrics about subscriptions and revenues by customers, including subscriptions, invoices, AR balance, net collection, earned revenue, deferred revenue, top 5 customers by revenue, customers by account status, accounts receivable by due split, subscriptions by plan and status, customers by status, monthly recurring revenue by month, revenue by company, amount by payment method, top 5 MRR by customer, invoice details, subscription cancellation rate, churn rate, average customer lifetime value, average revenue per subscriber, and payment by month.</Description>
-          <FileName>subscription-management-dashboard.sydj</FileName>
-          <Tags>Date Picker, Number card, KPI card, Radial Gauge, Tree Map, Column Chart, Bar Chart, Area Chart, Doughnut Chart, Stacked Column Chart, Pie Chart, Grid</Tags>
-          <Features>Master Filter, Top-N-Rank-Filter-Bar_Chart, Conditional_Formatting-Grid, Relative_Date_Filter-Area_Chart</Features>
-        </Dashboard>
-      </Dashboards>
-   </Category>
-  <Category>
-      <Name>Support</Name>
-      <Description>Check our Sample dashboards.</Description>
-      <Dashboards>
-        <Dashboard>
-          <Name>Agent Activity Dashboard</Name>
-		  <ImageName>support.svg</ImageName>
-          <Description>The goal of the Freshdesk Agent Activity Dashboard is to provide insight into a company's customer experience, the level and type of support it offers, and customer loyalty using metrics like response time, resolution time, and agent workload.</Description>
-          <FileName>agent-activity-dashboard.sydj</FileName>
-          <Tags>Combo Box, Number card, KPI card, Combo Box, Heat Map, Bar Chart, Doughnut Chart,Spline Chart</Tags>
-          <Features>Master Filter,Relative_Date_Filter-Spline_Chart</Features>
-        </Dashboard>
-      </Dashboards>
-   </Category>
-	<Category>
-	  <Name>Human Resources</Name>
-	  <Description>Check our Sample dashboards.</Description>
-	  <Dashboards>
-		<Dashboard>
-		  <Name>HR Payroll Dashboard</Name>
-		  <ImageName>hr.svg</ImageName>
-		  <Description>This dashboard is included with essential payroll salary-related KPIs of the Human Resources (HR) department. HR admins can make use of these metrics and KPIs to track each employee(s) performance and salary details. And helps them to identify trends without running reports or sifting through paperwork.</Description>
-		  <FileName>hr-payroll-dashboard.sydj</FileName>
-		  <Tags>Combo Box, Number card, Stacked Bar Chart, Bar Chart, KPI card, Doughnut Chart, Stacked Column Chart, Label, Combined Widget, Grid, Line Chart</Tags>
-		  <Features>Master Filter, Drill_Down-Stacked_Column_Chart, Relative_Date_Filter-Grid,  Relative_Date_Filter-Line_Chart, Top-N-Rank-Filter-Grid</Features>
-		</Dashboard>
-	  </Dashboards>
-	</Category>
-     <Category>
-      <Name>Support</Name>
-      <Description>Check our Sample dashboards.</Description>
-      <Dashboards>
-        <Dashboard>
-          <Name>Customer Ticket Traffic Management Dashboard</Name>
-          <ImageName>support.svg</ImageName>
-          <Description>The Customer ticket traffic Management dashboard shows a detailed view of your customer tickets including new tickets and escalated tickets, tickets handled by group, tickets by source, resolved vs. unresolved tickets by priority, customer satisfaction rate, unassigned tickets, average first response time, and average resolution time.</Description>
-          <FileName>customer-ticket-traffic-management-dashboard.sydj</FileName>
-          <Tags>Date Picker, Number card,Radar Polar,Spline Area Chart, Pie Chart,Doughnut Chart, Column Chart, Combine Widget, Grid, Radial Gauge</Tags>
-          <Features>Master Filter, Conditional_Formatting-Grid</Features>
-        </Dashboard>
-      </Dashboards>
-    </Category>
-	<Category>
-	  <Name>Human Resources</Name>
-	  <Description>Check our Sample dashboards.</Description>
-	  <Dashboards>
-		<Dashboard>
-		  <Name>HR Employee Details Dashboard</Name>
-		  <ImageName>hr.svg</ImageName>
-		  <Description>This HR employee dashboard tracks employee details: productivity rate, overall labor effectiveness, employees by age, employee salary by month, employee details, employees by department, active employees, overall labor effectiveness by department, absentee rate, employees by gender, and absentee rate by department.</Description>
-		  <FileName>hr-employee-details-dashboard.sydj</FileName>
-		  <Tags>Combo Box, Number Card, KPI card, Radial Gauge, Doughnut Chart, Stacked Column Chart, Bar Chart, Heat Map, Combo Chart, Grid</Tags>
-		  <Features>Master Filter, Relative_Date_Filter-Heat_Map, Conditional-formatting_Grid</Features>
-		</Dashboard>
-	  </Dashboards>
-	</Category>
-    <Category>
-      <Name>Human Resources</Name>
-      <Description>Check our Sample dashboards.</Description>
-      <Dashboards>
-        <Dashboard>
-          <Name>HR Training Dashboard</Name>
-          <ImageName>hr.svg</ImageName>
-          <Description>This HR training dashboard tracks training details: total participants, total completed training, cost per participants, cost per hour for training, new participants, participants by training mode, satisfaction level,  region-based participants, length of training by course, absentee rate, compensation classes, compensation cost, budget vs. training costs, participants by course and gender, participant count by month, top courses based on rating, lowest rated courses, and training details.</Description>
-          <FileName>hr-training-dashboard.sydj</FileName>
-          <Tags>Date Picker, Combo Box, Number Card, KPI card, Pie Chart, Doughnut Chart, Choropleth Map, Area Chart, Stacked Bar Chart, Column Chart, Combo Chart, Grid</Tags>
-          <Features>Master Filter, Conditional_Formatting-Grid, Conditional_Formatting-Combo_Chart, Relative_Date_Filter-Area_Chart, Drill_Down-Column_Chart, Relative_Date_Filter-Date_Picker</Features>
-        </Dashboard>
-      </Dashboards>
-    </Category>
-    <Category>
-      <Name>Human Resources</Name>
-      <Description>Check our Sample dashboards.</Description>
-      <Dashboards>
-        <Dashboard>
-          <Name>HR Attendance Dashboard</Name>
-          <ImageName>hr.svg</ImageName>
-          <Description>This dashboard shows the attendance details of a company including employee name, employee days present and absent, leave taken, overall attendance percentage, overtime hours, absences by month, check-in time statistics, employees by experience and designation, employee check-in time status, resignation statistics, leave type distributors, late comers vs early check-ins, absentee details, perfect attendance, current day status, and employee attendance.</Description>
-          <FileName>hr-attendance-dashboard.sydj</FileName>
-          <Tags>Date Picker, Combo Box, Number Card, KPI card, Radial Gauge, Pie Chart, Doughnut Chart, Area Chart, Column Chart, Grid</Tags>
-          <Features>Master Filter, Conditional_Formatting-Grid, Relative_Date_Filter-Area_Chart, Drill_Down-Column_Chart, Relative_Date_Filter-Date_Picker</Features>
-        </Dashboard>
-      </Dashboards>
-    </Category>
-	<Category>
-      <Name>Intervals</Name>
-      <Description>Check our Sample dashboards.</Description>
-      <Dashboards>
-        <Dashboard>
-          <Name>Intervals Project Management Dashboard</Name>
-          <ImageName>project-overview-dashboard.svg</ImageName>
-          <Description>This Interval Project Management Dashboard helps track all the tasks that have been assigned across various projects being managed in the Intervals platform. Some of the key metrics being monitored are planned vs. actual completion time, overdue tasks, milestones, modules, etc.</Description>
-          <FileName>intervals-project-management-dashboard.sydj</FileName>
-          <Tags>Combo Box, Number Card, KPI card, Pie Chart, Doughnut Chart, Stacked Column Chart, Column Chart, Bar Chart, Spline Chart, Combo Chart, Radial Gauge, Spline Chart, Grid</Tags>
-          <Features>Master Filter, Conditional_Formatting-Grid, Conditional_Formatting-Combo_Chart, Relative_Date_Filter-Spline_Chart, Trendline-Spline-Chart</Features>
-        </Dashboard>
-      </Dashboards>
-    </Category>
-	<Category>
-      <Name>Human Resources</Name>
-      <Description>Check our Sample dashboards.</Description>
-      <Dashboards>
-        <Dashboard>
-          <Name>HR Trainer Details Dashboard</Name>
-          <ImageName>hr.svg</ImageName>
-          <Description>The HR Trainer Details Dashboard showcases human resources trainer metrics including trainer cost, average weekly hours, top 5 trainers by customer satisfaction, customer satisfaction score, trainer competency rate, trainer cost by course, course by training status, trainer by experience, average weekly hours per month, upcoming training sessions, overall trainer satisfaction by month, hours of training by month, completed training sessions, course completion rate, and trainer details.</Description>
-          <FileName>hr-trainer-details-dashboard.sydj</FileName>
-          <Tags>Combo Box, Number Card, Radial Gauge, Doughnut Chart, Bar Chart, Column Chart, Area Chart, Spline Chart, Grid</Tags>
-          <Features>Master Filter, Conditional_Formatting-Grid, Relative_Date_Filter-Spline_Chart, Relative_Filter-Area_Chart</Features>
-        </Dashboard>
-      </Dashboards>
-    </Category>
-      <Category>
-          <Name>Human Resources</Name>
-          <Description>Check our Sample dashboards.</Description>
-          <Dashboards>
-              <Dashboard>
-                  <Name>HR Training Feedbacks Dashboard</Name>
-                  <ImageName>hr.svg</ImageName>
-                  <Description>This HR training feedback dashboard lets HR admins view detailed statistics about feedback given and received for trainers, trainee performance, trainer satisfaction, and so on. Track KPIs like the top 5 rated training courses, net promoter score trend, the overall response by month, engagement score, trainee satisfaction rate, and feedback details.</Description>
-                  <FileName>hr_training_feedbacks_dashboard.sydj</FileName>
-                  <Tags>Combo Box, Number Card, Radial Gauge, Doughnut Chart, Line Chart,Stacked Area Chart, Area Chart, Combine Widget, Grid</Tags>
-                  <Features>Master Filter, Conditional_Formatting-Grid, Relative_Date_Filter-Line_Chart, Relative_Filter-Stacked_Area_Chart, Relative_Filter-Area_Chart</Features>
-              </Dashboard>
-          </Dashboards>
-      </Category>
-    <Category>
-        <Name>Information Technology</Name>
-        <Description>Check our Sample dashboards.</Description>
-        <Dashboards>
-            <Dashboard>
-                <Name>Toggl Project Time Tracking Dashboard</Name>
-                <ImageName>project-overview-dashboard.svg</ImageName>
-                <Description>This Toggl Project Time Tracking Dashboard tracks time spent on active projects and tasks. It helps project managers and team leads see where most time is spent with metrics like active projects; average utilized hours; total, completed, incomplete, and overdue tasks; incomplete and overdue tasks by assignee; utilized, estimated, billable, and non-billable hours; task cycle time; task completion rate; planned vs. completed tasks by project and date; top 5 projects based on completed tasks; clocked hours by date; estimated vs. utilized hours by project; utilized hours by task; time distribution by tag; project completed hour trends; and project summary details.</Description>
-                <FileName>toggl-project-time-tracking-dashboard.sydj</FileName>
-                <Tags>Combo Box, Number Card, KPI card, Radial Gauge, Doughnut Chart, Line Chart, Combine Widget, Column Chart, Stacked Column Chart, Bar Chart, Spline Chart, Pie Chart, Grid</Tags>
-                <Features>Master Filter, Conditional_Formatting-Grid, Relative_Date_Filter-Spline_Chart, Relative_Filter-Stacked_Column_Chart, Relative_Filter-Line_Chart, Top-N-Rank-Filter_Doughnut-Chart</Features>
-            </Dashboard>
-        </Dashboards>
-    </Category>
-      <Category>
-          <Name>Information Technology</Name>
-          <Description>Check our Sample dashboards.</Description>
-          <Dashboards>
-              <Dashboard>
-                  <Name>Podio Project Management Dashboard</Name>
-                  <ImageName>project-overview-dashboard.svg</ImageName>
-                  <Description>This Podio project management dashboard helps to monitor and manage tasks in a project by use of various metrics and KPIs like completion time, task cycle time, overdue tasks. The metrics help dashboard users to determine the progress of each project by comparing complete and incomplete tasks against due dates and project task masters available.</Description>
-                  <FileName>podio-project-mangement-dashboard.sydj</FileName>
-                  <Tags>Combo Box, Number Card, KPI card, Radial Gauge, Pie Chart, Heat Map, Column Chart, Stacked Column Chart, Bar Chart, Combo Chart, Grid</Tags>
-                  <Features>Master Filter, Conditional_Formatting-Grid</Features>
-              </Dashboard>
-          </Dashboards>
-      </Category>
-      <Category>
-          <Name>Human Resources</Name>
-          <Description>Check our Sample dashboards.</Description>
-          <Dashboards>
-              <Dashboard>
-                  <Name>HR Employee Attendance Details Dashboard</Name>
-                  <ImageName>hr.svg</ImageName>
-                  <Description>This HR Employee Attendance Details Dashboard helps HR admins to monitor each employee's attendance details and create reports easily. This dashboard showcases metrics such as the top 5 employees by attendance, overall attendance percentage, absenteeism rate by month, working status, leave type distribution, performance rating, employee details, and upcoming absences.</Description>
-                  <FileName>hr-employee-attendance-details-dashboard.sydj</FileName>
-                  <Tags>Date Picker, Combo Box, Number Card, KPI card, Radial Gauge, Doughnut Chart, Stacked Column Chart, Line Chart, Area Chart, Spline Chart, Grid</Tags>
-                  <Features>Top-N-Rank-Filter-Bar_Chart, Drill_Down-Doughnut_Chart, Relative_Date_Filter-Spline_Chart, Relative_Date_Filter-Line_Chart, Relative_Date_Filter-Area_Chart, Relative_Date_Filter-Grid, Conditional_Formatting-Grid</Features>
-              </Dashboard>
-          </Dashboards>
-      </Category>
-	  <Category>
-          <Name>Healthcare</Name>
-          <Description>Check our Sample dashboards.</Description>
-          <Dashboards>
-              <Dashboard>
-                  <Name>Healthcare Executive Dashboard</Name>
-                  <ImageName>healthcare.svg</ImageName>
-                  <Description>The dashboard is used to monitor the healthcare KPIs in a dynamic and interactive way, and that enables healthcare professionals to access important patient statistics in real-time to increase the overall hospital performance and patient satisfaction.</Description>
-                  <FileName>healthcare-executive-dashboard.sydj</FileName>
-                  <Tags>Combo Box, Number Card, KPI card, Radial Gauge, Stacked Column Chart, Spline Chart, Pie Chart, Doughnut Chart, Bar Chart, Line Chart, Area Chart, Heat Map, Stacked Bar Chart</Tags>
-                  <Features>Releative_Date_Filter-Stacked_Column_Chart,Releative_Date_Filter-Spline_Chart, Relative_Date_Filter-Line_Chart, Relative_Date_Filter-Area_Chart, Relative_Date_Filter-Heat_Map</Features>
-              </Dashboard>
-          </Dashboards>
-      </Category>
-      <Category>
-          <Name>Marketing</Name>
-          <Description>Check our Sample dashboards.</Description>
-          <Dashboards>
-              <Dashboard>
-                  <Name>Bitly Links Analysis Dashboard</Name>
-                  <ImageName>marketing.svg</ImageName>
-                  <Description>The Bitly Links Analysis Dashboard provides a high-level overview of a Bitly account's links and activities. It tracks the total number of links, clicks, where they came from, and when they happened. It also gives insight into the Bitly tags available.</Description>
-                  <FileName>bitly-links-analysis-dashboard.sydj</FileName>
-                  <Tags>Image, Date Picker, Number Card, Spline Chart, Doughnut Chart, Bar Chart, Choropleth Map</Tags>
-                  <Features>Relative_Date_Filter-Spline_Chart, Top-N-Rank-Filter-Bar_Chart, Master Filter</Features>
-              </Dashboard>
-          </Dashboards>
-      </Category>
-      <Category>
-          <Name>Human Resources</Name>
-          <Description>Check our Sample dashboards.</Description>
-          <Dashboards>
-              <Dashboard>
-                  <Name>HR Resignation Details Dashboard</Name>
-                  <ImageName>hr.svg</ImageName>
-                  <Description>This HR Resignation Details Dashboard helps HR admins track employee resignation details, including attrition rate, tenure rate, team changes, attrition trend, employee retention rate, voluntary vs. involuntary resignations, attrition rate by department and gender, employee rating by month, attrition rate by month, total vs. resigned employees by department, average tenure rate by month, and employee resignation details.</Description>
-                  <FileName>hr-resignation-details-dashboard.sydj</FileName>
-                  <Tags>Combo Box, Date Picker, Number Card, Line Chart, Pyramid Chart, Doughnut Chart, Bar Chart, Pie Chart, Spline Chart, Column Chart, Grid</Tags>
-                  <Features>Conditional_Formatting-Grid, Master Filter, Relative_Date_Filter-Spline_Chart, Relative_Date_Filter-Column_Chart, Relative_Date_Filter-Line_Chart</Features>
-              </Dashboard>
-          </Dashboards>
-      </Category>
-	  <Category>
-          <Name>Survey Analysis</Name>
-          <Description>Check our Sample dashboards.</Description>
-          <Dashboards>
-              <Dashboard>
-                  <Name>SurveyMonkey Survey Overview Dashboard</Name>
-                  <ImageName>survey-analysis.svg</ImageName>
-                  <Description>The SurveyMonkey Survey Overview Dashboard allows the user to have a broader insight into the number of respondents who participate in a survey and their responses. The time frame in which a survey is completed is also captured to get a glimpse of the survey's level of engagement.</Description>
-                  <FileName>surveymonkey-survey-overview-dashboard.sydj</FileName>
-                  <Tags>Combo Box, Date Picker, KPI Card, 100% Stacked Bar Chart, Doughnut Chart, Heat Map, Bar Chart, Grid, Gauge</Tags>
-                  <Features>Master Filter, Top-N-Rank-Filter-Bar_Chart </Features>
-              </Dashboard>
-          </Dashboards>
-      </Category>
   </Categories>
   <!-- <DataSources> -->
   <!-- <Datasource> -->

@@ -10,12 +10,7 @@
     var cdnLink = globalAppSettings.SystemSettings.CDNLink;
     var url = new Uri(Context.Request.GetDisplayUrl());
     var requestUrl = url.AbsolutePath.ToString().ToLower();
-    var dns = url.GetLeftPart(UriPartial.Authority);
     var dashboardsPageUrl = Url.Action("Dashboards", "Dashboards");
-    var slideshowPageUrl = Url.Action("Slideshows", "Slideshow");
-    var dataSourcePageUrl = Url.Action("DataSources", "DataSources");
-    var schedulePageUrl = Url.Action("Schedules", "Scheduler");
-    var publishPageUrl = Url.Action("GetPublishedItems", "Publish");
     var widgetsPageUrl = Url.Action("Widgets", "Widgets");
     //To show or hide menu for mobile devices
     var isMobile = new DeviceDetection(Context).IsMobile;
@@ -42,49 +37,42 @@
     var showFeedback = (feedbackCookie == null && tourCookie != null && !isWelcomePage && !isMobile && showFeedbackKey);
     var absolutePath = url.AbsolutePath;
     var isSelfHosted = ServerAppConfig.IsSelfHosted;
-    var hideReleaseAlert = ServerAppConfig.HideReleaseAlert;
     var dashboardBIUrl = isSelfHosted ? new DashboardServerEndPoints(globalAppSettings).DashboardServerBIUrl() : string.Empty;
     var isExludeEjDialog = ViewBag.IsExludeEjDialog != null ? ViewBag.IsExludeEjDialog : false;
     var dashboardServerResourceUrl = globalAppSettings.SystemSettings.CDNLink.TrimEnd('/');
     var dashboardDesignerResourceUrl = globalAppSettings.SystemSettings.DesignerCdnLink.TrimEnd('/');
-    var rootUrl = Context.Request.RouteValues["tenantName"] != null ? (GlobalAppSettings.HttpPathBase + "/" + ServerAppConfig.TenantIdentifierPrefix + "/" + Context.Request.RouteValues["tenantName"]).TrimEnd('/') : GlobalAppSettings.HttpPathBase.ToString();
-    var isSlideshow = url.Query.ToLower().Contains("isslideshow");
-    var siteIdentifier = Context.Request.RouteValues["tenantName"] != null ? Context.Request.RouteValues["tenantName"].ToString() : string.Empty;
-    var adminPageUrl = siteIdentifier + "/administration";
-    var profilePagesUrl = siteIdentifier + "/profile";
-    var userProfilePageUrl = siteIdentifier + "/user";
+    var rootUrl = (Context.Request.PathBase + "/" + ServerAppConfig.TenantIdentifierPrefix + "/" + Context.Request.RouteValues["tenantName"]).TrimEnd('/');
 }
 @{
     var preloadScriptsFiles = new string[]
-{
-        this.Context.RequestServices.GetRequiredService<IFileVersionProvider>().AddFileVersionToPath(GlobalAppSettings.HttpPathBase, dashboardDesignerResourceUrl + "/cdn/scripts/designer/dashboard-designer.min.js"),
-        this.Context.RequestServices.GetRequiredService<IFileVersionProvider>().AddFileVersionToPath(GlobalAppSettings.HttpPathBase, dashboardDesignerResourceUrl + "/cdn/scripts/designer/dashboard-designer-bundle.min.js"),
-        this.Context.RequestServices.GetRequiredService<IFileVersionProvider>().AddFileVersionToPath(GlobalAppSettings.HttpPathBase, dashboardDesignerResourceUrl + "/cdn/scripts/designer/datasource-designer.min.js"),
-        this.Context.RequestServices.GetRequiredService<IFileVersionProvider>().AddFileVersionToPath(GlobalAppSettings.HttpPathBase, dashboardDesignerResourceUrl + "/cdn/scripts/designer/connection-designer.min.js"),
-        this.Context.RequestServices.GetRequiredService<IFileVersionProvider>().AddFileVersionToPath(GlobalAppSettings.HttpPathBase, dashboardDesignerResourceUrl + "/cdn/scripts/designer/ej1.common.all.min.js"),
-        this.Context.RequestServices.GetRequiredService<IFileVersionProvider>().AddFileVersionToPath(GlobalAppSettings.HttpPathBase, dashboardDesignerResourceUrl + "/cdn/scripts/designer/ej2.common.all.min.js"),
-        this.Context.RequestServices.GetRequiredService<IFileVersionProvider>().AddFileVersionToPath(GlobalAppSettings.HttpPathBase, dashboardDesignerResourceUrl + "/cdn/scripts/designer/ej.dashboarddesigner.min.js"),
-        this.Context.RequestServices.GetRequiredService<IFileVersionProvider>().AddFileVersionToPath(GlobalAppSettings.HttpPathBase, dashboardDesignerResourceUrl + "/cdn/scripts/designer/ej1.web.all.min.js"),
-        this.Context.RequestServices.GetRequiredService<IFileVersionProvider>().AddFileVersionToPath(GlobalAppSettings.HttpPathBase, dashboardDesignerResourceUrl + "/cdn/scripts/designer/ej2.web.all.min.js"),
-        this.Context.RequestServices.GetRequiredService<IFileVersionProvider>().AddFileVersionToPath(GlobalAppSettings.HttpPathBase, dashboardServerResourceUrl + "/cdn/scripts/signalr-bundle.min.js"),
-        this.Context.RequestServices.GetRequiredService<IFileVersionProvider>().AddFileVersionToPath(GlobalAppSettings.HttpPathBase, dashboardServerResourceUrl + "/cdn/scripts/datasourcerecurrencepage.min.js"),
-        this.Context.RequestServices.GetRequiredService<IFileVersionProvider>().AddFileVersionToPath(GlobalAppSettings.HttpPathBase, dashboardServerResourceUrl + "/cdn/scripts/datasourcerecurrencedependency.min.js"),
-        this.Context.RequestServices.GetRequiredService<IFileVersionProvider>().AddFileVersionToPath(GlobalAppSettings.HttpPathBase, dashboardServerResourceUrl + "/cdn/scripts/dashboard-feedback.min.js")
-};
+    {
+        this.Context.RequestServices.GetRequiredService<IFileVersionProvider>().AddFileVersionToPath(this.Context.Request.PathBase, dashboardDesignerResourceUrl + "/cdn/scripts/designer/dashboard-designer.min.js"),
+        this.Context.RequestServices.GetRequiredService<IFileVersionProvider>().AddFileVersionToPath(this.Context.Request.PathBase, dashboardDesignerResourceUrl + "/cdn/scripts/designer/dashboard-designer-component.min.js"),
+        this.Context.RequestServices.GetRequiredService<IFileVersionProvider>().AddFileVersionToPath(this.Context.Request.PathBase, dashboardDesignerResourceUrl + "/cdn/scripts/designer/datasource-designer.min.js"),
+        this.Context.RequestServices.GetRequiredService<IFileVersionProvider>().AddFileVersionToPath(this.Context.Request.PathBase, dashboardDesignerResourceUrl + "/cdn/scripts/designer/connection-designer.min.js"),
+        this.Context.RequestServices.GetRequiredService<IFileVersionProvider>().AddFileVersionToPath(this.Context.Request.PathBase, dashboardDesignerResourceUrl + "/cdn/scripts/designer/ej1.common.all.min.js"),
+        this.Context.RequestServices.GetRequiredService<IFileVersionProvider>().AddFileVersionToPath(this.Context.Request.PathBase, dashboardDesignerResourceUrl + "/cdn/scripts/designer/ej2.common.all.min.js"),
+        this.Context.RequestServices.GetRequiredService<IFileVersionProvider>().AddFileVersionToPath(this.Context.Request.PathBase, dashboardDesignerResourceUrl + "/cdn/scripts/designer/ej.dashboarddesigner.min.js"),
+        this.Context.RequestServices.GetRequiredService<IFileVersionProvider>().AddFileVersionToPath(this.Context.Request.PathBase, dashboardDesignerResourceUrl + "/cdn/scripts/designer/ej1.web.all.min.js"),
+        this.Context.RequestServices.GetRequiredService<IFileVersionProvider>().AddFileVersionToPath(this.Context.Request.PathBase, dashboardDesignerResourceUrl + "/cdn/scripts/designer/ej2.web.all.min.js"),
+        this.Context.RequestServices.GetRequiredService<IFileVersionProvider>().AddFileVersionToPath(this.Context.Request.PathBase, dashboardServerResourceUrl + "/cdn/scripts/signalr-bundle.min.js"),
+        this.Context.RequestServices.GetRequiredService<IFileVersionProvider>().AddFileVersionToPath(this.Context.Request.PathBase, dashboardServerResourceUrl + "/cdn/scripts/datasourcerecurrencepage.min.js"),
+        this.Context.RequestServices.GetRequiredService<IFileVersionProvider>().AddFileVersionToPath(this.Context.Request.PathBase, dashboardServerResourceUrl + "/cdn/scripts/datasourcerecurrencedependency.min.js"),
+        this.Context.RequestServices.GetRequiredService<IFileVersionProvider>().AddFileVersionToPath(this.Context.Request.PathBase, dashboardServerResourceUrl + "/cdn/scripts/dashboard-feedback.min.js")
+    };
 
     var preloadStylesFiles = new string[]
     {
-        this.Context.RequestServices.GetRequiredService<IFileVersionProvider>().AddFileVersionToPath(GlobalAppSettings.HttpPathBase, dashboardDesignerResourceUrl + "/cdn/css/designer/dashboard-designer-bundle.min.css"),
-        this.Context.RequestServices.GetRequiredService<IFileVersionProvider>().AddFileVersionToPath(GlobalAppSettings.HttpPathBase, dashboardDesignerResourceUrl + "/cdn/css/designer/dashboard-designer.min.css"),
-        this.Context.RequestServices.GetRequiredService<IFileVersionProvider>().AddFileVersionToPath(GlobalAppSettings.HttpPathBase, dashboardDesignerResourceUrl + "/cdn/css/designer/datasource-designer.min.css"),
-        this.Context.RequestServices.GetRequiredService<IFileVersionProvider>().AddFileVersionToPath(GlobalAppSettings.HttpPathBase, dashboardDesignerResourceUrl + "/cdn/css/designer/connection-designer.min.css"),
-        this.Context.RequestServices.GetRequiredService<IFileVersionProvider>().AddFileVersionToPath(GlobalAppSettings.HttpPathBase, dashboardServerResourceUrl + "/cdn/css/scheduleiframe.min.css"),
-        this.Context.RequestServices.GetRequiredService<IFileVersionProvider>().AddFileVersionToPath(GlobalAppSettings.HttpPathBase, dashboardServerResourceUrl + "/cdn/css/schedulerrecurrence.min.css"),
-        this.Context.RequestServices.GetRequiredService<IFileVersionProvider>().AddFileVersionToPath(GlobalAppSettings.HttpPathBase, dashboardServerResourceUrl + "/cdn/css/datasourcerecurrence.min.css"),
+        this.Context.RequestServices.GetRequiredService<IFileVersionProvider>().AddFileVersionToPath(this.Context.Request.PathBase, dashboardDesignerResourceUrl + "/cdn/css/designer/dashboard-designer-component.min.css"),
+        this.Context.RequestServices.GetRequiredService<IFileVersionProvider>().AddFileVersionToPath(this.Context.Request.PathBase, dashboardDesignerResourceUrl + "/cdn/css/designer/dashboard-designer.min.css"),
+        this.Context.RequestServices.GetRequiredService<IFileVersionProvider>().AddFileVersionToPath(this.Context.Request.PathBase, dashboardDesignerResourceUrl + "/cdn/css/designer/datasource-designer.min.css"),
+        this.Context.RequestServices.GetRequiredService<IFileVersionProvider>().AddFileVersionToPath(this.Context.Request.PathBase, dashboardDesignerResourceUrl + "/cdn/css/designer/connection-designer.min.css"),
+        this.Context.RequestServices.GetRequiredService<IFileVersionProvider>().AddFileVersionToPath(this.Context.Request.PathBase, dashboardServerResourceUrl + "/cdn/css/scheduleiframe.min.css"),
+        this.Context.RequestServices.GetRequiredService<IFileVersionProvider>().AddFileVersionToPath(this.Context.Request.PathBase, dashboardServerResourceUrl + "/cdn/css/schedulerrecurrence.min.css"),
+        this.Context.RequestServices.GetRequiredService<IFileVersionProvider>().AddFileVersionToPath(this.Context.Request.PathBase, dashboardServerResourceUrl + "/cdn/css/datasourcerecurrence.min.css"),
         "https://fonts.googleapis.com/css?family=Roboto:400,700"
     };
     var bannerApiEndpoint = ServerAppConfig.AppSettings.BoldBiBannerApiEndpoint;
-    var currentVersion = _globalAppSettings.SystemSettings.ProductVersion;
 }
 <!DOCTYPE html>
 <html class="dashboard-server" lang="@globalAppSettings.SystemSettings.Language">
@@ -93,14 +81,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     @if (!isSelfHosted && !globalAppSettings.SystemSettings.IsDebug)
     {
-        <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     }
 
     @RenderSection("meta", false)
-<link rel="stylesheet" asp-append-version="true" href="@ServerAppConfig.GetCustomThemeDesignerUrl(dashboardServerResourceUrl, Context, globalAppSettings)" />
-    @await Html.PartialAsync("~/Views/Shared/_ApplicationThemeStyleSheet.cshtml")
-    @await Html.PartialAsync("~/Views/Shared/_BaseThemeStyleSheet.cshtml")
-    @await Html.PartialAsync("~/Views/Shared/_BaseFontStyleSheet.cshtml")
+
     <title>
         @ViewBag.Title
     </title>
@@ -118,23 +103,8 @@
             margin-top: -27px;
         }
     </style>
-    @if ((!ServerAppConfig.IsSelfHosted && string.IsNullOrWhiteSpace(_globalAppSettings.SystemSettings.FontPreference)) || (ServerAppConfig.FontFamily == "Robotoregular" && _globalAppSettings.SystemSettings.IsInheritFromGlobalLookAndFeelSettings))
-    {
-        <style>
-            :root {
-                --designer-font: 'Roboto','Heebo','Segoes UI' !important;
-            }
-        </style>
-    }
-    else
-    {
-        <style>
-            :root {
-                --designer-font: var(--font-family) !important;
-            }
-        </style>
-    }
-    @*<link href="https://fonts.googleapis.com/css?family=Heebo:400,500,700" rel="stylesheet">*@
+
+    <link href="https://fonts.googleapis.com/css?family=Heebo:400,500,700" rel="stylesheet">
 
     @await Html.PartialAsync("~/Views/Shared/_LoaderIcon.cshtml")
 
@@ -143,37 +113,34 @@
     <!--Prefetch viewer & designer resources-->
     @if (!isSelfHosted)
     {
-        <link rel="prefetch" href="@ServerAppConfig.GetServiceEndPointUrl(ServerAppConfig.InternalAppDataServiceUrl, _globalAppSettings)/health-check">
+    <link rel="prefetch" href="@ServerAppConfig.InternalAppDataServiceUrl">
     }
-<script>
+    <script>
         var isSelfHosted = @Json.Serialize(ServerAppConfig.IsSelfHosted);
-        var enableApplicationEmbed = @ServerAppConfig.EnableSameTabLinkTarget.ToString().ToLower();
-        var cdnLink = "@dashboardServerResourceUrl";
-
         window.onload = function () {
-            var preloadStyles = @Json.Serialize(preloadStylesFiles);
             var preloadScripts = @Json.Serialize(preloadScriptsFiles);
-            PreloadResources(preloadStyles, "style");
+            var preloadStyles = @Json.Serialize(preloadStylesFiles);
             PreloadResources(preloadScripts, "script");
+            PreloadResources(preloadStyles, "style");
         }
-</script>
+    </script>
 </head>
 
 <body ng-app="serverApp" class="clearfix" id="body">
     @if (!(ViewBag.HidePageLoader != null && ViewBag.HidePageLoader))
     {
-        <div class="loader-blue loader-icon" id="layout-body-loader-icon">
-            <svg class="circular">
-                <circle class="path" cx="27" cy="27" r="20" fill="none" stroke-width="4" stroke-miterlimit="10"></circle>
-            </svg>
-        </div>
+    <div class="loader-blue loader-icon" id="layout-body-loader-icon">
+        <svg class="circular">
+            <circle class="path" cx="27" cy="27" r="20" fill="none" stroke-width="4" stroke-miterlimit="10"></circle>
+        </svg>
+    </div>
     }
     <environment include="Development,CloudDevelopment">
-        <script asp-append-version="true" src="~/js/localizationcontent.js?v=@ServerAppConfig.ProductVersion&c=@System.Globalization.CultureInfo.CurrentCulture"></script>
+        <script asp-append-version="true" src="~/js/localizationcontent.js?c=@System.Globalization.CultureInfo.CurrentCulture"></script>
         <link rel="stylesheet" asp-append-version="true" href="@dashboardServerResourceUrl/cdn/css/layout.css" />
     </environment>
     <environment exclude="Development,CloudDevelopment">
-        <script asp-append-version="true" src="~/js/localizationcontent.js?v=@ServerAppConfig.ProductVersion&c=@System.Globalization.CultureInfo.CurrentCulture"></script>
+        <script asp-append-version="true" src="~/js/localizationcontent.js?c=@System.Globalization.CultureInfo.CurrentCulture"></script>
         <link rel="stylesheet" asp-append-version="true" href="@dashboardServerResourceUrl/cdn/css/layout.min.css" />
     </environment>
 
@@ -182,44 +149,42 @@
     {
         if (isExludeEjDialog)
         {
-            <environment include="Development,CloudDevelopment">
-                <script asp-append-version="true" src="@dashboardServerResourceUrl/cdn/scripts/connector-page-layout.js"></script>
-            </environment>
-            <environment exclude="Development,CloudDevelopment">
-                <script asp-append-version="true" src="@dashboardServerResourceUrl/cdn/scripts/connector-page-layout.min.js"></script>
-            </environment>
+    <environment include="Development,CloudDevelopment">
+        <script asp-append-version="true" src="@dashboardServerResourceUrl/cdn/scripts/connector-page-layout.js"></script>
+    </environment>
+    <environment exclude="Development,CloudDevelopment">
+        <script asp-append-version="true" src="@dashboardServerResourceUrl/cdn/scripts/connector-page-layout.min.js"></script>
+    </environment>
         }
         else
         {
-            <environment include="Development,CloudDevelopment">
-                <script asp-append-version="true" src="@dashboardServerResourceUrl/cdn/scripts/layout.js"></script>
-                <script asp-append-version="true" src="@dashboardServerResourceUrl/cdn/scripts/itemaction.js"></script>
-            </environment>
-            <environment exclude="Development,CloudDevelopment">
-                <script asp-append-version="true" src="@dashboardServerResourceUrl/cdn/scripts/layout.min.js"></script>
-                <script asp-append-version="true" src="@dashboardServerResourceUrl/cdn/scripts/itemaction.min.js"></script>
-            </environment>
+    <environment include="Development,CloudDevelopment">
+        <script asp-append-version="true" src="@dashboardServerResourceUrl/cdn/scripts/layout.js"></script>
+    </environment>
+    <environment exclude="Development,CloudDevelopment">
+        <script asp-append-version="true" src="@dashboardServerResourceUrl/cdn/scripts/layout.min.js"></script>
+    </environment>
         }
 
         <script asp-append-version="true" src="@dashboardServerResourceUrl/cdn/scripts/ej2-dialog.min.js"></script>
     }
     else
     {
-        <environment include="Development,CloudDevelopment">
-            <script asp-append-version="true" src="@dashboardServerResourceUrl/cdn/scripts/layout-mobile.js"></script>
-        </environment>
-        <environment exclude="Development,CloudDevelopment">
-            <script asp-append-version="true" src="@dashboardServerResourceUrl/cdn/scripts/layout-mobile.min.js"></script>
-        </environment>
+    <environment include="Development,CloudDevelopment">
+        <script asp-append-version="true" src="@dashboardServerResourceUrl/cdn/scripts/layout-mobile.js"></script>
+    </environment>
+    <environment exclude="Development,CloudDevelopment">
+        <script asp-append-version="true" src="@dashboardServerResourceUrl/cdn/scripts/layout-mobile.min.js"></script>
+    </environment>
     }
     <script type="text/javascript">
         $.extend(ej, Syncfusion);
         var baseUrl = "@globalAppSettings.SystemSettings.BaseUrl";
         var isAdmin = "@isAdmin";
-        var manageLicenseUrl = "@(ServerAppConfig.IsSelfHosted ? globalAppSettings.SystemSettings.IDPUrl + "/" + ServerAppConfig.TenantManagementHostName + "/administration/license-settings" : Url.Action("LicenseSettings", "Administration"))";
+        var manageLicenseUrl = "@(ServerAppConfig.IsSelfHosted ? ServerAppConfig.InternalAppIdpUrl + "/" + ServerAppConfig.TenantManagementHostName + "/administration/license-settings" : Url.Action("LicenseSettings", "Administration"))";
 		var contactUsUrl = "https://www.@(GlobalAppSettings.BrandingDomain)/contact";
         var getUserNotificationsPartialViewResultUrl = "@Url.Action("GetUserNotificationsPartialViewResult", "notification")";
-        var paymentPageUrl = "@(ServerAppConfig.IsSelfHosted ? string.Empty : (ServerAppConfig.AppSettings.EndPoints.TenantAppUrl?.TrimEnd('/') + "/sites/" + globalAppSettings.SystemSettings.TenantId + "/subscription"))";
+        var paymentPageUrl = "@Url.Action("GetCardDetail", "Payment")";
         var getNotificationCountUrl = "@Url.Action("GetNotificationCount", "PartialView")";
         var getTenantStatusUrl = "@Url.Action("GetTenantStatus", "PartialView")";
         var helpSiteBaseUrl = "@helpSiteBaseUrl";
@@ -231,22 +196,6 @@
         var rootUrl = "@rootUrl";
         var rootUrlAction = "@rootUrl";
         var bannerApiEndpoint = "@bannerApiEndpoint";
-        var hideReleaseAlert = @Json.Serialize(hideReleaseAlert);
-        var isMobile = @Json.Serialize(isMobile);
-        var currentProductVersion = "@currentVersion";
-        var runTimeEnvironment = "@ServerAppConfig.RunTimeEnvironment";
-        var isUmsAdmin = "@identityResponse.IsUmsAdmin";
-
-        var value = {
-            Locale: navigator.language,
-            TimeZone: Intl.DateTimeFormat().resolvedOptions().timeZone
-        };
-
-        setTimeout(function () {
-            if (cookies["boldservice.client.locale"] != JSON.stringify(value)) {
-                SetHttpOnlyCookie("boldservice.client.locale", JSON.stringify(value), 365);
-            }
-        }, 5000);
 
         $(document).ready(function () {
             generateProfileAvatar();
@@ -254,7 +203,7 @@
     </script>
     @if (isMobile)
     {
-     <script type="text/javascript">
+    <script type="text/javascript">
         $(document).ready(function () {
             GetGridName();
 
@@ -299,26 +248,26 @@
 
             if (typeof gridName != "undefined") {
                 if (gridName === "dashboards") {
-                    $(".header-org-name").text("@T["DASHBOARDS"]");
+                    $(".header-org-name").text("[[[DASHBOARDS]]]");
                 }
                 else if (gridName === "widgets") {
-                    $(".header-org-name").text("@T["WIDGETS"]");
+                    $(".header-org-name").text("[[[WIDGETS]]]");
                 }
                 else if (gridName === "datasources") {
-                    $(".header-org-name").text("@T["DATA SOURCES"]");
+                    $(".header-org-name").text("[[[DATA SOURCES]]]");
                 }
             }
             else if (isScheduleGrid) {
-                $(".header-org-name").text("@T["SCHEDULES"]");
+                $(".header-org-name").text("[[[SCHEDULES]]]");
             }
             else if ($("#server-app-container #homepage-page-container").length > 0) {
-                $(".header-org-name").text("@T["PINBOARDS"]");
+                $(".header-org-name").text("[[[PINBOARDS]]]");
             }
             else {
                 $(".header-org-name").text($(".page-name").attr("data-content"));
             }
         }
-        </script>
+    </script>
     }
     @if (includeMessageBox)
     {
@@ -334,8 +283,8 @@
                     enableModal: true,
                     close: "onMessageDialogClose"
                 });
-            });
-        </script>
+	    });
+	</script>
     }
 
     @RenderSection("scripts", false)
@@ -344,11 +293,11 @@
             <div class="header-bar col-lg-12 col-md-12 col-sm-12">
                 @if (!isWelcomePage)
                 {
-                    <div class="mobile-menu-icon text-center mobile-visible collapsed" data-toggle="collapse" aria-expanded="false" data-target="#menu-area">
-                        <span>
-                            <i class="su su-mobile-menu-icon"></i>
-                        </span>
-                    </div>
+                <div class="mobile-menu-icon text-center mobile-visible collapsed" data-toggle="collapse" aria-expanded="false" data-target="#menu-area">
+                    <span>
+                        <i class="su su-mobile-menu-icon"></i>
+                    </span>
+                </div>
                 }
                 <div class="org-name-wrapper">
                     <h5 class="header-org-name">@globalAppSettings.SystemSettings.OrganizationName</h5>
@@ -367,27 +316,26 @@
         {
             if (isMobile)
             {
-                <section id="menu-area" class="collapse width">
-                    @await Html.PartialAsync("../Shared/_Menu", globalAppSettings.SystemSettings.CDNLink, new ViewDataDictionary(ViewData) { { "helpSiteBaseUrl", helpSiteBaseUrl }, { "GlobalAppSettings", globalAppSettings }, { "ItemPermission", ViewBag.ItemAddOptions != null ? ViewBag.ItemAddOptions as Dictionary<ItemType, bool> : new Dictionary<ItemType, bool>() } })
-                </section>
+        <section id="menu-area" class="collapse width">
+            @await Html.PartialAsync("../Shared/_Menu", globalAppSettings.SystemSettings.CDNLink, new ViewDataDictionary(ViewData) { { "helpSiteBaseUrl", helpSiteBaseUrl }, { "GlobalAppSettings", globalAppSettings }, { "ItemPermission", ViewBag.ItemAddOptions != null ? ViewBag.ItemAddOptions as Dictionary<ItemType, bool> : new Dictionary<ItemType, bool>() } })
+        </section>
             }
-            else if (!isSlideshow)
+            else
             {
-                <section id="menu-area">
-                    @await Html.PartialAsync("../Shared/_Menu", globalAppSettings.SystemSettings.CDNLink, new ViewDataDictionary(ViewData) { { "helpSiteBaseUrl", helpSiteBaseUrl }, { "GlobalAppSettings", globalAppSettings }, { "ItemPermission", ViewBag.ItemAddOptions != null ? ViewBag.ItemAddOptions as Dictionary<ItemType, bool> : new Dictionary<ItemType, bool>() } })
-                </section>
+        <section id="menu-area">
+            @await Html.PartialAsync("../Shared/_Menu", globalAppSettings.SystemSettings.CDNLink, new ViewDataDictionary(ViewData) { { "helpSiteBaseUrl", helpSiteBaseUrl }, { "GlobalAppSettings", globalAppSettings }, { "ItemPermission", ViewBag.ItemAddOptions != null ? ViewBag.ItemAddOptions as Dictionary<ItemType, bool> : new Dictionary<ItemType, bool>() } })
+        </section>
             }
         }
-        <div id="content-area" class="clearfix col-xs-12 @(isSlideshow ? "no-padding" : string.Empty)">
+        <div id="content-area" class="clearfix col-xs-12">
             <div class="suspension-warning" style="display:none">
                 <div class="warning-content"></div>
-                <div class="close-warning-icons su-close"></div>
             </div>
             @if (!isMobile)
             {
-                <div class="user-warning" style="display:none">
-                    <div class="user-warning-content"></div>
-                </div>
+            <div class="user-warning" style="display:none">
+                <div class="user-warning-content"></div>
+            </div>
             }
             @RenderSection("MainSection", true)
             <div id="success-alert">
@@ -410,7 +358,7 @@
                     <span id="message-content"></span>
                 </div>
                 <div class="close-div">
-                    <span id="close-content">@T["Close"]</span>
+                    <span id="close-content">[[[Close]]]</span>
                 </div>
             </div>
             <div id="mobile-alert">
@@ -421,19 +369,19 @@
             </div>
         </div>
         @{
-            if (requestUrl.IndexOf(dashboardsPageUrl, StringComparison.OrdinalIgnoreCase) == -1 && requestUrl.IndexOf(adminPageUrl, StringComparison.OrdinalIgnoreCase) == -1 && requestUrl.IndexOf(slideshowPageUrl, StringComparison.OrdinalIgnoreCase) == -1 && requestUrl.IndexOf(dataSourcePageUrl, StringComparison.OrdinalIgnoreCase) == -1 && requestUrl.IndexOf(schedulePageUrl, StringComparison.OrdinalIgnoreCase) == -1 && requestUrl.IndexOf(publishPageUrl, StringComparison.OrdinalIgnoreCase) == -1 && requestUrl.IndexOf(profilePagesUrl, StringComparison.OrdinalIgnoreCase) == -1 && requestUrl.IndexOf(userProfilePageUrl, StringComparison.OrdinalIgnoreCase) == -1)
+            if ((requestUrl.IndexOf(dashboardsPageUrl, StringComparison.OrdinalIgnoreCase) == -1 /*&& requestUrl.IndexOf(widgetsPageUrl, StringComparison.OrdinalIgnoreCase) == -1*/))
             {
-                @await Html.PartialAsync("../Shared/_Footer", new ViewDataDictionary(ViewData) { { "appsettings", globalAppSettings } })
+            @await Html.PartialAsync("../Shared/_Footer", new ViewDataDictionary(ViewData) { { "appsettings", globalAppSettings } })
             }
         }
         @if (includeMessageBox)
         {
-            <div id="messageBox" style="display:none">
-                <div class="message-header"></div>
-                <div class="message-box-close"></div>
-                <div class="message-content text-center"></div>
-                <div class="message-box-btn-holder"></div>
-            </div>
+        <div id="messageBox" style="display:none">
+            <div class="message-header"></div>
+            <div class="message-box-close"></div>
+            <div class="message-content text-center"></div>
+            <div class="message-box-btn-holder"></div>
+        </div>
         }
     </div>
     <div class="preloader-wrap" style="width: 100%;height: 100%; position: fixed; top: 0; bottom: 0; background: #fff; z-index : 2; display: none">
@@ -444,14 +392,13 @@
                 </svg>
             </div>
         </div>
-        <div id="loader_text" align="center" style="font-family:@globalAppSettings.SystemSettings.FontPreference,Segoe UI,SegoeUI,Helvetica Neue,Helvetica,Arial,sans-serif;position:relative;top: 42%;font-size:21px;font-weight:400;"></div>
+        <div id="loader_text" align="center" style="font-family:Segoe UI,SegoeUI,Helvetica Neue,Helvetica,Arial,sans-serif;position:relative;top: 42%;font-size:21px;font-weight:400;"></div>
     </div>
-    <div class="e-dlg-overlay" id="common-overlay" style="display: none"></div>
     <div class="page-additional-navigation">
         <input id="userName" type="hidden" value="@identityResponse.User.Email" />
         <input id="BaseUrlHidden" type="hidden" value="/" />
         <input id="baseurl" name="baseurl" type="hidden" value="" />
-        <input id="DateFormat" name="DateFormat" type="hidden" value="@_clientDateTimeInfo.ClientDateTime.DateFormat" />
+        <input id="DateFormat" name="DateFormat" type="hidden" value="@globalAppSettings.SystemSettings.DateFormat" />
         <input id="DesignerName" name="DesignerName" type="hidden" value="@(globalAppSettings.SystemSettings.InstallationFolder + "dashboarddesigner")" />
     </div>
     <div id="alert-notification">
@@ -475,39 +422,35 @@
     @if (!ServerAppConfig.IsSelfHosted)
     {
         @await Html.PartialAsync("~/Views/Shared/_GeneralFeedback.cshtml")
+        @await Html.PartialAsync("~/Views/Support/_ConciergeSupport.cshtml")
         <environment include="Development,CloudDevelopment">
-            <script asp-append-version="true" src="@dashboardServerResourceUrl/cdn/scripts/dashboard-feedback.js"></script>
+            <link rel="stylesheet" asp-append-version="true" href="@dashboardServerResourceUrl/cdn/css/dashboard-feedback.css" />
         </environment>
         <environment exclude="Development,CloudDevelopment">
-            <script asp-append-version="true" src="@dashboardServerResourceUrl/cdn/scripts/dashboard-feedback.min.js"></script>
+            <link rel="stylesheet" asp-append-version="true" href="@dashboardServerResourceUrl/cdn/css/dashboard-feedback.min.css" />
         </environment>
+        @await Html.PartialAsync("~/Views/Shared/_NotificationBanner.cshtml")
     }
-    @if (!isMobile)
-    {
-        @await Html.PartialAsync("~/Views/Shared/_NotificationBanner.cshtml")}
-    }
+
     @await Html.PartialAsync("~/Views/DataSourceDesigner/_Connection.cshtml")
     @if ((absolutePath == "/" ||
-     absolutePath == Url.Content("~/") ||
-     requestUrl.IndexOf("/pinboards", StringComparison.CurrentCultureIgnoreCase) > 0 ||
-     requestUrl.IndexOf("/dashboards", StringComparison.CurrentCultureIgnoreCase) > 0 ||
-     requestUrl.IndexOf("/data-sources", StringComparison.CurrentCultureIgnoreCase) > 0 ||
-     requestUrl.IndexOf("/files", StringComparison.CurrentCultureIgnoreCase) > 0 ||
-     requestUrl.IndexOf("/schedules", StringComparison.CurrentCultureIgnoreCase) > 0 ||
-     requestUrl.IndexOf("/slideshows", StringComparison.CurrentCultureIgnoreCase) > 0 ||
-     requestUrl.IndexOf("/widgets", StringComparison.CurrentCultureIgnoreCase) > 0) &&
-     !isMobile || !ServerAppConfig.IsSelfHosted)
+                           absolutePath == Url.Content("~/") ||
+                           requestUrl.IndexOf("/pinboards", StringComparison.CurrentCultureIgnoreCase) > 0 ||
+                           requestUrl.IndexOf("/dashboards", StringComparison.CurrentCultureIgnoreCase) > 0 ||
+                           requestUrl.IndexOf("/data-sources", StringComparison.CurrentCultureIgnoreCase) > 0 ||
+                           requestUrl.IndexOf("/files", StringComparison.CurrentCultureIgnoreCase) > 0 ||
+                           requestUrl.IndexOf("/schedules", StringComparison.CurrentCultureIgnoreCase) > 0 ||
+                           requestUrl.IndexOf("/slideshows", StringComparison.CurrentCultureIgnoreCase) > 0 ||
+                           requestUrl.IndexOf("/widgets", StringComparison.CurrentCultureIgnoreCase) > 0) &&
+                           (ViewBag.ItemAddOptions != null && !isMobile))
     {
-        if (ViewBag.ItemAddOptions != null && requestUrl.IndexOf(adminPageUrl, StringComparison.OrdinalIgnoreCase) == -1)
-        {
-            await Html.RenderPartialAsync("~/Views/Items/_ItemAddOptions.cshtml", ViewBag.ItemAddOptions as Dictionary<ItemType, bool>, new ViewDataDictionary(ViewData) { { "IsDashboardsPage", requestUrl.IndexOf("/dashboards", StringComparison.CurrentCultureIgnoreCase) > 0 } });
-        }
-        @await Html.PartialAsync("~/Views/Items/_CreateItemMenu.cshtml", ViewBag.ItemAddOptions != null ? ViewBag.ItemAddOptions as Dictionary<ItemType, bool> : new Dictionary<ItemType, bool>());
+        await
+        Html.RenderPartialAsync("~/Views/Items/_ItemAddOptions.cshtml", ViewBag.ItemAddOptions as Dictionary<ItemType, bool>, new ViewDataDictionary(ViewData) { { "IsDashboardsPage", requestUrl.IndexOf("/dashboards", StringComparison.CurrentCultureIgnoreCase) > 0 } });
     }
     @if (!isMobile)
     {
-        @await Html.PartialAsync("~/Views/Notification/_UserNotificationPartial.cshtml")
-        @await Html.PartialAsync("~/Views/Shared/_Toast.cshtml")
+    @await Html.PartialAsync("~/Views/Items/_CreateItemMenu.cshtml", ViewBag.ItemAddOptions != null ? ViewBag.ItemAddOptions as Dictionary<ItemType, bool> : new Dictionary<ItemType, bool>())
+    @await Html.PartialAsync("~/Views/Notification/_UserNotificationPartial.cshtml")
     }
 </body>
 </html>

@@ -4,17 +4,12 @@
     var globalAppSettings = _globalAppSettings;
     var dashboardServerResourceUrl = globalAppSettings.SystemSettings.CDNLink.TrimEnd('/');
     var favicon = new Uri(Context.Request.GetDisplayUrl()).GetLeftPart(UriPartial.Authority) + "/ums/logos?type=favicon";
-    var url = new Uri(Context.Request.GetDisplayUrl());
-    var dns = url.GetLeftPart(UriPartial.Authority);
 }
 <!DOCTYPE html>
 <html class="dashboard-server">
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>@T["Internal Server Error"] - @GlobalAppSettings.BrandingDisplayName</title>
-    @await Html.PartialAsync("~/Views/Shared/_ApplicationThemeStyleSheet.cshtml")
-    @await Html.PartialAsync("~/Views/Shared/_BaseThemeStyleSheet.cshtml")
-    @await Html.PartialAsync("~/Views/Shared/_BaseFontStyleSheet.cshtml")
+    <title>[[[Internal Server Error]]] - @GlobalAppSettings.BrandingDisplayName</title>
     <environment include="Development,CloudDevelopment">
         <link rel="stylesheet" asp-append-version="true" href="@dashboardServerResourceUrl/cdn/css/layout.css" />
         <link rel="stylesheet" asp-append-version="true" href="@dashboardServerResourceUrl/css/error-page/error-page..css" />
@@ -25,6 +20,7 @@
         <link rel="stylesheet" asp-append-version="true" href="@dashboardServerResourceUrl/cdn/css/error-page.min.css" />
         <script asp-append-version="true" src="~/Scripts/jQuery/jquery-1.10.2.min.js"></script>
     </environment>
+
     <script>
         $(document).ready(function () {
             $(".base-container-bg").css("display", "");
@@ -42,18 +38,25 @@
                 </div>
                 <div class="secondary-div">
                     <div class="page-title">
-                        @T["Internal Server Error"]
+                        [[[Internal Server Error]]]
                     </div>
                     @if (!ServerAppConfig.IsSelfHosted)
                     {
-                        <div class="page-content">@string.Format(T["The requested page failed to load. If the problem persists, please contact {0} Support."].Value, GlobalAppSettings.Branding == AppBranding.Syncfusion.Identifier ? "Syncfusion" : "Bold BI")</div>
+                        if (GlobalAppSettings.Branding == AppBranding.Syncfusion.Identifier)
+                        {
+                            <div class="page-content">[[[The requested page failed to load. If the problem persists, please contact Syncfusion Support.]]]</div>
+                        }
+                        else
+                        {
+                            <div class="page-content">[[[The requested page failed to load. If the problem persists, please contact Bold BI Support.]]]</div>
+                        }
                         <div class="support-div">
-                            <a href="@ServerAppConfig.AppSettings.Syncfusion.ProductionName/support" class="support-button">@T["Create a Support ticket"]</a>
+                            <a href="@ServerAppConfig.AppSettings.Syncfusion.ProductionName/contact" class="support-button">[[[Create a Support ticket]]]</a>
                         </div>
                     }
                     else
                     {
-                    <div class="page-content">@T["The requested page failed to load. If the problem persists, please contact your administrator."]</div>
+                        <div class="page-content">[[[The requested page failed to load. If the problem persists, please contact your administrator.]]]</div>
                     }
                 </div>
             </div>

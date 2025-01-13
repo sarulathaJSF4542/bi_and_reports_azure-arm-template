@@ -5,18 +5,13 @@
     var faviconLogo = globalAppSettings.SystemSettings.FavIcon;
     var dashboardServerResourceUrl = globalAppSettings.SystemSettings.CDNLink.TrimEnd('/');
     var cdnLink = globalAppSettings.SystemSettings.CDNLink;
-    var themeBasedImageHelper = new ThemeBasedImageHelper(globalAppSettings);
-    var url = new Uri(Context.Request.GetDisplayUrl());
-    var dns = url.GetLeftPart(UriPartial.Authority);
+    var title = ViewBag.Title + "- " + (globalAppSettings.SystemSettings != null && !string.IsNullOrWhiteSpace(globalAppSettings.SystemSettings.OrganizationName) ? globalAppSettings.SystemSettings.OrganizationName : GlobalAppSettings.BrandingDisplayName);
 }
 <!DOCTYPE html>
 <html class="dashboard-server">
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>@T[ViewBag.Title] - @(globalAppSettings.SystemSettings != null && !string.IsNullOrWhiteSpace(globalAppSettings.SystemSettings.OrganizationName) ? globalAppSettings.SystemSettings.OrganizationName : GlobalAppSettings.BrandingDisplayName)</title>
-    @await Html.PartialAsync("~/Views/Shared/_ApplicationThemeStyleSheet.cshtml")
-    @await Html.PartialAsync("~/Views/Shared/_BaseThemeStyleSheet.cshtml")
-    @await Html.PartialAsync("~/Views/Shared/_BaseFontStyleSheet.cshtml")
+    <title>[[[@title]]]</title>
     <environment include="Development,CloudDevelopment">
         <link rel="stylesheet" asp-append-version="true" href="@dashboardServerResourceUrl/cdn/css/layout.css" />
         <link rel="stylesheet" asp-append-version="true" href="@dashboardServerResourceUrl/cdn/css/error-page-new.css" />
@@ -48,7 +43,7 @@
                     <img src="@globalAppSettings.SystemSettings.LoginLogo" onerror="OnLoginLogoLoadError()" class="error-image-1">
                 </div>
                 <div class="error-image-center-2">
-                    <img src="@(ViewBag.ErrorType == "access_denied" ? themeBasedImageHelper.AccessDeniedImage() : themeBasedImageHelper.PageNotFoundImage())" class="error-image-2">
+                    <img src="@GlobalAppSettings.CdnDomain/static/error-pages/v1/@ViewBag.ErrorImage" class="error-image-2">
                 </div>
                 <div class="error-type">@ViewBag.ErrorHeader</div>
 
@@ -57,15 +52,15 @@
                     if (ViewBag.InActiveUser)
                     {
                         <div class="error-text">
-                            @Html.Raw(string.Format(T["You are logged in as {0}, but your account is not yet activated in the site {1}."].Value, "<strong>" + email + "</strong>", "<strong>" + new Uri(globalAppSettings.SystemSettings.BaseUrl) + "</strong>"))<br>
-                            @T["Please contact your system administrator to activate your account."]
+                            [[[You are logged in as]]] <strong>@email</strong>, [[[but your account is not yet activated in the site]]] <strong>@(new Uri(globalAppSettings.SystemSettings.BaseUrl))</strong>.<br>
+                            [[[Please contact your system administrator to activate your account.]]]
                         </div>
                     }
                     else
                     {
                         <div class="error-text">
-                            @Html.Raw(string.Format(T["You are logged in as {0}, but you do not have access to the site {1}."].Value, "<strong>" + email + "</strong>", "<strong>" + new Uri(globalAppSettings.SystemSettings.BaseUrl) + "</strong>"))<br>
-                            @T["If you should have access to this site, contact your system administrator."]
+                            [[[You are logged in as]]] <strong>@email</strong>, [[[but you do not have access to the site]]] <strong>@(new Uri(globalAppSettings.SystemSettings.BaseUrl))</strong>.<br>
+                            [[[If you should have access to this site, contact your system administrator.]]]
                         </div>
                     }
                 }
@@ -80,12 +75,12 @@
                     @if (ViewBag.ErrorType == "access_denied")
                     {
                         <span class="error-page-cursor">
-                            <a class="error-to-beck-text-color" href="@(new Uri(globalAppSettings.SystemSettings.BaseUrl.TrimEnd('/') + "/accounts/logout"))">@T["Try a different account"]</a>
+                            <a class="error-to-beck-text-color" href="@(new Uri(globalAppSettings.SystemSettings.BaseUrl+ "/accounts/logout"))">[[[Try a different account]]]</a>
                         </span>
                     }
                     else if (ViewBag.ErrorType == "http_error_404")
                     {
-                        <span class="error-page-cursor"><a class="error-to-beck-text-color" href="@(new Uri(globalAppSettings.SystemSettings.BaseUrl+ "/dashboards"))">@T["Go to home page"]</a></span>
+                        <span class="error-page-cursor"><a class="error-to-beck-text-color" href="@(new Uri(globalAppSettings.SystemSettings.BaseUrl+ "/dashboards"))">[[[Go to home page]]]</a></span>
                     }
                 </div>
             </div>

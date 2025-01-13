@@ -109,8 +109,8 @@
                                                 <tbody>
                                                     <tr>
                                                         <td style="font-size: 16px;font-family: Arial, Helvetica, sans-serif; color: #3f3f3f; text-align: right; height: 40px;vertical-align:bottom;">
-                                                            <span data-id="hidden">
-                                                                <a href="@(Model.BaseUrl.TrimEnd('/') + "/login")" target='' style='text-decoration: none; color: #3f3f3f; font-weight: normal;'>Login</a>
+                                                            <span>
+                                                                <a href="@Model.BaseUrl/login" target='' style='text-decoration: none; color: #3f3f3f; font-weight: normal;'>Login</a>
                                                             </span>
                                                         </td>
                                                     </tr>
@@ -152,7 +152,7 @@
                                             <tbody>
                                                 <tr>
                                                     <td style='padding-left:20px;padding-right:20px; font-size: 18px; color: #3f3f3f; font-weight:bold; font-family:arial, helvetica, sans-serif;'>
-                                                        <span data-id="hidden">   
+                                                        <span>   
                                                          Your profile has been updated
                                                         </span>
                                                     </td>
@@ -182,7 +182,7 @@
                                                 <tr>
                                                     <td style='padding-left:20px;padding-right:20px; font-size: 14px; color: #3f3f3f; font-family:arial, helvetica, sans-serif;'>
                                                         <span>
-                                                            Hello @Model.FullName,<br />
+                                                            Hello @Model.FullName,
                                                         </span>
                                                     </td>
                                                 </tr>
@@ -217,7 +217,7 @@
 														{ 
 														  @:by @Model.Admin
 														}
-														.<br />
+														.
                                                         </span>
                                                     </td>
                                                 </tr>
@@ -280,7 +280,7 @@
                                                                                             @:<span>Changed from <span style='font-weight:bold;'>
 																							@Model.PreviousUsername
 																							@:</span> to <span style='font-weight:bold;'>
-																							@Model.Username<br />
+																							@Model.Username
                                                                                             @:</span></span>
                                                                                         @:</td>
                                                                                     @:</tr>
@@ -327,7 +327,7 @@
                                                                                             @:<span>Changed from <span style='font-weight:bold;'>
 																							@Model.PreviousFirstName
 																							@:</span> to <span style='font-weight:bold;'>
-																							@Model.FirstName<br />
+																							@Model.FirstName
                                                                                             @:</span></span>
                                                                                         @:</td>
                                                                                     @:</tr>
@@ -374,7 +374,7 @@
                                                                                             @:<span>Changed from <span style='font-weight:bold;'>
 																							@(string.IsNullOrWhiteSpace(Model.PreviousLastName) ? "Empty" : Model.PreviousLastName)
 																							@:</span> to <span style='font-weight:bold;'>
-																							@(string.IsNullOrWhiteSpace(Model.LastName) ? "Empty" : Model.LastName)<br />
+																							@(string.IsNullOrWhiteSpace(Model.LastName) ? "Empty" : Model.LastName)
 																							@:</span></span>
                                                                                         @:</td>
                                                                                     @:</tr>
@@ -421,7 +421,7 @@
                                                                                             @:<span>Changed from <span style='font-weight:bold;'>
 																							@(string.IsNullOrWhiteSpace(Model.PreviousMail) ? "Empty" : Model.PreviousMail)
 																							@:</span> to <span style='font-weight:bold;'>
-																							@Model.Email<br />
+																							@Model.Email
                                                                                             @:</span></span>
                                                                                         @:</td>
                                                                                     @:</tr>
@@ -467,7 +467,7 @@
                                                                                             @:<span>Changed from <span style='font-weight: bold;'>
 																								@(string.IsNullOrWhiteSpace(Model.PreviousMobile) ? "Empty" : Model.PreviousMobile)
 																								@:</span> to <span style='font-weight: bold;'>
-																								@(string.IsNullOrWhiteSpace(Model.Mobile) ? "Empty" : Model.Mobile)<br />
+																								@(string.IsNullOrWhiteSpace(Model.Mobile) ? "Empty" : Model.Mobile)
 																								@:</span>
                                                                                             @:</span>
                                                                                         @:</td>
@@ -513,7 +513,7 @@
                                                 @:<tr>
                                                     @:<td style='padding-left:20px;padding-right:20px;font-size: 12px;color: #3f3f3f;font-family:arial, helvetica, sans-serif;line-height: 20px;'>
                                                         @:<span>
-                                                        @:If you are unable to access your account, please contact your System Administrator<br />
+                                                        @:If you are unable to access your account, please contact your System Administrator
                                                         @:</span>
                                                     @:</td>
                                                 @:</tr>
@@ -540,7 +540,7 @@
                                                 <tr>
                                                     <td style="padding-left:20px;padding-right:20px;font-size: 14px; color: #3f3f3f; font-family:Arial, Helvetica, sans-serif;">
                                                         <span>
-                                                            Thanks,<br />
+                                                            Thanks,
                                                         </span>
                                                     </td>
                                                 </tr>
@@ -623,7 +623,7 @@
                                             <tbody>
                                                 <tr>
                                                     <td style="line-height:20px; padding-left:20px;padding-right:20px;font-size: 14px; color: #7a7a7a; opacity:0.5; font-family:Arial, Helvetica, sans-serif;">
-                                                        <span data-id="hidden">
+                                                        <span>
                                                             This is an automatically generated message, please do not reply to this mail. If you have any question, please contact your administrator.
                                                         </span>
                                                     </td>
@@ -656,8 +656,8 @@
                                             <tbody>
                                                 <tr>
                                                     <td style="padding-left:20px;padding-right:20px;font-size: 12px; color: #3f3f3f;font-family:Arial, Helvetica, sans-serif; background-color:#f7f8f9";>
-                                                        <span data-id="hidden">
-                                                            @Model.CopyrightInformation
+                                                        <span>
+                                                            Copyright 2001-@DateTime.UtcNow.Year.ToString() Syncfusion, Inc. All Rights Reserved.
                                                         </span>
                                                     </td>
                                                 </tr>
@@ -667,6 +667,35 @@
                                 </tr>
                             </tbody>
                         </table>
+                        @if (!@Model.IsSelfHosted)
+                        {
+                            <table style="width:100%" border="0" cellpadding="0" cellspacing="0">
+                                <tbody>
+                                    <tr>
+                                        <td style="font-size: 1px;" height="10">&nbsp;</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <table style="text-align:left;width:100%;max-width: 550px;background-color: #f7f8f9;" width="550" bgcolor="#f7f8f9" border="0" cellpadding="0" cellspacing="0">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <table style="text-align:center;width:100%; background-color: #f7f8f9;" bgcolor="#f7f8f9" cellpadding="0" cellspacing="0">
+                                                <tbody>
+                                                    <tr>
+                                                        <td style="padding-left:20px;padding-right:20px;font-size: 12px; color: #3f3f3f;font-family:Arial, Helvetica, sans-serif; background-color:#f7f8f9" ;=;>
+                                                            <span>
+                                                                Syncfusion, Inc., 2501 Aerial Center Pkwy Suite 200, Morrisville, NC 27560
+                                                            </span>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        }
                         <table style="width:100%" border="0" cellpadding="0" cellspacing="0">
                             <tbody>
                                 <tr>

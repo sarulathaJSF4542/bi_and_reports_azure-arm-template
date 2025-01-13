@@ -32,7 +32,6 @@
 <DB_TableName>BOLDBI_GroupPermission</DB_TableName>
 <DB_TableName>BOLDBI_DashboardWidget</DB_TableName>
 <DB_TableName>BOLDBI_DataNotification</DB_TableName>
-<DB_TableName>BOLDBI_EmailActivityLog</DB_TableName>
 <DB_TableName>BOLDBI_Comment</DB_TableName>
 <DB_TableName>BOLDBI_DeploymentDashboards</DB_TableName>
 <DB_TableName>BOLDBI_CustomExpression</DB_TableName>
@@ -74,13 +73,4 @@
 <DB_TableName>BOLDBI_ADCredential</DB_TableName>
 <DB_TableName>BOLDBI_AzureADCredential</DB_TableName>
 <DB_TableName>BOLDBI_DBCredential</DB_TableName>
-<DB_TableName>BOLDBI_SettingsType</DB_TableName>
-<DB_TableName>BOLDBI_WebhookLog</DB_TableName>
-<DB_TableName>BOLDBI_NotificationTrigger</DB_TableName>
-<DB_TableName>BOLDBI_Webhook</DB_TableName>
-<DB_TableName>BOLDBI_EventPayloadsMapping</DB_TableName>
-<DB_TableName>BOLDBI_NotificationEvents</DB_TableName>
-<DB_TableName>BOLDBI_EventPayloads</DB_TableName>
-<DB_TableName>BOLDBI_UserSession</DB_TableName>
-<DB_TableName>BOLDBI_BackgroundJobs</DB_TableName>
 </DB_Table>

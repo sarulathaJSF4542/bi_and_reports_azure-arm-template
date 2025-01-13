@@ -2,9 +2,10 @@
 
 @{
     var globalAppSettings = _globalAppSettings;
-    ViewBag.Title = T["Notifications"].Value +" - " + globalAppSettings.SystemSettings.OrganizationName;
+
+    ViewBag.Title = "[[[Notifications]]] - " + globalAppSettings.SystemSettings.OrganizationName;
     ViewBag.MessageBox = false;
-    var idPAvatarUrl = globalAppSettings.SystemSettings.IDPUrl + "/User/Avatar";
+    var idPAvatarUrl = ServerAppConfig.InternalAppIdpUrl + "/User/Avatar";
     ViewBag.HelpSiteUrl = GlobalAppSettings.GetHelpSiteUrl(HelpSiteUrlNames.SystemNotifications);
     var dashboardServerResourceUrl = globalAppSettings.SystemSettings.CDNLink.TrimEnd('/');
 }

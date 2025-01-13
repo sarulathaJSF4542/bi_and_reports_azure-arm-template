@@ -4,18 +4,13 @@
     var globalAppSettings = _globalAppSettings;
     var dashboardServerResourceUrl = globalAppSettings.SystemSettings.CDNLink.TrimEnd('/');
     var applyScaling = Convert.ToBoolean(ViewBag.ApplyScaling);
-    var url = new Uri(Context.Request.GetDisplayUrl());
-    var dns = url.GetLeftPart(UriPartial.Authority);
 }
 <!DOCTYPE html>
 <html>
 <head>
     <title>@ViewBag.Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8" />
-    @await Html.PartialAsync("~/Views/Shared/_ApplicationThemeStyleSheet.cshtml")
     <link rel="icon" href="@globalAppSettings.SystemSettings.FavIcon" onerror="if (this.href !== null && this.href.toLowerCase() !== '@globalAppSettings.SystemSettings.CDNLink/images/application/@ServerAppConfig.AppSettings.AppBranding.Identifier/@IconFileNames.Favicon') this.href = '@globalAppSettings.SystemSettings.CDNLink/images/application/@ServerAppConfig.AppSettings.AppBranding.Identifier/@IconFileNames.Favicon';" />
-    @await Html.PartialAsync("~/Views/Shared/_BaseThemeStyleSheet.cshtml")
-    @await Html.PartialAsync("~/Views/Shared/_BaseFontStyleSheet.cshtml")
     <environment include="Development,CloudDevelopment">
         <link rel="stylesheet" asp-append-version="true" href="@dashboardServerResourceUrl/cdn/css/slideshow.css" />
         <script asp-append-version="true" src="@dashboardServerResourceUrl/cdn/scripts/slideshow.js"></script>
@@ -24,6 +19,7 @@
         <link rel="stylesheet" asp-append-version="true" href="@dashboardServerResourceUrl/cdn/css/slideshow.min.css" />
         <script asp-append-version="true" src="@dashboardServerResourceUrl/cdn/scripts/slideshow.min.js"></script>
     </environment>
+
     @await Html.PartialAsync("~/Views/Shared/_LoaderIcon.cshtml")
     <script>
             var sources = @Html.Raw(Json.Serialize(ViewBag.UrlList));

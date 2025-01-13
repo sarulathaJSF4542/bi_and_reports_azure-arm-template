@@ -436,6 +436,10 @@
     "inputFile": "wwwroot/Scripts/Administration/Storage.js"
   },
   {
+    "outputFile": "wwwroot/Styles/scss/themes/_light.css",
+    "inputFile": "wwwroot/Styles/scss/themes/_light.scss"
+  },
+  {
     "outputFile": "wwwroot/Styles/scss/pages/Admin/credentials.css",
     "inputFile": "wwwroot/Styles/scss/pages/Admin/credentials.scss"
   },
@@ -454,45 +458,5 @@
   {
     "outputFile": "wwwroot/Styles/scss/pages/custom-ui.css",
     "inputFile": "wwwroot/Styles/scss/pages/custom-ui.scss"
-  },
-  {
-    "outputFile": "wwwroot/Styles/scss/pages/Grid.css",
-    "inputFile": "wwwroot/Styles/scss/pages/Grid.scss"
-  },
-  {
-    "outputFile": "wwwroot/Styles/scss/pages/Scheduler.css",
-    "inputFile": "wwwroot/Styles/scss/pages/Scheduler.scss"
-  },
-  {
-    "outputFile": "wwwroot/Styles/scss/pages/NewMaster.css",
-    "inputFile": "wwwroot/Styles/scss/pages/NewMaster.scss"
-  },
-  {
-    "outputFile": "wwwroot/Styles/scss/pages/ViewGroup.css",
-    "inputFile": "wwwroot/Styles/scss/pages/ViewGroup.scss"
-  },
-  {
-    "outputFile": "wwwroot/Styles/scss/pages/Accounts/footer.css",
-    "inputFile": "wwwroot/Styles/scss/pages/Accounts/footer.scss"
-  },
-  {
-    "outputFile": "wwwroot/Styles/scss/pages/Mixins.css",
-    "inputFile": "wwwroot/Styles/scss/pages/Mixins.scss"
-  },
-  {
-    "outputFile": "wwwroot/Styles/scss/pages/Admin/LicenseSettings.css",
-    "inputFile": "wwwroot/Styles/scss/pages/Admin/LicenseSettings.scss"
-  },
-  {
-    "outputFile": "wwwroot/Styles/scss/pages/Admin/SystemSettings.css",
-    "inputFile": "wwwroot/Styles/scss/pages/Admin/SystemSettings.scss"
-  },
-  {
-    "outputFile": "wwwroot/Styles/scss/pages/PinboardEmbed.css",
-    "inputFile": "wwwroot/Styles/scss/pages/PinboardEmbed.scss"
-  },
-  {
-    "outputFile": "wwwroot/Styles/scss/pages/administration/embed-config.css",
-    "inputFile": "wwwroot/Styles/scss/pages/administration/embed-config.scss"
   }
 ]

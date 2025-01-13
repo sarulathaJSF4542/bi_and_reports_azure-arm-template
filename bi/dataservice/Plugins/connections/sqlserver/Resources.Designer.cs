@@ -122,7 +122,7 @@ namespace Syncfusion.Dashboard.Connection.SQLServer.Model.Properties {
                 return ResourceManager.GetString("In", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to NULL.
         /// </summary>
@@ -248,17 +248,7 @@ namespace Syncfusion.Dashboard.Connection.SQLServer.Model.Properties {
                 return ResourceManager.GetString("SqlAvg", resourceCulture);
             }
         }
-
-        /// <summary>
-        ///   Looks up a localized string similar to AVGD.
-        /// </summary>
-        internal static string SqlAvgD
-        {
-            get
-            {
-                return ResourceManager.GetString("SqlAvgD", resourceCulture);
-            }
-        }
+        
         /// <summary>
         ///   Looks up a localized string similar to BEGIN SELECT {0} FROM {1} END ELSE BEGIN SELECT TOP 1({0}) FROM {1} END.
         /// </summary>
@@ -465,18 +455,7 @@ namespace Syncfusion.Dashboard.Connection.SQLServer.Model.Properties {
                 return ResourceManager.GetString("SqlCountAll", resourceCulture);
             }
         }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Count_BIG.
-        /// </summary>
-        internal static string SqlCount_Big
-        {
-            get
-            {
-                return ResourceManager.GetString("SqlCount_Big", resourceCulture);
-            }
-        }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to COUNTD.
         /// </summary>
@@ -1385,19 +1364,7 @@ namespace Syncfusion.Dashboard.Connection.SQLServer.Model.Properties {
                 return ResourceManager.GetString("SqlSum", resourceCulture);
             }
         }
-
-        /// <summary>
-        ///   Looks up a localized string similar to SUM.
-        /// </summary>
-        internal static string SqlSumD
-        {
-            get
-            {
-                return ResourceManager.GetString("SqlSumD", resourceCulture);
-            }
-        }
-
-
+        
         /// <summary>
         ///   Looks up a localized string similar to ¤Super_Query.
         /// </summary>
@@ -1622,15 +1589,6 @@ namespace Syncfusion.Dashboard.Connection.SQLServer.Model.Properties {
                 return ResourceManager.GetString("StoredProcedureWithOutParameter", resourceCulture);
             }
         }
-		
-		/// <summary>
-        ///   Looks up a localized string similar to (SELECT TOP {4} * FROM OPENQUERY([{0}],&apos;EXEC [{1}].[{2}].[{3}]&apos;)) [{3}].
-        /// </summary>
-        internal static string StoredProcedureWithOutParameterforDataSampling {
-            get {
-                return ResourceManager.GetString("StoredProcedureWithOutParameterforDataSampling", resourceCulture);
-            }
-        }
         
         /// <summary>
         ///   Looks up a localized string similar to (SELECT * FROM OPENQUERY([{0}],&apos;EXEC [{1}].[{2}].[{3}]  {4}&apos;)) [{3}].
@@ -1642,11 +1600,11 @@ namespace Syncfusion.Dashboard.Connection.SQLServer.Model.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to (SELECT TOP {5} * FROM OPENQUERY([{0}],&apos;EXEC [{1}].[{2}].[{3}]  {4}&apos;)) [{3}].
+        ///   Looks up a localized string similar to .
         /// </summary>
-        internal static string StoredProcedureWithParameterforDataSampling {
+        internal static string String1 {
             get {
-                return ResourceManager.GetString("StoredProcedureWithParameterforDataSampling", resourceCulture);
+                return ResourceManager.GetString("String1", resourceCulture);
             }
         }
         

@@ -8,17 +8,17 @@
     ".NETCoreApp,Version=v3.1": {
       "Syncfusion.Dashboard.Connection.MemSQL.Model/1.0.0": {
         "dependencies": {
-          "MySqlConnector": "1.0.1"
+          "MySqlConnector": "0.45.0"
         },
         "runtime": {
           "Syncfusion.Dashboard.Connection.MemSQL.Model.dll": {}
         }
       },
-      "MySqlConnector/1.0.1": {
+      "MySqlConnector/0.45.0": {
         "runtime": {
-          "lib/netcoreapp3.0/MySqlConnector.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.1.0"
+          "lib/netcoreapp2.1/MySqlConnector.dll": {
+            "assemblyVersion": "0.45.0.0",
+            "fileVersion": "0.45.0.0"
           }
         }
       }
@@ -30,12 +30,12 @@
       "serviceable": false,
       "sha512": ""
     },
-    "MySqlConnector/1.0.1": {
+    "MySqlConnector/0.45.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-bnQk6joP7z0k1aIk13BjrZXIakN+UobXjO8EMh/Y+L6vZ6ul9cJ8RXkD9tia86ksgFs9GqmvPgX7ILx7mOpwNQ==",
-      "path": "mysqlconnector/1.0.1",
-      "hashPath": "mysqlconnector.1.0.1.nupkg.sha512"
+      "sha512": "sha512-3Dg/95z/BSgC3ClF5up1dCiAxiAsHcjeLBE+JKP+OXGIA7yDYP2eLLCmZYpBz/8/OAKwIsowRySkKxJg572Ttg==",
+      "path": "mysqlconnector/0.45.0",
+      "hashPath": "mysqlconnector.0.45.0.nupkg.sha512"
     }
   }
 }

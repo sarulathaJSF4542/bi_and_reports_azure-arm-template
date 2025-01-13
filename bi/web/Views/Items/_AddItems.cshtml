@@ -15,7 +15,6 @@
     <iframe id="widget_popup_iframe" class="widget-popup-frame"></iframe>
 </div>
 <div id="item-delete-confirmation" class="no-padding" style="display:none"></div>
-<div id="privacy-settings-container" class="no-padding"></div>
 <div id="file-popup" style="display:none">
     <iframe id="file-popup-iframe" class="file-popup-frame"></iframe>
 </div>
@@ -31,6 +30,10 @@
     <iframe id="create-datasource-iframe" class="create-datasource-frame"></iframe>
 </div>
 
+<div id="sample-item-popup" class="no-padding" style="display:none">
+    <iframe id="sample-item-iframe" class="sampleItemIframe"></iframe>
+</div>
+
 <div id="create-presentation-popup" class="no-padding" style="display:none">
     <div id="create-presentation-div">
         @{ await Html.RenderPartialAsync("~/Views/Slideshow/_CreateSlideshow.cshtml");}
@@ -38,5 +41,5 @@
 </div>
 @if (!ServerAppConfig.IsSelfHosted)
 {
-    @await Html.PartialAsync("../Items/_CreateDashboards", ViewBag.ItemAddOptions as Dictionary<ItemType, bool>)
+    @*@await Html.PartialAsync("../Items/_CreateDashboards", ViewBag.ItemAddOptions as Dictionary<ItemType, bool>)*@
 }

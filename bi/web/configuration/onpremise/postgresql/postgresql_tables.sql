@@ -110,9 +110,7 @@ CREATE TABLE SyncDS_Item(
 	IsPublic smallint NOT NULL DEFAULT 0,
 	IsDraft smallint NULL DEFAULT 0,
 	IsLocked smallint NULL DEFAULT 0,
-	IsActive smallint NULL,
-	IsUnlisted smallint NOT NULL DEFAULT 0,
-	IsUploadDraft smallint NOT NULL DEFAULT 0)
+	IsActive smallint NULL)
 ;
 
 CREATE TABLE SyncDS_ItemView(
@@ -169,7 +167,6 @@ CREATE TABLE SyncDS_ItemLog(
 	ItemId uuid NOT NULL,
 	ItemVersionId int NOT NULL,
 	SourceTypeId int NOT NULL,
-	EventTypeId int NULL,
 	ParentId uuid NULL,
 	FromCategoryId uuid NULL,
 	ToCategoryId uuid NULL,
@@ -192,9 +189,6 @@ CREATE TABLE SyncDS_UserPermission(
 	PermissionEntityId int NOT NULL,
 	ItemId uuid NULL,
 	UserId int NOT NULL,
-	SettingsTypeId int NULl,
-	ScopeGroupId int NULl,
-	ItemTypeId int NULl,
 	IsActive smallint NOT NULL)
 ;
 
@@ -204,9 +198,6 @@ CREATE TABLE SyncDS_GroupPermission(
 	PermissionEntityId int NOT NULL,
 	ItemId uuid NULL,
 	GroupId int NOT NULL,
-	SettingsTypeId int NULl,
-	ScopeGroupId int NULl,
-	ItemTypeId int NULl,
 	IsActive smallint NOT NULL)
 ;
 
@@ -229,7 +220,6 @@ CREATE TABLE SyncDS_ScheduleDetail(
 	Name varchar(150) NOT NULL,
 	RecurrenceTypeId int NULL,
 	RecurrenceInfo varchar(4000) NULL,
-	Subject varchar(4000) NULL,
 	EmailContent varchar(4000) NULL,
 	IsDataChanges smallint NOT NULL DEFAULT 0,
 	IsTimeInterval smallint NOT NULL DEFAULT 0,
@@ -243,7 +233,6 @@ CREATE TABLE SyncDS_ScheduleDetail(
 	ModifiedById int NOT NULL,
 	CreatedDate timestamp NOT NULL,
 	ModifiedDate timestamp NOT NULL,
-	ScheduleExportInfo text NULL,
 	IsActive smallint NOT NULL)
 ;
 
@@ -328,7 +317,7 @@ CREATE TABLE SyncDS_ScheduleLog(
 CREATE TABLE SyncDS_SystemSettings(
 	Id SERIAL PRIMARY KEY NOT NULL,
 	Key varchar(255) NOT NULL,
-	Value text NULL,
+	Value varchar(4000) NULL,
 	ModifiedDate timestamp NOT NULL,
 	IsActive smallint NOT NULL,
 	CONSTRAINT UK_SyncDS_SystemSettings_Key UNIQUE(Key))
@@ -345,7 +334,6 @@ CREATE TABLE SyncDS_Comment(
     ItemId uuid NOT NULL,
     UserId int NOT NULL,
     ParentId int NULL,
-    ParentItemId uuid NULL,
     CreatedDate timestamp NOT NULL,
     ModifiedDate timestamp NOT NULL,
     ModifiedById int NOT NULL,
@@ -355,7 +343,6 @@ CREATE TABLE SyncDS_Comment(
 CREATE TABLE SyncDS_ItemWatch(
 	Id SERIAL PRIMARY KEY NOT NULL,
 	ItemId uuid NOT NULL,
-	ParentItemId uuid NULL,
 	UserId int NOT NULL,
 	ModifiedDate timestamp NOT NULL,
 	IsWatched smallint NOT NULL,
@@ -518,8 +505,7 @@ CREATE TABLE SyncDS_MultiTabDashboard(
 	DashboardDesignerId uuid NOT NULL,
 	OrderNumber int NULL,
 	ModifiedDate timestamp NOT NULL,
-	IsActive smallint NOT NULL,
-	TabName varchar(255) NULL)
+	IsActive smallint NOT NULL)
 ;
 
 CREATE TABLE SyncDS_DataNotification(
@@ -558,7 +544,7 @@ CREATE TABLE SyncDS_Source(
 CREATE TABLE SyncDS_SlideshowInfo(
 	Id SERIAL PRIMARY KEY NOT NULL,
 	SlideshowId uuid NOT NULL,
-	ItemInfo text NOT NULL,
+	ItemInfo varchar(1026) NOT NULL,
 	loopInterval int NOT NULL,
 	IsActive smallint NOT NULL)
 ;
@@ -717,7 +703,6 @@ CREATE TABLE SyncDS_DeploymentDashboards(
 	CategoryName varchar(255) NOT NULL,
 	IsDashboardLocked smallint NOT NULL,
 	IsDatasourceLocked smallint NOT NULL,
-	ItemInfo text NOT NULL,
     Description varchar(1026) NULL,
     CreatedById int NOT NULL,
     CreatedDate timestamp NOT NULL,
@@ -782,130 +767,6 @@ CREATE TABLE SyncDS_ExternalSites(
 	SiteURL varchar(255) NULL,
 	CreatedById int NOT NULL,
 	CreatedDate timestamp NOT NULL,
-	ModifiedById int NULL,
-	ModifiedDate timestamp NULL,
-	SiteType int not null DEFAULT 0,
-	IsActive smallint NOT NULL)
-;
-
-CREATE TABLE SyncDS_SettingsType(
-	Id SERIAL PRIMARY KEY NOT NULL,
-	Name varchar(100) NOT NULL UNIQUE,
-	IsActive smallint NULL)
-;
-
-CREATE TABLE SyncDS_EmailActivityLog(
-	Id  SERIAL PRIMARY KEY NOT NULL,
-	Event varchar(255) NOT NULL,
-	RecipientEmail varchar(255) NOT NULL,
-	SenderEmail varchar(255) NOT NULL,
-	MailSubject varchar(255) NOT NULL,
-	MailBody text NULL,
-	CreatedDate timestamp NOT NULL,
-	ModifiedDate timestamp  NULL,
-	InitiatedBy int NOT NULL,
-	UserId int NULL,
-	GroupId int NULL,
-	ItemId uuid NULL,
-	CommentId int NULL,
-	PermissionId int NULL,
-	Status int NOT NULL,
-	StatusMessage text NULL,
-	IsActive smallint NOT NULL)
-;
-
-CREATE TABLE SyncDS_Webhook(
-	Id  SERIAL PRIMARY KEY NOT NULL,
-	Name varchar(512) NOT NULL,
-	Description varchar(4000) NULL,
-	Url varchar(512) NOT NULL,
-	UserId int NOT NULL,
-	Security varchar(512) NULL,
-	Headers text NULL,
-	ContentType int NOT NULL,
-	SubscribedEvent varchar(512) NOT NULL,
-	Payload text NULL,
-	Failures int NOT NULL,
-	CreatedById int NOT NULL,
-	ModifiedById int NOT NULL,
-	CreatedDate timestamp NOT NULL,
-	ModifiedDate timestamp NOT NULL,
-	IsEnable smallint NOT NULL,
-	IsActive smallint NOT NULL)
-;
-
-CREATE TABLE SyncDS_NotificationTrigger(
-	Id SERIAL PRIMARY KEY NOT NULL,
-	WebhookId int NULL,
-	RecurrenceInfo varchar(4000) NOT NULL,
-	RetryCount int NOT NULL,
-	RequestData text NULL,
-	WebhookTargetData text NULL,
-	AdditionalInfo text NULL,
-	NextScheduleDate timestamp NULL,
-	CreatedDate timestamp NOT NULL,
-	ModifiedDate timestamp NULL,
-	ReferenceId varchar(255) NULL,
-	IsActive smallint NOT NULL)
-;
-
-CREATE TABLE SyncDS_WebhookLog(
-	Id SERIAL PRIMARY KEY NOT NULL,
-	WebhookId int NULL,
-	Event varchar(512) NOT NULL,
-	RequestUrl varchar(512) NULL,
-	FailureType varchar(512) NOT NULL,
-	ReferenceId varchar(255) NULL,
-	ResponseMessage text NULL,
-	ResponseStatusCode varchar(512) NOT NULL,
-	CreatedDate timestamp NOT NULL,
-	IsActive smallint NOT NULL)
-;
-
-CREATE TABLE SyncDS_NotificationEvents(
-	Id SERIAL PRIMARY KEY NOT NULL,
-	Name varchar(100) UNIQUE NOT NULL,
-	IsActive smallint NOT NULL)
-;
-
-CREATE TABLE SyncDS_EventPayloads(
-	Id SERIAL PRIMARY KEY NOT NULL,
-	Name varchar(100) UNIQUE NOT NULL,
-	IsActive smallint NOT NULL)
-;
-
-CREATE TABLE SyncDS_EventPayloadsMapping(
-	Id SERIAL PRIMARY KEY NOT NULL,
-	EventType int NOT NULL,
-	PayloadType int NOT NULL,
-	IsActive smallint NOT NULL)
-;
-
-CREATE TABLE SyncDS_UserSession(
-	Id uuid primary key NOT NULL,
-	IdpReferenceId uuid NOT NULL,
-	SessionId uuid NOT NULL,
-	DirectoryTypeId int NOT NULL DEFAULT 0,
-	IpAddress varchar(255) NULL,
-	Browser varchar(1024) NULL,
-	LoggedInTime timestamp NULL,
-	LastActive timestamp NULL,
-	IsActive smallint NOT NULL)
-;
-
-CREATE TABLE SyncDS_BackgroundJobs (
-	Id SERIAL primary key NOT NULL,
-	JobType int NOT NULL,
-	ItemId uuid NULL,
-	UserId int NULL,
-	JobDetails text NULL,
-	CreatedDate timestamp NOT NULL,
-	CompletedDate timestamp NOT NULL,
-	Status varchar(255) NOT NULL,
-	StatusMessage varchar(255) NULL,
-	ResourceInfo text NULL,
-	CanIncludeSensitiveInfo smallint NULL,
-	IsSampleData smallint NULL,
 	IsActive smallint NOT NULL)
 ;
 
@@ -930,51 +791,6 @@ insert into SyncDS_ItemType (Name,IsActive) values (N'Widget',1)
 insert into SyncDS_ItemType (Name,IsActive) values (N'ItemView',1)
 ;
 Insert INTO SyncDS_ItemType (Name, IsActive) Values ('Slideshow',1)
-;
-INSERT into SyncDS_ItemType (Name, IsActive) Values (N'Settings',1)
-; 
-INSERT INTO SyncDS_ItemType (Name, IsActive) Values (N'User Management',1)
-;
-INSERT INTO SyncDS_ItemType (Name, IsActive) Values (N'Permissions',1)
-;
-
-INSERT into SyncDS_SettingsType (Name, IsActive) VALUES (N'Site Settings',1)
-;
-INSERT into SyncDS_SettingsType (Name, IsActive) VALUES (N'Dashboard Settings',1)
-;
-INSERT into SyncDS_SettingsType (Name, IsActive) VALUES (N'Embed Settings',1)
-;
-INSERT into SyncDS_SettingsType (Name, IsActive) VALUES (N'Data Process',1)
-;
-INSERT into SyncDS_SettingsType (Name, IsActive) VALUES (N'Connectors',1)
-;
-INSERT into SyncDS_SettingsType (Name, IsActive) VALUES (N'Email Settings',1)
-;
-INSERT into SyncDS_SettingsType (Name, IsActive) VALUES (N'Accounts Settings',1)
-;
-INSERT into SyncDS_SettingsType (Name, IsActive) values (N'User Directory Settings',1)
-;
-INSERT into SyncDS_SettingsType (Name, IsActive) values (N'Authentication Settings',1)
-;
-INSERT into SyncDS_SettingsType (Name, IsActive) Values (N'Notification Settings',1)
-;
-INSERT into SyncDS_SettingsType (Name, IsActive) Values (N'Manage License',1)
-;
-INSERT into SyncDS_SettingsType (Name, IsActive) Values (N'Support Settings',1)
-;
-INSERT into SyncDS_SettingsType (Name, IsActive) Values (N'Subscription',1)
-;
-INSERT into SyncDS_SettingsType (Name, IsActive) Values (N'Payments',1)
-;
-INSERT into SyncDS_SettingsType (Name, IsActive) Values (N'Widgets',1)
-;
-INSERT into SyncDS_SettingsType (Name, IsActive) Values (N'Security',1)
-;
-INSERT into SyncDS_SettingsType (Name,IsActive) Values (N'Integrations',1)
-;
-INSERT into SyncDS_SettingsType (Name, IsActive) Values (N'CORS Settings',1)
-;
-INSERT into SyncDS_SettingsType (Name,IsActive) Values (N'Look and Feel',1)
 ;
 
 INSERT into SyncDS_ItemLogType (Name,IsActive) VALUES ( N'Added',1)
@@ -1079,20 +895,6 @@ INSERT into SyncDS_PermissionEntity (Name,EntityType,ItemTypeId, IsActive) VALUE
 ;
 INSERT into SyncDS_PermissionEntity (Name,EntityType,ItemTypeId, IsActive) VALUES (N'All Slideshow',1,10,1)
 ;
-INSERT INTO SyncDS_PermissionEntity (Name,EntityType,ItemTypeId, IsActive) VALUES (N'Specific Settings',0,11,1)
-;
-INSERT INTO SyncDS_PermissionEntity (Name,EntityType,ItemTypeId, IsActive) VALUES (N'All Settings',1,11,1)
-;
-INSERT INTO SyncDS_PermissionEntity (Name,EntityType,ItemTypeId, IsActive) VALUES (N'Specific Group',0,12,1)
-;
-INSERT INTO SyncDS_PermissionEntity (Name,EntityType,ItemTypeId, IsActive) VALUES (N'Users and Groups',1,12,1)
-;
-INSERT INTO SyncDS_PermissionEntity (Name,EntityType,ItemTypeId, IsActive) VALUES (N'Specific Permissions',0,13,1)
-;
-INSERT INTO SyncDS_PermissionEntity (Name,EntityType,ItemTypeId, IsActive) VALUES (N'All Permissions',1,13,1)
-;
-INSERT INTO SyncDS_PermissionEntity (Name,EntityType,ItemTypeId, IsActive) VALUES (N'All Groups',1,12,1)
-;
 
 INSERT into SyncDS_Group (Name,Description,Color,IsolationCode,ModifiedDate,DirectoryTypeId,IsActive) VALUES (N'System Administrator','Has administrative rights for the dashboards','#ff0000',null,now() at time zone 'utc', 1, 1)
 ;
@@ -1168,8 +970,6 @@ INSERT INTO SyncDS_PermissionAccEntity (PermissionEntityId, PermissionAccessId, 
 ;
 INSERT INTO SyncDS_PermissionAccEntity (PermissionEntityId, PermissionAccessId, IsActive) VALUES (22,1,1)
 ;
-INSERT INTO SyncDS_PermissionAccEntity (PermissionEntityId, PermissionAccessId, IsActive) VALUES (29,1,1)
-;
 INSERT INTO SyncDS_PermissionAccEntity (PermissionEntityId, PermissionAccessId, IsActive) VALUES (4,2,1)
 ;																									  
 INSERT INTO SyncDS_PermissionAccEntity (PermissionEntityId, PermissionAccessId, IsActive) VALUES (5,2,1)
@@ -1229,18 +1029,6 @@ INSERT INTO SyncDS_PermissionAccEntity (PermissionEntityId, PermissionAccessId, 
 INSERT INTO SyncDS_PermissionAccEntity (PermissionEntityId, PermissionAccessId, IsActive) VALUES (21,3,1)
 ;
 INSERT INTO SyncDS_PermissionAccEntity (PermissionEntityId, PermissionAccessId, IsActive) VALUES (22,3,1)
-;
-INSERT INTO SyncDS_PermissionAccEntity (PermissionEntityId, PermissionAccessId, IsActive) VALUES (23,3,1)
-;
-INSERT INTO SyncDS_PermissionAccEntity (PermissionEntityId, PermissionAccessId, IsActive) VALUES (24,3,1)
-;
-INSERT INTO SyncDS_PermissionAccEntity (PermissionEntityId, PermissionAccessId, IsActive) VALUES (25,3,1)
-;
-INSERT INTO SyncDS_PermissionAccEntity (PermissionEntityId, PermissionAccessId, IsActive) VALUES (26,3,1)
-;
-INSERT INTO SyncDS_PermissionAccEntity (PermissionEntityId, PermissionAccessId, IsActive) VALUES (27,3,1)
-;
-INSERT INTO SyncDS_PermissionAccEntity (PermissionEntityId, PermissionAccessId, IsActive) VALUES (28,3,1)
 ;
 INSERT INTO SyncDS_PermissionAccEntity (PermissionEntityId, PermissionAccessId, IsActive) VALUES (4,4,1)
 ;																									  
@@ -1392,63 +1180,26 @@ INSERT into SyncDS_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) V
 ;
 INSERT into SyncDS_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (1,N'FavIcon',N'SiteSettings.Favicon',now() at time zone 'utc',1)
 ;
-INSERT into SyncDS_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (1,N'FooterLogo',N'SiteSettings.FooterLogo',now() at time zone 'utc',1)
-;
 INSERT into SyncDS_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (1,N'IsEnableCopyrightInfo',N'SiteSettings.ShowCopyrightInformation',now() at time zone 'utc',1)
 ;
 INSERT into SyncDS_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (1,N'IsEnablePoweredBySyncfusion',N'SiteSettings.ShowPoweredBySyncfusion',now() at time zone 'utc',1)
 ;
-INSERT into SyncDS_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (1,N'CopyrightInformation',N'SiteSettings.CopyrightInformation',now() at time zone 'utc',1)
-;
 
-INSERT into SyncDS_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (2,N'EnableNotificationForDashboardOwner',N'UserNotificationSettings.UserSystemNotificationSettings.EnableNotificationForDashboardOwner',now() at time zone 'utc',1)
+INSERT into SyncDS_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (2,N'EnableSystemNotification',N'NotificationSettings.SystemNotifications.DefaultSettings',now() at time zone 'utc',1)
 ;
-INSERT into SyncDS_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (2,N'EnableNotificationForAccessibleUser',N'UserNotificationSettings.UserSystemNotificationSettings.EnableNotificationForAccessibleUser',now() at time zone 'utc',1)
+INSERT into SyncDS_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (2,N'EnableMailNotification',N'NotificationSettings.MailNotifications.DefaultSettings',now() at time zone 'utc',1)
 ;
-INSERT into SyncDS_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (2,N'EnableNotificationOnUserMention',N'UserNotificationSettings.UserSystemNotificationSettings.EnableNotificationOnUserMention',now() at time zone 'utc',1)
+INSERT into SyncDS_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (2,N'EnableAutoWatchOfCommentsOfCreatedItems',N'NotificationSettings.AutowatchCommentsOfCreatedItems.DefaultSettings',now() at time zone 'utc',1)
 ;
-INSERT into SyncDS_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (2,N'EnableNotificationWhenWatchEnabled',N'UserNotificationSettings.UserSystemNotificationSettings.EnableNotificationWhenWatchEnabled',now() at time zone 'utc',1)
+INSERT into SyncDS_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (2,N'EnableAutoWatchOfCommentsOfAccessibleItems',N'NotificationSettings.AutowatchCommentsOfAccessibleItems.DefaultSettings',now() at time zone 'utc',1)
 ;
-INSERT into SyncDS_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (2,N'EnableNotificationForDashboardOwner',N'UserNotificationSettings.UserMailNotificationSettings.EnableNotificationForDashboardOwner',now() at time zone 'utc',1)
+INSERT into SyncDS_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (3,N'EnableSystemNotification',N'NotificationSettings.SystemNotifications.Allow',now() at time zone 'utc',1)
 ;
-INSERT into SyncDS_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (2,N'EnableNotificationForAccessibleUser',N'UserNotificationSettings.UserMailNotificationSettings.EnableNotificationForAccessibleUser',now() at time zone 'utc',1)
+INSERT into SyncDS_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (3,N'EnableMailNotification',N'NotificationSettings.MailNotifications.Allow',now() at time zone 'utc',1)
 ;
-INSERT into SyncDS_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (2,N'EnableNotificationOnUserMention',N'UserNotificationSettings.UserMailNotificationSettings.EnableNotificationOnUserMention',now() at time zone 'utc',1)
+INSERT into SyncDS_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (3,N'EnableAutoWatchOfCommentsOfCreatedItems',N'NotificationSettings.AutowatchCommentsOfCreatedItems.Allow',now() at time zone 'utc',1)
 ;
-INSERT into SyncDS_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (2,N'EnableNotificationWhenWatchEnabled',N'UserNotificationSettings.UserMailNotificationSettings.EnableNotificationWhenWatchEnabled',now() at time zone 'utc',1)
-;
-INSERT into SyncDS_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (2,N'EnableUserScheduleNotification',N'UserNotificationSettings.UserMailNotificationSettings.EnableUserScheduleNotification',now() at time zone 'utc',1)
-;
-INSERT into SyncDS_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (2,N'EnableUserProfileNotification',N'UserNotificationSettings.UserMailNotificationSettings.EnableUserProfileNotification',now() at time zone 'utc',1)
-;
-INSERT into SyncDS_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (2,N'EnableResourceShareNotification',N'UserNotificationSettings.UserMailNotificationSettings.EnableResourceShareNotification',now() at time zone 'utc',1)
-;
-INSERT into SyncDS_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (2,N'EnableUserSynchronizationNotification',N'UserNotificationSettings.UserMailNotificationSettings.EnableUserSynchronizationNotification',now() at time zone 'utc',1)
-;
-
-INSERT into SyncDS_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (3,N'EnableNotificationForDashboardOwner',N'NotificationSettings.SystemNotificationSettings.EnableNotificationForDashboardOwner',now() at time zone 'utc',1)
-;
-INSERT into SyncDS_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (3,N'EnableNotificationForAccessibleUser',N'NotificationSettings.SystemNotificationSettings.EnableNotificationForAccessibleUser',now() at time zone 'utc',1)
-;
-INSERT into SyncDS_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (3,N'EnableNotificationOnUserMention',N'NotificationSettings.SystemNotificationSettings.EnableNotificationOnUserMention',now() at time zone 'utc',1)
-;
-INSERT into SyncDS_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (3,N'EnableNotificationWhenWatchEnabled',N'NotificationSettings.SystemNotificationSettings.EnableNotificationWhenWatchEnabled',now() at time zone 'utc',1)
-;
-INSERT into SyncDS_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (3,N'EnableNotificationForDashboardOwner',N'NotificationSettings.MailNotificationSettings.EnableNotificationForDashboardOwner',now() at time zone 'utc',1)
-;
-INSERT into SyncDS_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (3,N'EnableNotificationForAccessibleUser',N'NotificationSettings.MailNotificationSettings.EnableNotificationForAccessibleUser',now() at time zone 'utc',1)
-;
-INSERT into SyncDS_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (3,N'EnableNotificationOnUserMention',N'NotificationSettings.MailNotificationSettings.EnableNotificationOnUserMention',now() at time zone 'utc',1)
-;
-INSERT into SyncDS_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (3,N'EnableNotificationWhenWatchEnabled',N'NotificationSettings.MailNotificationSettings.EnableNotificationWhenWatchEnabled',now() at time zone 'utc',1)
-;
-INSERT into SyncDS_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (3,N'EnableUserScheduleNotification',N'NotificationSettings.MailNotificationSettings.EnableUserScheduleNotification',now() at time zone 'utc',1)
-;
-INSERT into SyncDS_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (3,N'EnableUserProfileNotification',N'NotificationSettings.MailNotificationSettings.EnableUserProfileNotification',now() at time zone 'utc',1)
-;
-INSERT into SyncDS_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (3,N'EnableResourceShareNotification',N'NotificationSettings.MailNotificationSettings.EnableResourceShareNotification',now() at time zone 'utc',1)
-;
-INSERT into SyncDS_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (3,N'EnableUserSynchronizationNotification',N'NotificationSettings.MailNotificationSettings.EnableUserSynchronizationNotification',now() at time zone 'utc',1)
+INSERT into SyncDS_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (3,N'EnableAutoWatchOfCommentsOfAccessibleItems',N'NotificationSettings.AutowatchCommentsOfAccessibleItems.Allow',now() at time zone 'utc',1)
 ;
 
 INSERT into SyncDS_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (4,N'TenantName',N'UserDirectory.Azure.TenantName',now() at time zone 'utc',1)
@@ -1568,8 +1319,6 @@ INSERT into SyncDS_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) V
 INSERT into SyncDS_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (10,N'Subscription.Plan',N'Subscription.Plan',now() at time zone 'utc',1)
 ;
 INSERT into SyncDS_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (10,N'SiteSettings',N'SiteSettings',now() at time zone 'utc',1)
-;
-INSERT into SyncDS_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (10,N'DashboardSettings.UsageAnalytics',N'DashboardSettings.UsageAnalytics',now() at time zone 'utc',1)
 ;
 
 INSERT into SyncDS_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (11,N'Contact',N'Contact',now() at time zone 'utc',1)
@@ -1759,66 +1508,6 @@ INSERT into SyncDS_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) V
 INSERT into SyncDS_LogField (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (10,N'UserDirectory.AuthControl',N'UserDirectory.AuthControl',now() at time zone 'utc',1)
 ;
 
-INSERT INTO SyncDS_NotificationEvents (Name, IsActive) VALUES (N'Time Drive Dashboard Export',1)
-;
-INSERT INTO SyncDS_NotificationEvents (Name, IsActive) VALUES (N'Alert Drive Dashboard Export',1)
-;
-
-INSERT INTO SyncDS_EventPayloads (Name, IsActive) VALUES (N'Schedule Name',1)
-;
-INSERT INTO SyncDS_EventPayloads (Name, IsActive) VALUES (N'Schedule Id',1)
-;
-INSERT INTO SyncDS_EventPayloads (Name, IsActive) VALUES (N'Dashboard Id',1)
-;
-INSERT INTO SyncDS_EventPayloads (Name, IsActive) VALUES (N'Dashboard Name',1)
-;
-INSERT INTO SyncDS_EventPayloads (Name, IsActive) VALUES (N'Message',1)
-;
-INSERT INTO SyncDS_EventPayloads (Name, IsActive) VALUES (N'File Content',1)
-;
-INSERT INTO SyncDS_EventPayloads (Name, IsActive) VALUES (N'File Extension',1)
-;
-INSERT INTO SyncDS_EventPayloads (Name, IsActive) VALUES (N'Export Format',1)
-;
-INSERT INTO SyncDS_EventPayloads (Name, IsActive) VALUES (N'Alert Info',1)
-;
-
-INSERT INTO SyncDS_EventPayloadsMapping (EventType, PayloadType, IsActive) VALUES (1,1,1)
-;
-INSERT INTO SyncDS_EventPayloadsMapping (EventType, PayloadType, IsActive) VALUES (1,2,1)
-;
-INSERT INTO SyncDS_EventPayloadsMapping (EventType, PayloadType, IsActive) VALUES (1,3,1)
-;
-INSERT INTO SyncDS_EventPayloadsMapping (EventType, PayloadType, IsActive) VALUES (1,4,1)
-;
-INSERT INTO SyncDS_EventPayloadsMapping (EventType, PayloadType, IsActive) VALUES (1,5,1)
-;
-INSERT INTO SyncDS_EventPayloadsMapping (EventType, PayloadType, IsActive) VALUES (1,6,1)
-;
-INSERT INTO SyncDS_EventPayloadsMapping (EventType, PayloadType, IsActive) VALUES (1,7,1)
-;
-INSERT INTO SyncDS_EventPayloadsMapping (EventType, PayloadType, IsActive) VALUES (1,8,1)
-;
-
-INSERT INTO SyncDS_EventPayloadsMapping (EventType, PayloadType, IsActive) VALUES (2,1,1)
-;
-INSERT INTO SyncDS_EventPayloadsMapping (EventType, PayloadType, IsActive) VALUES (2,2,1)
-;
-INSERT INTO SyncDS_EventPayloadsMapping (EventType, PayloadType, IsActive) VALUES (2,3,1)
-;
-INSERT INTO SyncDS_EventPayloadsMapping (EventType, PayloadType, IsActive) VALUES (2,4,1)
-;
-INSERT INTO SyncDS_EventPayloadsMapping (EventType, PayloadType, IsActive) VALUES (2,5,1)
-;
-INSERT INTO SyncDS_EventPayloadsMapping (EventType, PayloadType, IsActive) VALUES (2,6,1)
-;
-INSERT INTO SyncDS_EventPayloadsMapping (EventType, PayloadType, IsActive) VALUES (2,7,1)
-;
-INSERT INTO SyncDS_EventPayloadsMapping (EventType, PayloadType, IsActive) VALUES (2,8,1)
-;
-INSERT INTO SyncDS_EventPayloadsMapping (EventType, PayloadType, IsActive) VALUES (2,9,1)
-;
-
 ---- PASTE ALTER Queries below this section --------
 
 ALTER TABLE SyncDS_UserGroup  ADD FOREIGN KEY(GroupId) REFERENCES SyncDS_Group (Id)
@@ -1893,24 +1582,12 @@ ALTER TABLE SyncDS_UserPermission  ADD  FOREIGN KEY(ItemId) REFERENCES SyncDS_It
 ;
 ALTER TABLE SyncDS_UserPermission  ADD  FOREIGN KEY(UserId) REFERENCES SyncDS_User (Id)
 ;
-ALTER TABLE SyncDS_UserPermission  ADD FOREIGN KEY(SettingsTypeId) REFERENCES SyncDS_SettingsType (Id) 
-;
-ALTER TABLE SyncDS_UserPermission  ADD  FOREIGN KEY(ScopeGroupId) REFERENCES SyncDS_Group (Id)
-;
-ALTER TABLE SyncDS_UserPermission  ADD  FOREIGN KEY(ItemTypeId) REFERENCES SyncDS_ItemType (Id)
-;
 
 ALTER TABLE SyncDS_GroupPermission  ADD  FOREIGN KEY(PermissionEntityId) REFERENCES SyncDS_PermissionEntity (Id)
 ;
 ALTER TABLE SyncDS_GroupPermission  ADD  FOREIGN KEY(ItemId) REFERENCES SyncDS_Item (Id)
 ;
 ALTER TABLE SyncDS_GroupPermission  ADD  FOREIGN KEY(GroupId) REFERENCES SyncDS_Group (Id)
-;
-ALTER TABLE SyncDS_GroupPermission  ADD FOREIGN KEY(SettingsTypeId) REFERENCES SyncDS_SettingsType (Id)
-;
-ALTER TABLE SyncDS_GroupPermission  ADD  FOREIGN KEY(ScopeGroupId) REFERENCES SyncDS_Group (Id)
-;
-ALTER TABLE SyncDS_GroupPermission  ADD  FOREIGN KEY(ItemTypeId) REFERENCES SyncDS_ItemType (Id)
 ;
 
 ALTER TABLE SyncDS_ScheduleDetail  ADD FOREIGN KEY(ScheduleId) REFERENCES SyncDS_Item (Id)
@@ -1976,15 +1653,11 @@ ALTER TABLE SyncDS_Comment ADD FOREIGN KEY(ItemId) REFERENCES SyncDS_Item (Id)
 ALTER TABLE SyncDS_Comment ADD FOREIGN KEY(UserId) REFERENCES SyncDS_User (Id)
 ;
 ALTER TABLE SyncDS_Comment ADD FOREIGN KEY(ModifiedById) REFERENCES SyncDS_User (Id)
-;
-ALTER TABLE SyncDS_Comment ADD FOREIGN KEY(ParentItemId) REFERENCES SyncDS_Item (Id) 
-;
+; 
  
 ALTER TABLE SyncDS_ItemWatch ADD FOREIGN KEY(ItemId) REFERENCES SyncDS_Item (Id)
 ;
 ALTER TABLE SyncDS_ItemWatch ADD FOREIGN KEY(UserId) REFERENCES SyncDS_User (Id)
-;
-ALTER TABLE SyncDS_ItemWatch ADD FOREIGN KEY(ParentItemId) REFERENCES SyncDS_Item (Id)
 ;
 
 ALTER TABLE SyncDS_Homepage  ADD FOREIGN KEY(UserId) REFERENCES SyncDS_User (Id)
@@ -2014,6 +1687,8 @@ ALTER TABLE SyncDS_DashboardWidget  ADD FOREIGN KEY(WidgetItemId) REFERENCES Syn
 ALTER TABLE SyncDS_DashboardDataSource  ADD FOREIGN KEY(DashboardItemId) REFERENCES SyncDS_Item (Id)
 ;
 ALTER TABLE SyncDS_DashboardDataSource  ADD FOREIGN KEY(DataSourceItemId) REFERENCES SyncDS_Item (Id)
+;
+ALTER TABLE SyncDS_DashboardDataSource  ADD FOREIGN KEY(VersionNumber) REFERENCES SyncDS_ItemVersion (Id)
 ;
 
 ALTER TABLE SyncDS_HomepageItemFilter  ADD FOREIGN KEY(HomepageId) REFERENCES SyncDS_Homepage (Id)
@@ -2130,27 +1805,6 @@ ALTER TABLE SyncDS_DataNotification ADD FOREIGN KEY(ScheduleId) REFERENCES SyncD
 ALTER TABLE SyncDS_DataNotification ADD FOREIGN KEY(DataSourceId) REFERENCES SyncDS_Item (Id)
 ;
 ALTER TABLE SyncDS_UserDataNotification ADD FOREIGN KEY(ScheduleId) REFERENCES SyncDS_Item (Id)
-;
-
-ALTER TABLE SyncDS_EmailActivityLog  ADD  FOREIGN KEY(UserId) REFERENCES SyncDS_User (Id)
-;
-ALTER TABLE SyncDS_EmailActivityLog  ADD  FOREIGN KEY(GroupId) REFERENCES SyncDS_Group (Id)
-;
-ALTER TABLE SyncDS_EmailActivityLog  ADD  FOREIGN KEY(ItemId) REFERENCES SyncDS_Item (Id)
-;
-ALTER TABLE SyncDS_EmailActivityLog  ADD FOREIGN KEY(CommentId) REFERENCES SyncDS_Comment (Id)
-;
-
-ALTER TABLE SyncDS_WebhookLog  ADD FOREIGN KEY(WebhookId) REFERENCES SyncDS_Webhook (Id)
-;
-
-ALTER TABLE SyncDS_NotificationTrigger  ADD FOREIGN KEY(WebhookId) REFERENCES SyncDS_Webhook (Id)
-;
-
-ALTER TABLE SyncDS_EventPayloadsMapping ADD FOREIGN KEY(EventType) REFERENCES SyncDS_NotificationEvents (Id)
-;
-
-ALTER TABLE SyncDS_EventPayloadsMapping ADD FOREIGN KEY(PayloadType) REFERENCES SyncDS_EventPayloads (Id)
 ;
 
 CREATE INDEX IX_SyncDS_ScheduleDetail_ScheduleId ON SyncDS_ScheduleDetail(ScheduleId);

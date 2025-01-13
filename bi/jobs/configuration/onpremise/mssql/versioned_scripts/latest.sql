@@ -1,30 +1,12 @@
-CREATE TABLE [BOLDBI_UserSession](
-	[Id] [uniqueidentifier] PRIMARY KEY NOT NULL,
-	[IdpReferenceId]  [uniqueidentifier] NOT NULL,
-	[SessionId]  [uniqueidentifier] NOT NULL,
-	[DirectoryTypeId] [int] NOT NULL,
-	[IpAddress] [nvarchar](255) NOT NULL,
-	[Browser] [nvarchar](255) NOT NULL,
-	[LoggedInTime] [datetime] NOT NULL,
-	[LastActive] [datetime] NULL,
-	[IsActive] [bit] NOT NULL)
+﻿INSERT into [SyncDS_LogField] (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (10,N'UserDirectory.OAuth2',N'UserDirectory.OAuth2',GETDATE(),1)
 ;
-
-ALTER TABLE [BOLDBI_Item] ADD [IsUploadDraft] Bit Not Null default '0'
+INSERT into [SyncDS_LogField] (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (10,N'UserDirectory.OpenIDConnect',N'UserDirectory.OpenIDConnect',GETDATE(),1)
 ;
-
-CREATE TABLE [BOLDBI_BackgroundJobs](
-    [Id] [int] IDENTITY(1,1) PRIMARY KEY NOT NULL,
-    [JobType] int NOT NULL,
-    [ItemId] [uniqueidentifier] NULL,
-    [UserId] [int] NULL,
-    [JobDetails] [nvarchar](max) NOT NULL,
-    [CreatedDate] [datetime] NOT NULL,
-    [CompletedDate] [datetime] NOT NULL,
-    [Status] [nvarchar](255) NOT NULL,
-	[StatusMessage] [nvarchar](255) NULL,
-	[ResourceInfo] [nvarchar](max) NULL,
-	[CanIncludeSensitiveInfo] [bit] NULL,
-	[IsSampleData] [bit] NULL,
-    [IsActive] [bit] NOT NULL)
+INSERT into [SyncDS_LogField] (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (10,N'UserDirectory.AuthControl',N'UserDirectory.AuthControl',GETDATE(),1)
+;
+INSERT into [BOLDBI_LogField] (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (15,N'OAuthGroups',N'OAuth Group Import',GETDATE(),1)
+;
+INSERT into [BOLDBI_LogField] (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (15,N'OpenIDGroups',N'OpenID Group Import',GETDATE(),1)
+;
+INSERT into [BOLDBI_LogField] (ModuleId,Field,Description,ModifiedDate,IsActive) VALUES (10,N'DashboardSettings.Theming',N'DashboardSettings.Theming',GETDATE(),1)
 ;

@@ -28,25 +28,25 @@
     </div>
 </script>
 <script type="text/x-jsrender" id="actionstemplate">
-    <div class="grid-content">
-        <span><a href="javascript:void(0);" class="remove-dashboard grid-content" title="" data-username="{{:DisplayName}}" data-itemId="{{:ItemId}}"><i class="su su-close"></i> @T["Remove"]</a></span>
+    <div>
+        <span><a href="javascript:void(0);" class="remove-dashboard" title="" data-username="{{:DisplayName}}" data-itemId="{{:ItemId}}"><i class="su su-close"></i> [[[Remove]]]</a></span>
     </div>
 </script>
 <script type="text/x-jsrender" id="locked-template-dashboard">
     {{if IsDashboardLocked == false}}
-    @T["Enabled"]
+    [[[Enabled]]]
     {{else IsDashboardLocked == true}}
-   @T["Disabled"]
+    [[[Disabled]]]
     {{/if}}
 </script>
 <script type="text/x-jsrender" id="locked-template-datasource">
     {{if IsDatasourceLocked == false}}
-     @T["Enabled"]
+    [[[Enabled]]]
     {{else IsDatasourceLocked == true}}
-     @T["Disabled"]
+    [[[Disabled]]]
     {{/if}}
 </script>
 
-<div id="dashboardGrid" class="col-xs-12 no-padding dialog-override">
+<div id="dashboardGrid" class="col-lg-12 no-padding dialog-override">
 </div>
 
